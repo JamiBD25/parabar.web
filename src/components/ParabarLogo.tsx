@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface LogoProps {
   className?: string;
@@ -11,6 +11,41 @@ export const ParabarLogo: React.FC<LogoProps> = ({
   size, 
   showText = false 
 }) => {
+  const [imageError, setImageError] = useState(false);
+  const [currentExtIndex, setCurrentExtIndex] = useState(0);
+  const preferredExtensions = ['png', 'svg', 'jpg', 'jpeg'];
+  
+  // Try loading logo.png first, then logo.svg, etc.
+  const logoPath = `/logo.${preferredExtensions[currentExtIndex]}`;
+
+  const handleImageError = () => {
+    if (currentExtIndex < preferredExtensions.length - 1) {
+      setCurrentExtIndex(prev => prev + 1);
+    } else {
+      setImageError(true);
+    }
+  };
+
+  if (!imageError) {
+    return (
+      <div className={`flex flex-col items-center justify-center select-none ${className}`}>
+        <img 
+          src={logoPath} 
+          alt="Parabar Logo" 
+          style={{ width: size || '100%', height: size || 'auto' }}
+          className="object-contain"
+          onError={handleImageError}
+          referrerPolicy="no-referrer"
+        />
+        {showText && (
+          <span className="text-[10px] font-black tracking-widest text-[#B22222] uppercase mt-1">
+            PARABAR
+          </span>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className={`flex flex-col items-center justify-center select-none ${className}`}>
       <svg 
