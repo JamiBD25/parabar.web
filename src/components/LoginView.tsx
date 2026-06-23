@@ -28,6 +28,12 @@ export const LoginView: React.FC = () => {
   const [regPassword, setRegPassword] = useState('student');
   const [registeredStudent, setRegisteredStudent] = useState<any>(null);
 
+  const handleFillDemo = (userId: string, pass: string, userRole: 'admin' | 'student') => {
+    setRole(userRole);
+    setIdentifier(userId);
+    setPassword(pass);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!identifier.trim() || !password.trim()) {

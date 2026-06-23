@@ -146,10 +146,10 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
           </div>
 
           {/* Quick Stats Summary Widgets inside banner */}
-          <div className="flex gap-4 self-stretch md:self-auto shrink-0 font-sans">
+          <div className="flex gap-4 self-stretch md:self-auto shrink-0 font-sans justify-center">
             <button
               onClick={logout}
-              className="flex items-center gap-2 bg-rose-500 hover:bg-rose-600 transition-colors duration-200 text-white font-bold py-2.5 px-4 rounded-xl text-xs tracking-wider uppercase border border-rose-600/50 cursor-pointer"
+              className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 transition-colors duration-200 text-white font-bold py-2.5 px-4 rounded-xl text-xs tracking-wider uppercase border border-rose-600/50 cursor-pointer w-full md:w-auto"
             >
               <LogOut size={14} />
               {language === 'bn' ? 'লগআউট' : 'Logout'}
@@ -223,10 +223,10 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 p-1.5 rounded-xl gap-2 font-sans">
+      <div className="flex border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 p-1.5 rounded-xl gap-2 font-sans overflow-x-auto whitespace-nowrap md:flex-wrap scrollbar-none sm:scrollbar-default">
         <button
           onClick={() => setActiveSubTab('overview')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all ${
+          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all shrink-0 ${
             activeSubTab === 'overview'
               ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-[#38bdf8] shadow-sm'
               : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100'
@@ -236,7 +236,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
         </button>
         <button
           onClick={() => setActiveSubTab('attendance')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all ${
+          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all shrink-0 ${
             activeSubTab === 'attendance'
               ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-[#38bdf8] shadow-sm'
               : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100'
@@ -246,7 +246,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
         </button>
         <button
           onClick={() => setActiveSubTab('fees')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all ${
+          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all shrink-0 ${
             activeSubTab === 'fees'
               ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-[#38bdf8] shadow-sm'
               : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100'
@@ -256,7 +256,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
         </button>
         <button
           onClick={() => setActiveSubTab('notices')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all flex items-center gap-1.5 relative ${
+          className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all shrink-0 flex items-center gap-1.5 relative ${
             activeSubTab === 'notices'
               ? 'bg-slate-900 text-white dark:bg-slate-800 dark:text-[#38bdf8] shadow-sm'
               : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100'
@@ -281,39 +281,39 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               </h3>
               
               <div className="space-y-3 font-sans text-xs">
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'ইংরেজি নাম' : 'English Name'}</span>
                   <span className="col-span-2 font-semibold text-slate-800 dark:text-slate-200">{student.nameEn}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'বাংলা নাম' : 'Bengali Name'}</span>
                   <span className="col-span-2 font-bold text-slate-800 dark:text-slate-200">{student.name}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'পিতার নাম' : "Father's Name"}</span>
                   <span className="col-span-2 text-slate-700 dark:text-slate-300">{student.fatherName}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'মাতার নাম' : "Mother's Name"}</span>
                   <span className="col-span-2 text-slate-700 dark:text-slate-300">{student.motherName}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'জন্মদিন' : 'Date of Birth'}</span>
                   <span className="col-span-2 font-mono text-slate-700 dark:text-slate-300">{student.dob}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'রক্তের গ্রুপ' : 'Blood Group'}</span>
                   <span className="col-span-2 font-bold text-rose-500">{student.bloodGroup || 'UNKNOWN'}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'মোবাইল' : 'Contact Mobile'}</span>
                   <span className="col-span-2 font-mono text-[#38bdf8] font-bold">{student.mobile}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-slate-50 dark:border-slate-800/60 pb-2">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2 border-b border-slate-50 dark:border-slate-800/60 pb-2">
                   <span className="text-slate-400">{language === 'bn' ? 'শিক্ষা প্রতিষ্ঠান' : 'Institution'}</span>
                   <span className="col-span-2 text-slate-700 dark:text-slate-300">{student.institution}</span>
                 </div>
-                <div className="grid grid-cols-3">
+                <div className="flex flex-col sm:grid sm:grid-cols-3 gap-0.5 sm:gap-2">
                   <span className="text-slate-400">{language === 'bn' ? 'ঠিকানা' : 'Address'}</span>
                   <span className="col-span-2 text-slate-700 dark:text-slate-300 leading-relaxed">{student.address}</span>
                 </div>
@@ -439,16 +439,16 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               </div>
 
               {/* Attendance metrics */}
-              <div className="flex gap-4 font-mono text-center">
-                <div className="bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
+              <div className="grid grid-cols-3 sm:flex gap-2 sm:gap-4 font-mono text-center w-full sm:w-auto mt-3 sm:mt-0">
+                <div className="bg-slate-50 dark:bg-slate-950 px-2 sm:px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
                   <span className="text-[9px] text-slate-400 block tracking-wider uppercase">{language === 'bn' ? 'উপস্থিত' : 'PRESENT'}</span>
                   <span className="text-xs font-bold text-emerald-500">{myAttendance.filter(r => r.status === 'Present').length}</span>
                 </div>
-                <div className="bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
+                <div className="bg-slate-50 dark:bg-slate-950 px-2 sm:px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
                   <span className="text-[9px] text-slate-400 block tracking-wider uppercase">{language === 'bn' ? 'ছুটি' : 'LEAVE'}</span>
                   <span className="text-xs font-bold text-sky-400">{myAttendance.filter(r => r.status === 'Leave').length}</span>
                 </div>
-                <div className="bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
+                <div className="bg-slate-50 dark:bg-slate-950 px-2 sm:px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
                   <span className="text-[9px] text-slate-400 block tracking-wider uppercase">{language === 'bn' ? 'অনুপস্থিত' : 'ABSENT'}</span>
                   <span className="text-xs font-bold text-rose-500">{myAttendance.filter(r => r.status === 'Absent').length}</span>
                 </div>
@@ -461,7 +461,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
+                <table className="w-full text-left border-collapse text-xs min-w-[500px]">
                   <thead>
                     <tr className="border-b border-slate-100 dark:border-slate-800 text-slate-400 uppercase tracking-wider text-[10px] font-sans font-bold">
                       <th className="py-3 px-4">{language === 'bn' ? 'তারিখ' : 'Date'}</th>
@@ -539,7 +539,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                  <table className="w-full text-left border-collapse text-xs min-w-[650px]">
                     <thead>
                       <tr className="border-b border-slate-100 dark:border-slate-800 text-slate-400 uppercase tracking-wider text-[10px] font-sans font-bold">
                         <th className="py-3 px-4">{language === 'bn' ? 'রশিদ নং' : 'Receipt No.'}</th>
