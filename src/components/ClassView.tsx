@@ -5,6 +5,44 @@ import {
   BookOpen, Plus, Clock, User, Sparkles, X, Edit2, Trash2 
 } from 'lucide-react';
 
+const getDeptStyles = (dept: string) => {
+  switch (dept) {
+    case 'Music':
+      return {
+        bg: 'bg-emerald-50 dark:bg-emerald-950/20',
+        text: 'text-brand-green',
+        border: 'border-brand-green/35'
+      };
+    case 'Recitation':
+    case 'Poetry':
+      return {
+        bg: 'bg-amber-50 dark:bg-amber-950/25',
+        text: 'text-accent-gold',
+        border: 'border-accent-gold/35'
+      };
+    case 'Fine Arts':
+    case 'Painting':
+      return {
+        bg: 'bg-orange-50 dark:bg-orange-950/20',
+        text: 'text-[#E76F51]',
+        border: 'border-[#E76F51]/35'
+      };
+    case 'Theatre':
+    case 'Calligraphy':
+      return {
+        bg: 'bg-stone-50 dark:bg-amber-500/5',
+        text: 'text-neutral-800 dark:text-amber-450 font-bold',
+        border: 'border-amber-500/35'
+      };
+    default:
+      return {
+        bg: 'bg-slate-50 dark:bg-slate-900',
+        text: 'text-slate-650',
+        border: 'border-slate-205'
+      };
+  }
+};
+
 export const ClassView: React.FC = () => {
   const { 
     classes, addClass, updateClass, deleteClass, trainers, language, t 
@@ -81,24 +119,24 @@ export const ClassView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       {/* Title */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="font-sans font-bold text-xl text-slate-900 dark:text-slate-100 flex items-center gap-2">
-            <BookOpen className="text-indigo-400" />
+          <h2 className="font-sans font-black text-xl text-[#222222] dark:text-slate-100 flex items-center gap-2">
+            <BookOpen className="text-brand-red" />
             {t('classes')}
           </h2>
-          <p className="text-xs text-slate-500 tracking-wide">
+          <p className="text-xs text-[#6B6B6B] tracking-wide font-medium">
             {language === 'bn' ? 'সাপ্তাহিক রুটিন, ক্লাসের বিষয় ও দায়িত্বপ্রাপ্ত ওস্তাদ শিডিউল রক্ষণ করুন।' : 'Design sessional courses, assign faculty instructors, and track completed lessons'}
           </p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 text-white rounded-lg text-xs font-semibold shadow hover:scale-[1.01] transition"
+          className="flex items-center gap-1.5 px-4 py-2 bg-brand-red hover:bg-[#991d1d] text-white rounded-lg text-xs font-bold shadow transition cursor-pointer"
         >
-          <Plus size={16} />
+          <Plus size={15} />
           <span>{language === 'bn' ? 'নতুন ক্লাস যোগ করুন' : 'Schedule Class'}</span>
         </button>
       </div>
@@ -106,40 +144,42 @@ export const ClassView: React.FC = () => {
       {/* Roster Cards list */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((cls) => {
+          const deptStyles = getDeptStyles(cls.department);
           return (
-            <div key={cls.id} className="bg-white dark:bg-slate-900 border border-slate-150 p-5 rounded-2xl shadow hover:border-indigo-500/30 transition duration-300 flex flex-col justify-between">
+            <div key={cls.id} className="bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm hover:shadow hover:border-brand-green/20 transition duration-300 flex flex-col justify-between">
               <div>
                 {/* Header info */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <span className="bg-indigo-600/10 text-indigo-450 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+                    <span className={`px-2.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-widest border ${deptStyles.bg} ${deptStyles.text} ${deptStyles.border}`}>
+                      {cls.department === 'Music' ? '🎵 ' : cls.department === 'Recitation' ? '📖 ' : cls.department === 'Fine Arts' ? '🎨 ' : ''}
                       {cls.department}
                     </span>
-                    <h3 className="font-sans font-bold text-base text-slate-900 dark:text-slate-100 mt-2 leading-snug">
+                    <h3 className="font-sans font-black text-base text-[#222222] mt-2.5 leading-snug">
                       {cls.className}
                     </h3>
                   </div>
                   {cls.isSpecial && (
-                    <span className="bg-amber-500 text-slate-950 font-black px-1.5 py-0.5 rounded text-[8px] uppercase font-mono tracking-widest animate-pulse">
+                    <span className="bg-brand-red text-white font-extrabold px-2 py-0.5 rounded text-[8px] uppercase tracking-wider">
                       Special
                     </span>
                   )}
                 </div>
 
                 {/* Schedule times list */}
-                <div className="my-4 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2.5 text-xs text-slate-500 font-medium">
+                <div className="my-4 pt-3 border-t border-slate-100 space-y-2.5 text-xs text-text-gray font-medium">
                   <p className="flex items-center gap-2">
                     <Clock size={13} className="text-slate-400" />
-                    <span className="text-slate-800 dark:text-slate-350">{cls.day} | {cls.time}</span>
+                    <span className="text-[#222222] font-semibold">{cls.day} | {cls.time}</span>
                   </p>
                   <p className="flex items-center gap-2">
                     <User size={13} className="text-slate-400" />
-                    <span>Instructor: <span className="text-sky-400">{cls.trainerName}</span></span>
+                    <span>Instructor: <span className="text-brand-green font-bold">{cls.trainerName}</span></span>
                   </p>
                   {cls.conductedBy && (
                     <p className="flex items-center gap-2 font-semibold">
-                      <Sparkles size={11} className="text-emerald-400" />
-                      <span>Conducted by: <span className="text-emerald-400">{cls.conductedBy}</span></span>
+                      <Sparkles size={11} className="text-brand-red" />
+                      <span>Conducted by: <span className="text-brand-red font-bold">{cls.conductedBy}</span></span>
                     </p>
                   )}
                 </div>

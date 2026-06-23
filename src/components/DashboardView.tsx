@@ -82,94 +82,93 @@ export const DashboardView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Dynamic Heading and Greeting Card */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-800 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-xl">
-        <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="bg-gradient-to-r from-warm-cream to-warm-secondary border border-slate-200 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-sm">
+        <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="z-10">
-          <h2 className="font-sans font-bold text-2xl lg:text-3xl text-white tracking-tight">
+          <h2 className="font-sans font-black text-2xl lg:text-3xl text-brand-red tracking-tight leading-none">
             {language === 'bn' ? `স্বাগতম, ${currentAdmin.name}` : `Welcome back, ${currentAdmin.name}`}
           </h2>
-          <p className="text-xs text-slate-400 mt-1 font-medium">
-            {language === 'bn' ? 'পারাবার শিল্পী উন্নয়ন ও একাডেমী পোর্টাল ড্যাশবোর্ড' : 'Parabar Artist Development & Academy Portal'}
+          <p className="text-xs text-text-gray mt-1.5 font-semibold uppercase tracking-wider">
+            {language === 'bn' ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম পরিচালনা ড্যাশবোর্ড' : 'Parabar Sahittya Sangskriti Songsod Chattogram Portal'}
           </p>
         </div>
         <div className="z-10 flex gap-4 self-stretch md:self-auto shrink-0 font-mono text-center">
-          <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl py-3 px-4 flex-1 md:flex-initial">
-            <span className="text-[10px] text-slate-500 block tracking-wider uppercase">{language === 'bn' ? 'সিস্টেম তারিখ' : 'System Date'}</span>
-            <span className="text-sm font-semibold text-sky-400 block mt-0.5">2026-06-22</span>
+          <div className="bg-white border border-slate-200 rounded-xl py-2.5 px-4 flex-1 md:flex-initial shadow-xs">
+            <span className="text-[10px] text-text-gray block tracking-wider uppercase font-bold">{language === 'bn' ? 'সিস্টেম তারিখ' : 'System Date'}</span>
+            <span className="text-sm font-bold text-brand-green block mt-0.5">2026-06-22</span>
           </div>
-          <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl py-3 px-4 flex-1 md:flex-initial">
-            <span className="text-[10px] text-slate-500 block tracking-wider uppercase">{language === 'bn' ? 'বর্তমান সেশন' : 'Fiscal Term'}</span>
-            <span className="text-sm font-semibold text-indigo-400 block mt-0.5">Q2 Summer</span>
+          <div className="bg-white border border-slate-200 rounded-xl py-2.5 px-4 flex-1 md:flex-initial shadow-xs">
+            <span className="text-[10px] text-text-gray block tracking-wider uppercase font-bold">{language === 'bn' ? 'বর্তমান সেশন' : 'Fiscal Term'}</span>
+            <span className="text-sm font-bold text-accent-gold block mt-0.5">Q2 Summer</span>
           </div>
         </div>
       </div>
 
       {/* Main Grid Widgets - 6 Stats Columns */}
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        {/* Total Artists Card */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-[#38bdf8] border-y border-r border-slate-200 dark:border-slate-800/85 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5">
+        {/* Total Artists Card (Students - Green) */}
+        <div className="bg-white border-l-4 border-brand-green border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('totalArtists')}</p>
-            <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">{totalArtistsCount}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-brand-green uppercase tracking-wider">{t('totalArtists')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-900 tracking-tight">{totalArtistsCount}</h3>
           </div>
-          <div className="text-[10px] text-[#22c55e] font-bold mt-2 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <div className="text-[10px] text-brand-green font-extrabold mt-2 flex items-center gap-1 bg-emerald-50/50 py-0.5 px-1.5 rounded w-fit">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
             {activeArtistsCount} {language === 'bn' ? 'জন সক্রিয়' : 'Active Members'}
           </div>
         </div>
 
-        {/* Classes Today Card */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-indigo-500 border-y border-r border-slate-200 dark:border-slate-800/85 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5">
+        {/* Classes Today Card (Classes - Orange #E76F51) */}
+        <div className="bg-white border-l-4 border-[#E76F51] border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('todayClasses')}</p>
-            <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">{classesCount}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-[#E76F51] uppercase tracking-wider">{t('todayClasses')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-900 tracking-tight">{classesCount}</h3>
           </div>
-          <div className="text-[10px] text-indigo-400 font-semibold mt-2">
+          <div className="text-[10px] text-[#E76F51] font-bold mt-2">
             {language === 'bn' ? '৪টি কোর্স সেশন' : '4 Scheduled Sessions'}
           </div>
         </div>
 
-        {/* Present Today Card */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-[#22c55e] border-y border-r border-slate-200 dark:border-slate-800/85 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5">
+        {/* Present Today Card (Success - #2D9D78) */}
+        <div className="bg-white border-l-4 border-[#2D9D78] border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('todayAttendance')}</p>
-            <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">{presentToday || 4}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-[#2D9D78] uppercase tracking-wider">{t('todayAttendance')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-900 tracking-tight">{presentToday || 4}</h3>
           </div>
-          <div className="text-[10px] text-slate-400 mt-2 font-mono">
+          <div className="text-[10px] text-[#2D9D78] mt-2 font-semibold">
             {attendanceRate}% {language === 'bn' ? 'উপস্থিতির হার' : 'Avg Rate Today'}
           </div>
         </div>
 
-        {/* Current Month Income Card (Styled as the immersive dark card from the design showcase!) */}
-        <div className="bg-[#0f172a] text-white p-5 shadow-lg rounded-xl flex flex-col justify-between transition-all duration-305 hover:shadow-xl hover:-translate-y-0.5 relative overflow-hidden group">
-          <div className="absolute -right-4 -bottom-4 w-12 h-12 bg-white/5 rounded-full transition-transform duration-500 group-hover:scale-150"></div>
+        {/* Current Month Income Card (Fees - Gold #D4A017) */}
+        <div className="bg-white border-l-4 border-accent-gold border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 uppercase tracking-widest">{t('currentMonthIncome')}</p>
-            <h3 className="text-3xl font-black mt-2 text-[#38bdf8] tracking-tight">৳{totalJuneIncome}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-accent-gold uppercase tracking-wider">{t('currentMonthIncome')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-905 tracking-tight">৳{totalJuneIncome}</h3>
           </div>
-          <div className="text-[9px] text-slate-400 mt-2 transition-colors group-hover:text-slate-300">
-            {language === 'bn' ? 'বেতন' : 'Fees'}: ৳{junePayments} | {language === 'bn' ? 'অনুদান' : 'Donations'}: ৳{juneDonations}
+          <div className="text-[10px] text-accent-gold mt-2 font-bold leading-tight">
+            {language === 'bn' ? 'বেতন' : 'Fees'}: ৳{junePayments}<br />{language === 'bn' ? 'অনুদান' : 'Donations'}: ৳{juneDonations}
           </div>
         </div>
 
-        {/* Current Month Expense Card */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-rose-500 border-y border-r border-slate-200 dark:border-slate-800/85 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5">
+        {/* Current Month Expense Card (Danger - #E63946) */}
+        <div className="bg-white border-l-4 border-[#E63946] border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-301 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('currentMonthExpense')}</p>
-            <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">৳{totalJuneExpense}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-[#E63946] uppercase tracking-wider">{t('currentMonthExpense')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-900 tracking-tight">৳{totalJuneExpense}</h3>
           </div>
-          <div className="text-[10px] text-rose-500 font-semibold mt-2">
+          <div className="text-[10px] text-[#E63946] font-bold mt-2">
             {language === 'bn' ? 'নিট লাভ ' : 'Surplus'}: ৳{totalJuneIncome - totalJuneExpense}
           </div>
         </div>
 
-        {/* Due Fees Card */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-[#f59e0b] border-y border-r border-slate-200 dark:border-slate-800/85 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-305 hover:shadow-md hover:-translate-y-0.5">
+        {/* Due Fees Card (Pending - Red #B22222) */}
+        <div className="bg-white border-l-4 border-brand-red border-y border-r border-slate-200/90 p-5 rounded-r-xl flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 shadow-sm">
           <div>
-            <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('dueFeesCount')}</p>
-            <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">৳{dueFeesAmount}</h3>
+            <p className="text-[10px] font-sans font-extrabold text-brand-red uppercase tracking-wider">{t('dueFeesCount')}</p>
+            <h3 className="text-3xl font-black mt-2 text-slate-900 tracking-tight">৳{dueFeesAmount}</h3>
           </div>
-          <div className="text-[10px] text-amber-500 font-bold mt-2">
+          <div className="text-[10px] text-brand-red font-bold mt-2">
             {payments.filter(p => p.status === 'Due').length} {language === 'bn' ? 'টি চালানের বকেয়া' : 'Invoices Pending'}
           </div>
         </div>
@@ -178,7 +177,7 @@ export const DashboardView: React.FC = () => {
       {// Quick actions grid
       }
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold tracking-wider text-slate-400 font-mono uppercase">
+        <h3 className="text-xs font-extrabold tracking-wider text-text-gray font-sans uppercase">
           {t('quickActions')}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -188,16 +187,16 @@ export const DashboardView: React.FC = () => {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`bg-gradient-to-tr ${item.color} border border-slate-200 dark:border-slate-800/80 hover:scale-[1.02] rounded-xl p-4 text-left transition duration-300 flex items-start gap-4 shadow shadow-slate-950/5 group`}
+                className="bg-white border border-slate-200 hover:border-brand-green hover:scale-[1.01] rounded-xl p-4 text-left transition duration-200 flex items-start gap-4 shadow-sm group cursor-pointer"
               >
-                <div className="p-3 bg-slate-950/50 border border-slate-800 rounded-lg text-sky-400 group-hover:text-white transition">
-                  <Icon size={20} />
+                <div className="p-3 bg-warm-cream border border-slate-100 rounded-lg text-brand-green group-hover:text-brand-red transition">
+                  <Icon size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-slate-800 dark:text-slate-200">
+                  <h4 className="font-bold text-xs text-[#222222]">
                     {language === 'bn' ? item.titleBn : item.titleEn}
                   </h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-[#6B6B6B] mt-1 leading-normal font-medium">
                     {language === 'bn' ? item.descBn : item.descEn}
                   </p>
                 </div>

@@ -367,9 +367,11 @@ export const SupporterView: React.FC = () => {
               
               <div className="text-center font-serif">
                 <p className="text-[10px] tracking-widest text-amber-500 font-bold uppercase uppercase">Certificate of Appreciation</p>
-                <h3 className="font-bold text-lg text-amber-600 dark:text-amber-400 mt-1 uppercase">PARABAR FOUNDATION</h3>
+                <h3 className="font-bold text-xs text-amber-600 dark:text-amber-400 mt-1 uppercase tracking-wide">
+                  Parabar Sahittya Sangskriti Songsod Chattogram
+                </h3>
               </div>
-
+              
               <p className="text-xs italic leading-relaxed max-w-md mx-auto text-slate-500 mt-4">
                 "Our heartfelt gratitude to <strong className="text-slate-800 dark:text-slate-200 not-italic">{activeCertificate.supporterName}</strong> for kind sponsorship grant contribution of <strong className="font-mono not-italic text-emerald-400">৳{activeCertificate.amount} BDT</strong> allocated towards <em>"{activeCertificate.purpose}"</em>. Handed on {activeCertificate.date}."
               </p>
@@ -379,7 +381,7 @@ export const SupporterView: React.FC = () => {
                   <p className="font-bold font-mono">Ref: {activeCertificate.id.substring(0, 8)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="border-t border-slate-800 pt-1 font-semibold text-slate-800 dark:text-slate-350">Academy Chairman</p>
+                  <p className="border-t border-slate-850 pt-1 font-semibold text-slate-800 dark:text-slate-350">President, Parabar Songsod</p>
                 </div>
               </div>
             </div>

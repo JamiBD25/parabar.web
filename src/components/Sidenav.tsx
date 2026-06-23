@@ -5,6 +5,7 @@ import {
   Settings, ShieldAlert, Award, FileSpreadsheet, Bell, 
   HelpCircle, ChevronRight, Menu, X, Sun, Moon, Sparkles, LogIn, LogOut
 } from 'lucide-react';
+import { ParabarLogo } from './ParabarLogo';
 
 export const Sidenav: React.FC = () => {
   const { 
@@ -74,29 +75,24 @@ export const Sidenav: React.FC = () => {
   return (
     <>
       {/* Top Navbar */}
-      <header className="sticky top-0 z-40 flex items-center justify-between bg-[#0f172a] border-b border-slate-800 px-4 py-3.5 text-white">
+      <header className="sticky top-0 z-40 flex items-center justify-between bg-white border-b border-slate-200/90 px-4 py-3.5 text-[#222222] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
         <div className="flex items-center gap-3">
           <button 
             id="mobile-menu-btn"
             onClick={() => setMobileOpen(!mobileOpen)} 
-            className="lg:hidden p-1.5 rounded bg-slate-800 hover:bg-slate-700 transition"
+            className="lg:hidden p-1.5 rounded bg-slate-100 hover:bg-slate-200 text-[#222222] transition"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
           
-          <div className="flex items-center gap-3">
-            <div className="bg-[#38bdf8] p-2 rounded-lg text-[#0f172a] font-bold shadow-md shadow-sky-400/10">
-              <Sparkles size={18} className="animate-pulse" />
-            </div>
+          <div className="flex items-center gap-2">
+            <ParabarLogo size={34} />
             <div>
-              <h1 className="font-sans font-black tracking-tight text-xl text-[#38bdf8]">
-                {language === 'bn' ? 'পারাবার' : 'PARABAR'}
+              <h1 className="font-sans font-black tracking-tight text-xs text-brand-red font-bold uppercase leading-tight">
+                {language === 'bn' ? 'পারাবার সংসদ' : 'PARABAR SONGSOD'}
               </h1>
-              <p className="text-[10px] text-slate-400 font-sans tracking-[0.2em] uppercase font-semibold">
-                {isStudent 
-                  ? (language === 'bn' ? 'শিক্ষার্থী পোর্টাল' : 'STUDENT PORTAL')
-                  : (language === 'bn' ? 'শিল্পী পোর্টাল' : 'ARTIST MANAGEMENT SYSTEM')
-                }
+              <p className="text-[7.5px] text-slate-500 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
+                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Songsod'}
               </p>
             </div>
           </div>
@@ -104,44 +100,27 @@ export const Sidenav: React.FC = () => {
 
         {/* Action controls */}
         <div className="flex items-center gap-2 lg:gap-4 text-xs md:text-sm">
-          {/* Quick Stats Banner */}
-          <div className="hidden md:flex items-center gap-4 bg-slate-950/65 border border-slate-800/80 px-4 py-1.5 rounded-full font-mono text-[10px] text-slate-400 tracking-wider">
-            <span>DATABASE: <span className="text-[#22c55e] font-bold">ONLINE</span></span>
-            <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-            <span>SYNCED: <span className="text-[#38bdf8] font-bold">OK</span></span>
-          </div>
-
-          {/* Theme Toggle */}
-          <button
-            id="theme-toggle-btn"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-lg bg-slate-850 hover:bg-slate-800 text-sky-400 transition-colors border border-slate-800"
-            title={t('theme')}
-          >
-            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
-
           {/* Language Toggle */}
           <button
             id="lang-toggle-btn"
             onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-            className="flex items-center gap-1 bg-slate-850 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-full px-3 py-1.5 text-[11px] font-bold transition-all cursor-pointer"
+            className="flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all cursor-pointer"
           >
-            <span className={language === 'en' ? 'text-[#38bdf8]' : 'text-slate-500'}>EN</span>
-            <span className="text-slate-700">/</span>
-            <span className={language === 'bn' ? 'text-[#38bdf8]' : 'text-slate-500'}>BN</span>
+            <span className={language === 'en' ? 'text-brand-red' : 'text-slate-400'}>EN</span>
+            <span className="text-slate-300">/</span>
+            <span className={language === 'bn' ? 'text-brand-red' : 'text-slate-400'}>BN</span>
           </button>
 
           {/* Active Administrator Switcher */}
           {isStudent ? (
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 py-1.5 px-3 rounded-lg text-xs font-sans text-slate-350">
-                <div className="w-2.5 h-2.5 bg-indigo-400 rounded-full"></div>
+              <div className="flex items-center gap-1.5 bg-slate-100 border border-slate-200 py-1.5 px-3 rounded-lg text-xs font-sans text-slate-700">
+                <div className="w-2.5 h-2.5 bg-brand-red rounded-full"></div>
                 <span className="font-bold truncate max-w-[80px]">{currentUser?.name}</span>
               </div>
               <button
                 onClick={logout}
-                className="bg-rose-500 hover:bg-rose-600 border border-rose-600/50 py-1.5 px-3 rounded-lg text-xs text-white font-bold transition flex items-center gap-1 cursor-pointer"
+                className="bg-brand-red hover:bg-[#991d1d] border border-brand-red/10 py-1.5 px-3 rounded-lg text-xs text-white font-bold transition flex items-center gap-1 cursor-pointer shadow-sm"
                 title={language === 'bn' ? 'লগআউট' : 'Sign Out'}
               >
                 <LogIn size={13} className="rotate-180" />
@@ -153,50 +132,50 @@ export const Sidenav: React.FC = () => {
               <button
                 id="admin-switcher-btn"
                 onClick={() => setAdminMenuOpen(!adminMenuOpen)}
-                className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 font-medium py-1.5 px-3 rounded-lg border border-slate-700 transition"
+                className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 font-medium py-1.5 px-3 rounded-lg border border-slate-200 text-slate-800 transition shadow-sm"
               >
                 <img 
                   src={currentAdmin.avatar} 
                   alt="avatar" 
-                  className="w-5 h-5 rounded-full object-cover border border-sky-400" 
+                  className="w-5 h-5 rounded-full object-cover border border-brand-red/20" 
                 />
-                <span className="hidden sm:inline max-w-[120px] truncate">{currentAdmin.name}</span>
-                <span className="bg-sky-500 text-slate-950 font-bold px-1.5 py-0.5 rounded text-[9px] uppercase">
+                <span className="hidden sm:inline max-w-[125px] truncate font-semibold text-xs">{currentAdmin.name}</span>
+                <span className="bg-brand-green text-white font-bold px-1.5 py-0.5 rounded text-[9px] uppercase">
                   {currentAdmin.role === 'Super Admin' ? 'Super' : 'Sub'}
                 </span>
               </button>
 
               {adminMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-slate-850 border border-slate-700 rounded-lg shadow-xl py-2 z-50 text-white animate-fadeIn">
-                  <div className="px-3 py-2 border-b border-slate-700 text-xs text-slate-400 font-mono tracking-wider uppercase">
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200 rounded-lg shadow-xl py-2 z-50 text-[#222222] animate-fadeIn">
+                  <div className="px-3 py-2 border-b border-slate-150 text-[10px] text-slate-400 font-mono tracking-wider uppercase font-bold">
                     {language === 'bn' ? 'সিস্টেম অ্যাডমিন সুইচ করুন' : 'Switch System Administrator'}
                   </div>
                   {admins.map(admin => (
                     <button
                       key={admin.id}
                       onClick={() => handleAdminSwitchAttempt(admin)}
-                      className="w-full flex items-center justify-between text-left px-3 py-2 hover:bg-slate-700 transition text-sm"
+                      className="w-full flex items-center justify-between text-left px-3 py-2 hover:bg-slate-100 transition text-xs text-slate-700"
                     >
                       <div className="flex items-center gap-2">
                         <img src={admin.avatar} alt="" className="w-6 h-6 rounded-full object-cover" />
                         <div>
-                          <p className="font-medium text-slate-200">{admin.name}</p>
-                          <p className="text-[10px] text-slate-400">{admin.role}</p>
+                          <p className="font-semibold text-slate-800">{admin.name}</p>
+                          <p className="text-[9px] text-[#6B6B6B]">{admin.role}</p>
                         </div>
                       </div>
                       {currentAdmin.id === admin.id && (
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
                       )}
                     </button>
                   ))}
                   
                   {/* System Logout Divider & Button */}
-                  <div className="border-t border-slate-700/80 mt-1 pt-1.5 px-1">
+                  <div className="border-t border-slate-100 mt-1 pt-1.5 px-1 font-sans">
                     <button
                       onClick={logout}
-                      className="w-full flex items-center gap-2 text-rose-450 hover:text-rose-400 hover:bg-rose-500/10 rounded px-3 py-2 transition text-xs font-semibold text-left cursor-pointer"
+                      className="w-full flex items-center gap-2 text-brand-red hover:bg-red-50 rounded px-3 py-2 transition text-xs font-bold text-left cursor-pointer"
                     >
-                      <LogOut size={13} className="text-rose-400" />
+                      <LogOut size={13} className="text-brand-red" />
                       <span>{language === 'bn' ? 'সিস্টেম লগআউট' : 'Logout System'}</span>
                     </button>
                   </div>
@@ -208,15 +187,15 @@ export const Sidenav: React.FC = () => {
       </header>
 
       {/* Main Container Scaffolding: Sidenav is persistent on big screens, responsive drawer on small screen */}
-      <nav className={`fixed inset-y-0 left-0 transform ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static z-35 w-64 bg-[#0f172a] border-r border-slate-800/80 flex flex-col justify-between transition-transform duration-300 ease-in-out text-slate-300 shrink-0 h-[calc(100vh-53px)]`}>
+      <nav className={`fixed inset-y-0 left-0 transform ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static z-35 w-64 bg-brand-green border-r border-brand-green/10 flex flex-col justify-between transition-transform duration-300 ease-in-out text-slate-100 shrink-0 h-[calc(100vh-53px)] shadow-lg`}>
         {/* Navigation list */}
         <div className="py-5 overflow-y-auto grow custom-scrollbar">
           <div className="px-4 mb-4">
-            <p className="text-[10px] font-sans font-bold tracking-[0.2em] text-slate-400 uppercase">
+            <p className="text-[10px] font-sans font-bold tracking-[0.2em] text-emerald-200/60 uppercase">
               {language === 'bn' ? 'প্রধান মডিউলসমূহ' : 'MAIN OPERATIONS'}
             </p>
           </div>
-          <ul className="space-y-1.5 px-3">
+          <ul className="space-y-1 px-3">
             {menuItems.map(item => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -229,18 +208,18 @@ export const Sidenav: React.FC = () => {
                       setActiveTab(item.id);
                       setMobileOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-xs tracking-wide transition-all ${
+                    className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-xs tracking-wide transition-all cursor-pointer ${
                       isActive 
-                        ? 'bg-slate-800/70 border-l-[3px] border-[#38bdf8] text-[#38bdf8] font-bold' 
-                        : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/40'
+                        ? 'bg-white/10 border-l-[4px] border-brand-red text-white font-bold shadow-inner' 
+                        : 'text-emerald-100/85 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Icon size={16} className={isActive ? 'text-[#38bdf8]' : 'text-slate-500'} />
+                      <Icon size={16} className={isActive ? 'text-brand-red' : 'text-emerald-300/60'} />
                       <span className="font-sans font-medium">{language === 'bn' ? item.labelBn : item.labelEn}</span>
                     </div>
                     {item.id === 'notifications' && unreadCount > 0 && (
-                      <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${isActive ? 'bg-[#38bdf8] text-[#0f172a]' : 'bg-rose-500 text-white'}`}>
+                      <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${isActive ? 'bg-brand-red text-white' : 'bg-brand-red text-white'}`}>
                         {unreadCount}
                       </span>
                     )}
@@ -250,13 +229,13 @@ export const Sidenav: React.FC = () => {
             })}
 
             {/* Direct Logout Option */}
-            <li className="mt-4 pt-3 border-t border-slate-800/40">
+            <li className="mt-4 pt-3 border-t border-white/10">
               <button
                 onClick={logout}
-                className="w-full flex items-center gap-3 px-3 py-2 text-xs tracking-wide transition-all text-rose-500 hover:text-white hover:bg-rose-500/10 cursor-pointer"
+                className="w-full flex items-center gap-3 px-3 py-2 text-xs tracking-wide transition-all text-red-200 hover:text-white hover:bg-white/5 cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <LogOut size={15} className="text-rose-550 shrink-0" />
+                  <LogOut size={15} className="text-white/60 shrink-0" />
                   <span className="font-sans font-medium">{language === 'bn' ? 'লগআউট করুন' : 'Sign Out'}</span>
                 </div>
               </button>
@@ -265,13 +244,13 @@ export const Sidenav: React.FC = () => {
         </div>
 
         {/* Footer Credit Line */}
-        <div className="p-4 border-t border-slate-800/80 bg-slate-900/30 text-[10px] text-slate-500">
-          <div className="flex items-center gap-1.5 font-sans font-bold text-slate-400 mb-1 tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+        <div className="p-4 border-t border-white/5 bg-black/10 text-[10px] text-emerald-200/50">
+          <div className="flex items-center gap-1.5 font-sans font-bold text-emerald-200 mb-1 tracking-wider uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-gold"></span>
             <span>{isStudent ? (language === 'bn' ? 'শিক্ষার্থী প্যানেল' : 'Student Panel') : (language === 'bn' ? 'একাডেমি প্যানেল' : 'Academy Panel')} v2.4</span>
           </div>
           <p className="leading-relaxed">{t('developerCredit')}</p>
-          <p className="text-[9px] text-[#475569] dark:text-slate-600 lowercase mt-1">© Parabar Cultural Foundation</p>
+          <p className="text-[9px] text-[#a7f3d0]/35 mt-1">© {language === 'bn' ? 'পারাবার চট্টগ্রাম' : 'Parabar Chattogram'}</p>
         </div>
       </nav>
 

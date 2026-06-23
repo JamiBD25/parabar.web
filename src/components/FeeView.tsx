@@ -146,8 +146,8 @@ export const FeeView: React.FC = () => {
         </head>
         <body>
           <div class="header">
-            <div class="logo">PARABAR FOUNDATION</div>
-            <div class="subtitle">Art & Cultural Academy ERP</div>
+            <div class="logo">PARABAR SONGSOD</div>
+            <div class="subtitle">Parabar Sahittya Sangskriti Songsod Chattogram</div>
             <div class="receipt-title">PAYMENT RECEIPT (টাকামান রসিদ)</div>
           </div>
           

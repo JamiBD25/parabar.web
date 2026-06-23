@@ -500,12 +500,12 @@ export const TRANSLATIONS: { [lang: string]: { [key: string]: string } } = {
     // Admin Panel Info
     rolePermission: 'রোল অ্যান্ড পারমিশন',
     activityLogTitle: 'সিস্টেম কার্যক্রম লগ',
-    developerCredit: 'শিল্পী ব্যবস্থাপনা সিস্টেম | পারাবার ইআরপি',
+    developerCredit: 'পরিচালনা পোর্টাল | পারাবার সংসদ',
     securePinPrompt: 'এই প্যানেল পরিচালনা করতে একটি পাসকোড/পিন প্রয়োজন:'
   },
   en: {
     // Top Navbar / Header
-    systemName: 'Parabar ERP & Admin',
+    systemName: 'Parabar songsod',
     searchPlaceholder: 'Search across system...',
     dashboard: 'Dashboard',
     artists: 'Artists',
@@ -649,7 +649,7 @@ export const TRANSLATIONS: { [lang: string]: { [key: string]: string } } = {
     // Admin Panel Info
     rolePermission: 'Permissions Matrix',
     activityLogTitle: 'System Audit Logs',
-    developerCredit: 'Artist Management Suite | Parabar ERP',
+    developerCredit: 'Admin Portal | Parabar Songsod',
     securePinPrompt: 'Super privileges require security authentication pin:'
   }
 };

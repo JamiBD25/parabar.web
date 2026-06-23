@@ -89,13 +89,13 @@ const AppContent: React.FC = () => {
   const currentTab = currentUser.role === 'student' ? 'studentDashboard' : activeTab;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8fafc] border-8 border-[#0f172a]">
+    <div className="flex flex-col min-h-screen bg-warm-cream border-8 border-brand-green">
       <div className="flex flex-col lg:flex-row flex-1">
         {/* Sidebar block */}
         <Sidenav />
 
         {/* Main viewport flow */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[calc(100vh-69px)] lg:max-h-[calc(100vh-73px)]">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[calc(100vh-69px)] lg:max-h-[calc(100vh-73px)] bg-warm-cream">
           <div key={currentTab} className="max-w-7xl mx-auto animate-fade-in">
             {renderActiveView()}
           </div>

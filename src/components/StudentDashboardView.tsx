@@ -216,8 +216,8 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               ))}
             </div>
           </div>
-          <div className="text-[10px] text-slate-400 mt-2">
-            {language === 'bn' ? 'পারাবার ফাউন্ডেশন' : 'Parabar Cultural Foundation'}
+          <div className="text-[10px] text-slate-400 mt-2 font-semibold">
+            {language === 'bn' ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Parabar Sahittya Sangskriti Songsod Chattogram'}
           </div>
         </div>
       </div>
@@ -387,8 +387,8 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed bg-[#0f172a] p-4 rounded-xl border border-slate-800/65 text-slate-300 flex items-start gap-3">
                 <Sparkles className="text-[#38bdf8] shrink-0 mt-0.5" size={16} />
                 <div>
-                  <p className="font-bold text-white mb-1">{language === 'bn' ? 'পারাবার কালচারাল একাডেমী সেশন ২০১৬' : 'Parabar Cultural Academy Session 2026'}</p>
-                  <p>{language === 'bn' ? 'আপনি বর্তমানে পারাবার একাডেমীর পক্ষ থেকে বিশেষ বৃত্তির আওতায় তালিকাভুক্ত রয়েছেন। শুক্রবারের নিয়মিত ক্লাস ও বিশেষ মূল্যায়নে অংশ নেওয়া বাধ্যতামূলক।' : 'You are currently listed under academic development provisions. Regular presence in Friday schedules and special seasonal evaluations is mandatory.'}</p>
+                  <p className="font-bold text-white mb-1">{language === 'bn' ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম সেশন ২০২৬' : 'Parabar Sahittya Sangskriti Songsod Chattogram Session 2026'}</p>
+                  <p>{language === 'bn' ? 'আপনি বর্তমানে পারাবার সংসদের পক্ষ থেকে বিশেষ বৃত্তির আওতায় তালিকাভুক্ত রয়েছেন। শুক্রবারের নিয়মিত ক্লাস ও বিশেষ মূল্যায়নে অংশ নেওয়া বাধ্যতামূলক।' : 'You are currently listed under academic and cultural development provisions. Regular presence in schedules and special seasonal evaluations is mandatory.'}</p>
                 </div>
               </div>
 
@@ -594,7 +594,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
                 {language === 'bn' ? 'একাডেমী নোটিশ ও ঘোষণা বোর্ড' : 'Academy Notices & Bulletin Board'}
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {language === 'bn' ? 'পারাবার ফাউন্ডেশন ও একাডেমীর পক্ষ থেকে জারি করা জরুরি বিজ্ঞপ্তি ও নোটিশ' : 'Important notifications, evaluation timetables, and updates from foundation office'}
+                {language === 'bn' ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম এর পক্ষ থেকে জারি করা জরুরি বিজ্ঞপ্তি ও নোটিশ' : 'Important notifications, evaluation timetables, and updates from the executive council'}
               </p>
             </div>
 
@@ -627,7 +627,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
                       </p>
                     </div>
                     <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-800/50 flex items-center justify-between text-[10px] text-slate-450 font-sans tracking-wide">
-                      <span>{language === 'bn' ? 'পারাবার একাডেমি' : 'Office Secretary, Parabar'}</span>
+                      <span>{language === 'bn' ? 'দপ্তর সম্পাদক, পারাবার সংসদ' : 'Office Secretary, Parabar Songsod'}</span>
                       <span className="text-emerald-500 flex items-center gap-1">
                         <CheckCircle size={12} />
                         {language === 'bn' ? 'ভ্যালিড নোটিশ' : 'Verified Notice'}
