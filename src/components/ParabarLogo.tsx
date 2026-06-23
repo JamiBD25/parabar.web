@@ -12,15 +12,18 @@ export const ParabarLogo: React.FC<LogoProps> = ({
   showText = false 
 }) => {
   const [imageError, setImageError] = useState(false);
-  const [currentExtIndex, setCurrentExtIndex] = useState(0);
-  const preferredExtensions = ['png', 'svg', 'jpg', 'jpeg'];
+  const [currentSourceIndex, setCurrentSourceIndex] = useState(0);
   
-  // Try loading logo.png first, then logo.svg, etc.
-  const logoPath = `/logo.${preferredExtensions[currentExtIndex]}`;
+  const sources = [
+    'https://i.postimg.cc/15zPjh2B/Logo-png.png', // Direct online hosted high-quality PNG
+    '/logo.png',                                  // Local fallback
+  ];
+  
+  const logoPath = sources[currentSourceIndex];
 
   const handleImageError = () => {
-    if (currentExtIndex < preferredExtensions.length - 1) {
-      setCurrentExtIndex(prev => prev + 1);
+    if (currentSourceIndex < sources.length - 1) {
+      setCurrentSourceIndex(prev => prev + 1);
     } else {
       setImageError(true);
     }
