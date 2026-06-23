@@ -223,7 +223,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 p-1.5 rounded-xl gap-2 font-sans overflow-x-auto whitespace-nowrap md:flex-wrap scrollbar-none sm:scrollbar-default">
+      <div className="flex flex-wrap border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 p-1.5 rounded-xl gap-2 font-sans">
         <button
           onClick={() => setActiveSubTab('overview')}
           className={`px-4 py-2 text-xs font-bold rounded-lg tracking-wide transition-all shrink-0 ${

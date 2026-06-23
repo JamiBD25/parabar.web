@@ -95,7 +95,7 @@ const AppContent: React.FC = () => {
         <Sidenav />
 
         {/* Main viewport flow */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[calc(100vh-69px)] lg:max-h-[calc(100vh-73px)] bg-warm-cream">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[calc(100vh-95px)] lg:max-h-[calc(100vh-73px)] bg-warm-cream">
           <div key={currentTab} className="max-w-7xl mx-auto animate-fade-in">
             {renderActiveView()}
           </div>

@@ -28,12 +28,6 @@ export const LoginView: React.FC = () => {
   const [regPassword, setRegPassword] = useState('student');
   const [registeredStudent, setRegisteredStudent] = useState<any>(null);
 
-  const handleFillDemo = (userId: string, pass: string, userRole: 'admin' | 'student') => {
-    setRole(userRole);
-    setIdentifier(userId);
-    setPassword(pass);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!identifier.trim() || !password.trim()) {
@@ -538,29 +532,6 @@ export const LoginView: React.FC = () => {
               >
                 {language === 'bn' ? 'নতুন শিক্ষার্থী অ্যাকাউন্ট রেজিস্টার করুন' : 'Register New Student Account'}
               </button>
-            </div>
-
-            {/* Quick Demo Assist details */}
-            <div className="mt-6 pt-5 border-t border-slate-100">
-              <p className="text-[10px] font-sans font-bold text-text-gray uppercase tracking-widest text-center mb-3">
-                {language === 'bn' ? 'পরীক্ষামূলক ডেমো ক্রেডেনশিয়াল' : 'QUICK TESTING ACCOUNTS'}
-              </p>
-              <div className="space-y-2">
-                <button
-                  onClick={() => handleFillDemo('rana@parabar.org', '1234', 'admin')}
-                  className="w-full flex items-center justify-between bg-slate-50 hover:bg-slate-100 px-3 py-2 rounded-lg text-[10px] text-text-gray border border-slate-200 hover:border-slate-300 transition font-mono cursor-pointer"
-                >
-                  <span>🔑 Admin: <span className="text-brand-red font-bold">rana@parabar.org</span></span>
-                  <span className="bg-brand-red/10 text-brand-red px-1.5 py-0.5 rounded uppercase font-black font-mono">PIN: 1234</span>
-                </button>
-                <button
-                  onClick={() => handleFillDemo('PAR-2026-001', 'student', 'student')}
-                  className="w-full flex items-center justify-between bg-slate-50 hover:bg-slate-100 px-3 py-2 rounded-lg text-[10px] text-text-gray border border-slate-200 hover:border-slate-300 transition font-mono cursor-pointer"
-                >
-                  <span>🎓 Student: <span className="text-brand-green font-bold font-mono">PAR-2026-001</span></span>
-                  <span className="bg-brand-green/10 text-brand-green px-1.5 py-0.5 rounded font-black font-mono font-bold">PASS: student</span>
-                </button>
-              </div>
             </div>
           </div>
         )}
