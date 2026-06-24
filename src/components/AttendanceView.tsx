@@ -67,7 +67,7 @@ export const AttendanceView: React.FC = () => {
 
   const handleCommitAttendance = () => {
     if (enrolledArtists.length === 0) {
-      alert(language === 'bn' ? 'এই বিভাগের কোনো শিক্ষার্থী পাওয়া যায়নি।' : 'No enrolled talent registered in this department.');
+      alert(language === 'bn' ? 'এই বিভাগের কোনো শিল্পী পাওয়া যায়নি।' : 'No enrolled talent registered in this department.');
       return;
     }
 
@@ -157,7 +157,7 @@ export const AttendanceView: React.FC = () => {
           <Sparkles size={14} className="text-sky-400" />
           <span>
             {language === 'bn' 
-              ? `বর্তমান টার্গেট ডপার্টমেন্ট: ${targetedDept}। হাজিরা খাতায় শুধুমাত্র এই বিভাগের শিক্ষার্থীদের দেখানো হচ্ছে।`
+              ? `বর্তমান টার্গেট ডপার্টমেন্ট: ${targetedDept}। হাজিরা খাতায় শুধুমাত্র এই বিভাগের শিল্পীদের দেখানো হচ্ছে।`
               : `Active filter targets: ${targetedDept} department registers only.`}
           </span>
         </div>
@@ -192,7 +192,7 @@ export const AttendanceView: React.FC = () => {
             {enrolledArtists.length === 0 ? (
               <tr>
                 <td colSpan={3} className="p-8 text-center text-slate-400">
-                  <p className="font-semibold">{language === 'bn' ? 'কোনো শিক্ষার্থী পাওয়া যায়নি।' : 'No matching department registers found.'}</p>
+                  <p className="font-semibold">{language === 'bn' ? 'কোনো শিল্পী পাওয়া যায়নি।' : 'No matching department registers found.'}</p>
                 </td>
               </tr>
             ) : (

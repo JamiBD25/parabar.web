@@ -3,6 +3,17 @@ import { useApp } from '../context/AppContext';
 import { Sparkles, Shield, User, Lock, ArrowRight, Sun, Moon, CheckCircle, BookOpen, Smartphone, MapPin, Award, Heart } from 'lucide-react';
 import { ParabarLogo } from './ParabarLogo';
 
+const getDeptLabel = (dept: string, lang: 'bn' | 'en') => {
+  if (dept === 'Music') return lang === 'bn' ? 'সঙ্গীত' : 'Music';
+  if (dept === 'Music (Khude Parabar)') return lang === 'bn' ? 'সঙ্গীত - খুদে পারাবার' : 'Music (Khude Parabar)';
+  if (dept === 'Music (Kishore Parabar)') return lang === 'bn' ? 'সঙ্গীত - কিশোর পারাবার' : 'Music (Kishore Parabar)';
+  if (dept === 'Fine Arts') return lang === 'bn' ? 'চারুকলা' : 'Fine Arts';
+  if (dept === 'Dance') return lang === 'bn' ? 'নৃত্য' : 'Dance';
+  if (dept === 'Recitation') return lang === 'bn' ? 'আবৃত্তি' : 'Recitation';
+  if (dept === 'Theatre') return lang === 'bn' ? 'নাট্যকলা' : 'Theatre';
+  return dept;
+};
+
 export const LoginView: React.FC = () => {
   const { loginUser, addArtist, language, setLanguage, theme, setTheme, t } = useApp();
 
@@ -113,9 +124,12 @@ export const LoginView: React.FC = () => {
       <header className="z-10 flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white shadow-xs">
         <div className="flex items-center gap-2.5">
           <ParabarLogo size={36} />
-          <div>
-            <span className="text-xs font-black tracking-wide text-[#222222] font-sans">
-              {language === 'bn' ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Parabar Sahittya Sangskriti Songsod Chattogram'}
+          <div className="flex flex-col">
+            <span className="text-xs font-black tracking-wide text-brand-red font-sans uppercase leading-tight">
+              {language === 'bn' ? 'পারাবার' : 'PARABAR'}
+            </span>
+            <span className="text-[7.5px] text-slate-850 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
+              {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
             </span>
           </div>
         </div>
@@ -193,11 +207,11 @@ export const LoginView: React.FC = () => {
                 <Sparkles size={20} className="animate-pulse" />
               </div>
               <h2 className="text-lg sm:text-xl font-black text-[#222222] tracking-tight font-sans">
-                {language === 'bn' ? 'শিক্ষার্থী নিবন্ধন ফর্ম' : 'Student Enrollment Register'}
+                {language === 'bn' ? 'শিল্পী নিবন্ধন ফর্ম' : 'Artist Enrollment Register'}
               </h2>
               <p className="text-[11px] text-text-gray mt-0.5 font-sans font-semibold">
                 {language === 'bn' 
-                  ? 'পারাবার একাডেমিতে নতুন শিক্ষার্থী হিসেবে যোগ দিতে নিচের ফর্মটি পূরণ করুন' 
+                  ? 'পারাবার একাডেমিতে নতুন শিল্পী হিসেবে যোগ দিতে নিচের ফর্মটি পূরণ করুন' 
                   : 'Enroll and generate your digital academy profile in seconds'
                 }
               </p>
@@ -362,7 +376,7 @@ export const LoginView: React.FC = () => {
                   {language === 'bn' ? 'ভর্তি হতে ইচ্ছুক বিভাগ (কমপক্ষে ১টি সিলেক্ট করুন) *' : 'Ensemble Departments (Select min 1) *'}
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {['Music', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'].map(dept => {
+                  {['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'].map(dept => {
                     const isChecked = regDepts.includes(dept);
                     return (
                       <button
@@ -386,7 +400,7 @@ export const LoginView: React.FC = () => {
                         }`}>
                           {isChecked && '✓'}
                         </span>
-                        {dept}
+                        {getDeptLabel(dept, language)}
                       </button>
                     );
                   })}
@@ -441,7 +455,7 @@ export const LoginView: React.FC = () => {
                 }`}
               >
                 <User size={14} />
-                {language === 'bn' ? 'শিক্ষার্থী লগইন' : 'Student'}
+                {language === 'bn' ? 'শিল্পী লগইন' : 'Artist'}
               </button>
               <button
                 onClick={() => {
@@ -465,7 +479,7 @@ export const LoginView: React.FC = () => {
                 <label className="block text-[10px] font-sans font-extrabold text-[#222222] uppercase tracking-wider mb-1.5">
                   {role === 'admin' 
                     ? (language === 'bn' ? 'অ্যাডমিন ইমেইল' : 'Admin Email Address')
-                    : (language === 'bn' ? 'শিক্ষার্থী আইডি বা মোবাইল নম্বর' : 'Student ID or Registered Mobile')
+                    : (language === 'bn' ? 'শিল্পী আইডি বা মোবাইল নম্বর' : 'Artist ID or Registered Mobile')
                   }
                 </label>
                 <div className="relative">
@@ -530,7 +544,7 @@ export const LoginView: React.FC = () => {
                 }}
                 className="text-xs text-brand-green hover:text-brand-red font-extrabold underline transition select-none cursor-pointer font-sans"
               >
-                {language === 'bn' ? 'নতুন শিক্ষার্থী অ্যাকাউন্ট রেজিস্টার করুন' : 'Register New Student Account'}
+                {language === 'bn' ? 'নতুন শিল্পী অ্যাকাউন্ট রেজিস্টার করুন' : 'Register New Artist Account'}
               </button>
             </div>
           </div>

@@ -47,7 +47,7 @@ export const DashboardView: React.FC = () => {
     .reduce((sum, current) => sum + current.amount, 0);
 
   const quickNav = [
-    { id: 'artists', titleEn: 'Register Artist', titleBn: 'শিল্পী নিবন্ধন', descEn: 'Enroll a new academy talent', descBn: 'নতুন শিক্ষার্থী বা শিল্পী যুক্ত করুন', icon: UserPlus, color: 'from-sky-500/20 to-indigo-500/10 hover:border-sky-500' },
+    { id: 'artists', titleEn: 'Register Artist', titleBn: 'শিল্পী নিবন্ধন', descEn: 'Enroll a new academy talent', descBn: 'নতুন শিল্পী যুক্ত করুন', icon: UserPlus, color: 'from-sky-500/20 to-indigo-500/10 hover:border-sky-500' },
     { id: 'fees', titleEn: 'Collect Fees', titleBn: 'বেতন আদায়', descEn: 'Generate monthly invoices & dues', descBn: 'রশিদ তৈরি করুন এবং ফি আদায় করুন', icon: FileText, color: 'from-emerald-500/20 to-teal-500/10 hover:border-emerald-500' },
     { id: 'whatsapp', titleEn: 'WhatsApp Broadcast', titleBn: 'মেসেজ ব্রডকাস্ট', descEn: 'Send automated sms & reminders', descBn: 'হোয়াটসঅ্যাপে বকেয়া বেতন মনে করিয়ে দিন', icon: Send, color: 'from-amber-500/20 to-orange-500/10 hover:border-amber-500' },
     { id: 'attendance', titleEn: 'Take Attendance', titleBn: 'উপস্থিতি নিন', descEn: 'Log academy attendance profiles', descBn: 'আজকের ক্লাসের উপস্থিতি সংরক্ষণ করুন', icon: CalendarClock, color: 'from-fuchsia-500/20 to-purple-500/10 hover:border-fuchsia-500' }

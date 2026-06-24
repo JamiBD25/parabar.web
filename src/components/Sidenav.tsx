@@ -23,6 +23,13 @@ export const Sidenav: React.FC = () => {
   const [enteredPin, setEnteredPin] = useState('');
   const [pinError, setPinError] = useState('');
 
+  const getRoleLabel = (role: string, lang: 'bn' | 'en') => {
+    if (role === 'Super Admin') return lang === 'bn' ? 'পারাবার পরিচালক' : 'Parabar Director';
+    if (role === 'Sub Admin') return lang === 'bn' ? 'শাখা পরিচালক' : 'Branch Director';
+    if (role === 'Sub Admin 2') return lang === 'bn' ? 'বিভাগীয় পরিচালক' : 'Departmental Director';
+    return role;
+  };
+
   const isStudent = currentUser?.role === 'student';
 
   const menuItems = isStudent
@@ -88,11 +95,11 @@ export const Sidenav: React.FC = () => {
           <div className="flex items-center gap-2">
             <ParabarLogo size={34} />
             <div>
-              <h1 className="font-sans font-black tracking-tight text-xs text-brand-red font-bold uppercase leading-tight">
-                {language === 'bn' ? 'পারাবার সংসদ' : 'PARABAR SONGSOD'}
+              <h1 className="font-sans font-black tracking-tight text-xs text-brand-red uppercase leading-tight">
+                {language === 'bn' ? 'পারাবার' : 'PARABAR'}
               </h1>
-              <p className="text-[7.5px] text-slate-500 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
-                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Songsod'}
+              <p className="text-[7.5px] text-slate-800 dark:text-slate-300 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
+                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
               </p>
             </div>
           </div>
@@ -141,7 +148,11 @@ export const Sidenav: React.FC = () => {
                 />
                 <span className="hidden sm:inline max-w-[125px] truncate font-semibold text-xs">{currentAdmin.name}</span>
                 <span className="bg-brand-green text-white font-bold px-1.5 py-0.5 rounded text-[9px] uppercase">
-                  {currentAdmin.role === 'Super Admin' ? 'Super' : 'Sub'}
+                  {currentAdmin.role === 'Super Admin' 
+                    ? (language === 'bn' ? 'পরিচালক' : 'Director') 
+                    : currentAdmin.role === 'Sub Admin' 
+                      ? (language === 'bn' ? 'শাখা' : 'Branch') 
+                      : (language === 'bn' ? 'বিভাগীয়' : 'Dept')}
                 </span>
               </button>
 
@@ -160,7 +171,7 @@ export const Sidenav: React.FC = () => {
                         <img src={admin.avatar} alt="" className="w-6 h-6 rounded-full object-cover" />
                         <div>
                           <p className="font-semibold text-slate-800">{admin.name}</p>
-                          <p className="text-[9px] text-[#6B6B6B]">{admin.role}</p>
+                          <p className="text-[9px] text-[#6B6B6B]">{getRoleLabel(admin.role, language)}</p>
                         </div>
                       </div>
                       {currentAdmin.id === admin.id && (
@@ -247,7 +258,7 @@ export const Sidenav: React.FC = () => {
         <div className="p-4 border-t border-white/5 bg-black/10 text-[10px] text-emerald-200/50">
           <div className="flex items-center gap-1.5 font-sans font-bold text-emerald-200 mb-1 tracking-wider uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-gold"></span>
-            <span>{isStudent ? (language === 'bn' ? 'শিক্ষার্থী প্যানেল' : 'Student Panel') : (language === 'bn' ? 'একাডেমি প্যানেল' : 'Academy Panel')} v2.4</span>
+            <span>{isStudent ? (language === 'bn' ? 'শিল্পী প্যানেল' : 'Artist Panel') : (language === 'bn' ? 'একাডেমি প্যানেল' : 'Academy Panel')} v2.4</span>
           </div>
           <p className="leading-relaxed">{t('developerCredit')}</p>
           <p className="text-[9px] text-[#a7f3d0]/35 mt-1">© {language === 'bn' ? 'পারাবার চট্টগ্রাম' : 'Parabar Chattogram'}</p>
@@ -274,8 +285,8 @@ export const Sidenav: React.FC = () => {
 
             <form onSubmit={handleVerifyPin} className="space-y-4">
               <div>
-                <label className="block text-xs font-mono text-slate-400 uppercase mb-1">
-                  {language === 'bn' ? 'সিকিউরিটি পিন (যেমন: Super-এর জন্য 1234, Sub-এর জন্য 4321)' : 'Security Pin (e.g., 1234 for Super, 4321 for Sub)'}
+                <label className="block text-[11px] font-sans text-slate-400 mb-1">
+                  {language === 'bn' ? 'সিকিউরিটি পিন দিন' : 'Security Pin'}
                 </label>
                 <input
                   type="password"

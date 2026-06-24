@@ -1,7 +1,7 @@
 export interface Admin {
   id: string;
   name: string;
-  role: 'Super Admin' | 'Sub Admin';
+  role: 'Super Admin' | 'Sub Admin' | 'Sub Admin 2';
   email: string;
   avatar: string;
   permissions: {

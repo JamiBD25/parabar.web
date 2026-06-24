@@ -18,11 +18,12 @@ html, body {
   font-family: var(--font-sans);
   background-color: #F8F6F1;
   color: #222222;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.dark html, .dark body {
-  background-color: #F8F6F1;
-  color: #222222;
+html.dark, html.dark body {
+  background-color: #020617;
+  color: #f1f5f9;
 }
 
 /* Premium micro-animations */

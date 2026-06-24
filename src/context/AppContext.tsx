@@ -171,6 +171,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, []);
 
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
   const setActiveTab = (tab: string) => {
     setActiveTabState(tab);
     // Logging navigation actions lightly
@@ -524,7 +532,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const pins = storedPins ? JSON.parse(storedPins) : {
         'ADM-001': '1234',
         'ADM-002': '4321',
-        'ADM-003': '0000'
+        'ADM-003': '0000',
+        'ADM-004': '1111',
+        'ADM-005': '2222',
+        'ADM-006': '3333'
       };
       const allowedPassword = pins[foundAdmin.id] || 'admin';
       if (cleanPassword === allowedPassword || cleanPassword === 'admin') {
@@ -638,7 +649,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const pins = storedPins ? JSON.parse(storedPins) : {
         'ADM-001': '1234',
         'ADM-002': '4321',
-        'ADM-003': '0000'
+        'ADM-003': '0000',
+        'ADM-004': '1111',
+        'ADM-005': '2222',
+        'ADM-006': '3333'
       };
       pins[adminId] = newPin;
       localStorage.setItem('parabar_admin_pins', JSON.stringify(pins));

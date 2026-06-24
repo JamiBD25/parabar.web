@@ -10,6 +10,13 @@ export const AdminPanelView: React.FC = () => {
     admins, updateAdminPermissions, activityLogs, backupData, restoreData, language, t, logAction 
   } = useApp();
 
+  const getRoleLabel = (role: string) => {
+    if (role === 'Super Admin') return language === 'bn' ? 'পারাবার পরিচালক' : 'Parabar Director';
+    if (role === 'Sub Admin') return language === 'bn' ? 'শাখা পরিচালক' : 'Branch Director';
+    if (role === 'Sub Admin 2') return language === 'bn' ? 'বিভাগীয় পরিচালক' : 'Departmental Director';
+    return role;
+  };
+
   const [activeAdminId, setActiveAdminId] = useState<string>('ADM-002');
   const [permissionSuccess, setPermissionSuccess] = useState(false);
 
@@ -107,7 +114,7 @@ export const AdminPanelView: React.FC = () => {
               onChange={(e) => handleSelectAdmin(e.target.value)}
               className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
             >
-              {admins.map(adm => <option key={adm.id} value={adm.id}>{adm.name} ({adm.role})</option>)}
+              {admins.map(adm => <option key={adm.id} value={adm.id}>{adm.name} ({getRoleLabel(adm.role)})</option>)}
             </select>
           </div>
 

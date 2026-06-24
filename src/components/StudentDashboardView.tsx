@@ -5,6 +5,17 @@ import {
   MapPin, Award, CheckCircle, Clock, AlertTriangle, LogOut 
 } from 'lucide-react';
 
+const getDeptLabel = (dept: string, lang: 'bn' | 'en') => {
+  if (dept === 'Music') return lang === 'bn' ? 'সঙ্গীত' : 'Music';
+  if (dept === 'Music (Khude Parabar)') return lang === 'bn' ? 'সঙ্গীত - খুদে পারাবার' : 'Music (Khude Parabar)';
+  if (dept === 'Music (Kishore Parabar)') return lang === 'bn' ? 'সঙ্গীত - কিশোর পারাবার' : 'Music (Kishore Parabar)';
+  if (dept === 'Fine Arts') return lang === 'bn' ? 'চারুকলা' : 'Fine Arts';
+  if (dept === 'Dance') return lang === 'bn' ? 'নৃত্য' : 'Dance';
+  if (dept === 'Recitation') return lang === 'bn' ? 'আবৃত্তি' : 'Recitation';
+  if (dept === 'Theatre') return lang === 'bn' ? 'নাট্যকলা' : 'Theatre';
+  return dept;
+};
+
 interface StudentDashboardViewProps {
   initialTab?: 'overview' | 'attendance' | 'fees' | 'notices';
 }
@@ -144,32 +155,21 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
               </p>
             </div>
           </div>
-
-          {/* Quick Stats Summary Widgets inside banner */}
-          <div className="flex gap-4 self-stretch md:self-auto shrink-0 font-sans justify-center">
-            <button
-              onClick={logout}
-              className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 transition-colors duration-200 text-white font-bold py-2.5 px-4 rounded-xl text-xs tracking-wider uppercase border border-rose-600/50 cursor-pointer w-full md:w-auto"
-            >
-              <LogOut size={14} />
-              {language === 'bn' ? 'লগআউট' : 'Logout'}
-            </button>
-          </div>
         </div>
       </div>
 
       {/* Grid Quick Dashboard Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Attendance widget */}
-        <div className="bg-white dark:bg-slate-900 border-l-4 border-emerald-500 border-y border-r border-slate-200 dark:border-slate-800/80 p-5 rounded-r-xl flex flex-col justify-between hover:shadow-md transition">
+        <div className="bg-white dark:bg-slate-900 border-l-4 border-brand-red border-y border-r border-slate-200 dark:border-slate-800/80 p-5 rounded-r-xl flex flex-col justify-between hover:shadow-md transition">
           <div>
             <p className="text-[10px] font-sans font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
               {language === 'bn' ? 'মোট উপস্থিতি হার' : 'Attendance Percent'}
             </p>
             <h3 className="text-3xl font-black mt-2 text-slate-900 dark:text-slate-100 tracking-tight">{attendanceRate}%</h3>
           </div>
-          <div className="text-[10px] text-emerald-500 font-bold mt-2 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <div className="text-[10px] text-brand-red font-bold mt-2 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
             {presentCount} / {totalClasses} {language === 'bn' ? 'দিন উপস্থিত' : 'Days Marked'}
           </div>
         </div>
@@ -211,7 +211,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
             <div className="flex flex-wrap gap-1 mt-2.5">
               {student.departments.map(dept => (
                 <span key={dept} className="bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 font-bold text-[9px] px-2 py-0.5 rounded border border-indigo-500/20">
-                  {dept}
+                  {getDeptLabel(dept, language)}
                 </span>
               ))}
             </div>
@@ -434,7 +434,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({ init
                   {language === 'bn' ? 'শ্রেণীকক্ষের উপস্থিতি লগ' : 'Classroom Attendance Timeline'}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  {language === 'bn' ? 'শিক্ষার্থীর শুক্রবার ও বিশেষ কার্যক্রমের উপস্থিতি বিস্তারিত তালিকা' : 'Complete historical ledger of marked attendance dates'}
+                  {language === 'bn' ? 'শিল্পীর শুক্রবার ও বিশেষ কার্যক্রমের উপস্থিতি বিস্তারিত তালিকা' : 'Complete historical ledger of marked attendance dates'}
                 </p>
               </div>
 

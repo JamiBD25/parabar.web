@@ -19,10 +19,34 @@ export const INITIAL_ADMINS: Admin[] = [
   },
   {
     id: 'ADM-003',
-    name: 'Monirul Islam',
-    role: 'Sub Admin',
-    email: 'monir@parabar.org',
+    name: 'Monirul Islam (Art)',
+    role: 'Sub Admin 2',
+    email: 'art@parabar.org',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces',
+    permissions: { view: true, edit: true, delete: false, export: false, messaging: true }
+  },
+  {
+    id: 'ADM-004',
+    name: 'Ariful Islam (Song)',
+    role: 'Sub Admin 2',
+    email: 'song@parabar.org',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces',
+    permissions: { view: true, edit: true, delete: false, export: false, messaging: true }
+  },
+  {
+    id: 'ADM-005',
+    name: 'Nasrin Sultana (Recitation)',
+    role: 'Sub Admin 2',
+    email: 'recitation@parabar.org',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces',
+    permissions: { view: true, edit: true, delete: false, export: false, messaging: true }
+  },
+  {
+    id: 'ADM-006',
+    name: 'Tanvir Ahmed (Theatre)',
+    role: 'Sub Admin 2',
+    email: 'theatre@parabar.org',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces',
     permissions: { view: true, edit: true, delete: false, export: false, messaging: true }
   }
 ];

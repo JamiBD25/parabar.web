@@ -62,8 +62,8 @@ export const NotificationView: React.FC = () => {
         </h2>
         <p className="text-xs text-slate-500 tracking-wide">
           {language === 'bn' 
-            ? 'বার্ষিক নোটিশ বোর্ড প্রকাশ করুন, শিক্ষার্থীদের জন্মদিনের শুভেচ্ছা পাঠান এবং প্রাতিষ্ঠানিক অ্যালার্ট তালিকা দেখুন।' 
-            : 'Formulate official bulletins, log custom board drafts, and dispatch student happy birthday greetings.'}
+            ? 'বার্ষিক নোটিশ বোর্ড প্রকাশ করুন, শিল্পীদের জন্মদিনের শুভেচ্ছা পাঠান এবং প্রাতিষ্ঠানিক অ্যালার্ট তালিকা দেখুন।' 
+            : 'Formulate official bulletins, log custom board drafts, and dispatch artist happy birthday greetings.'}
         </p>
       </div>
 
@@ -162,14 +162,14 @@ export const NotificationView: React.FC = () => {
           <div className="border-b border-light-divider dark:border-slate-800 pb-2 flex items-center gap-2">
             <Cake className="text-pink-500" />
             <h3 className="font-sans font-bold text-sm">
-              {language === 'bn' ? 'চলতি জুন মাসের জন্মদিন তালিকা' : 'Active Student Birthdays'}
+              {language === 'bn' ? 'চলতি জুন মাসের জন্মদিন তালিকা' : 'Active Artist Birthdays'}
             </h3>
           </div>
 
           <p className="text-[11px] text-slate-400">
             {language === 'bn' 
-              ? 'চলতি জুন মাসে একাডেমিতে তালিকাভুক্ত যেসকল শিক্ষার্থীর শুভ জন্মদিন রয়েছে। ১-ক্লিকে হোয়াটসঅ্যাপ বা এসএমএস উইশ পাঠান।' 
-              : 'Auto-scrapes student registries for active birthdays in the sessional month. Dispatch greetings with 1-click.'}
+              ? 'চলতি জুন মাসে একাডেমিতে তালিকাভুক্ত যেসকল শিল্পীর শুভ জন্মদিন রয়েছে। ১-ক্লিকে হোয়াটসঅ্যাপ বা এসএমএস উইশ পাঠান।' 
+              : 'Auto-scrapes artist registries for active birthdays in the sessional month. Dispatch greetings with 1-click.'}
           </p>
 
           <div className="space-y-3">

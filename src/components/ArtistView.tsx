@@ -8,6 +8,17 @@ import {
   ClipboardList, CreditCard, Lock
 } from 'lucide-react';
 
+const getDeptLabel = (dept: string, lang: 'bn' | 'en') => {
+  if (dept === 'Music') return lang === 'bn' ? 'সঙ্গীত' : 'Music';
+  if (dept === 'Music (Khude Parabar)') return lang === 'bn' ? 'সঙ্গীত - খুদে পারাবার' : 'Music (Khude Parabar)';
+  if (dept === 'Music (Kishore Parabar)') return lang === 'bn' ? 'সঙ্গীত - কিশোর পারাবার' : 'Music (Kishore Parabar)';
+  if (dept === 'Fine Arts') return lang === 'bn' ? 'চারুকলা' : 'Fine Arts';
+  if (dept === 'Dance') return lang === 'bn' ? 'নৃত্য' : 'Dance';
+  if (dept === 'Recitation') return lang === 'bn' ? 'আবৃত্তি' : 'Recitation';
+  if (dept === 'Theatre') return lang === 'bn' ? 'নাট্যকলা' : 'Theatre';
+  return dept;
+};
+
 export const ArtistView: React.FC = () => {
   const { 
     artists, addArtist, updateArtist, deleteArtist, t, language, logAction, payments, attendance
@@ -50,7 +61,7 @@ export const ArtistView: React.FC = () => {
   // Mock Camera State
   const [cameraActive, setCameraActive] = useState(false);
 
-  const departmentsList = ['Music', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'];
+  const departmentsList = ['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'];
   const bloodGroupsList = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   const gradesList = ['Playgroup', 'Nursery', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'HSC 1st Yr', 'HSC 2nd Yr'];
 
@@ -234,7 +245,7 @@ export const ArtistView: React.FC = () => {
         </head>
         <body>
           <h1>পারাবার আর্ট অ্যান্ড কালচারাল একাডেমি</h1>
-          <p>শিল্পী ও শিক্ষার্থী তালিকা (সর্বমোট: ${filteredArtists.length} জন)</p>
+          <p>শিল্পী তালিকা (সর্বমোট: ${filteredArtists.length} জন)</p>
           <table>
             <thead>
               <tr>
@@ -385,7 +396,7 @@ export const ArtistView: React.FC = () => {
           <div className="col-span-full bg-slate-100 dark:bg-slate-900 border border-dashed border-slate-700 py-12 text-center text-slate-400 rounded-2xl">
             <User size={48} className="mx-auto mb-3 opacity-30 text-sky-400" />
             <p className="font-semibold text-sm text-slate-600 dark:text-slate-400">
-              {language === 'bn' ? 'কোনো শিল্পী বা শিক্ষার্থী পাওয়া যায়নি।' : 'No enrolled artist matched the search query.'}
+              {language === 'bn' ? 'কোনো শিল্পী পাওয়া যায়নি।' : 'No enrolled artist matched the search query.'}
             </p>
           </div>
         ) : (
@@ -454,7 +465,7 @@ export const ArtistView: React.FC = () => {
                   <div className="flex flex-wrap gap-1.5 mt-3 pt-2">
                     {Array.isArray(artist.departments) && artist.departments.map(dept => (
                       <span key={dept} className="bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded font-medium text-[10px]">
-                        {dept}
+                        {getDeptLabel(dept, language)}
                       </span>
                     ))}
                     <span className="ml-auto bg-slate-950 font-bold px-1.5 rounded text-[10px] text-rose-400 uppercase font-mono">
@@ -732,7 +743,7 @@ export const ArtistView: React.FC = () => {
                         <span className={`w-3.5 h-3.5 rounded border border-indigo-500 flex items-center justify-center text-[8px] ${selected ? 'bg-indigo-600 text-white' : ''}`}>
                           {selected ? '✓' : ''}
                         </span>
-                        <span>{dept}</span>
+                        <span>{getDeptLabel(dept, language)}</span>
                       </button>
                     );
                   })}
