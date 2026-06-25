@@ -115,49 +115,12 @@ export const LoginView: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-warm-cream to-warm-secondary text-[#222222] flex flex-col justify-between relative overflow-hidden font-sans">
-      {/* Decorative subtle patterns */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-brand-green/3 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-brand-red/3 rounded-full blur-[120px] pointer-events-none"></div>
-
-      {/* Top Floating bar */}
-      <header className="z-10 flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white shadow-xs">
-        <div className="flex items-center gap-2.5">
-          <ParabarLogo size={36} />
-          <div className="flex flex-col">
-            <span className="text-xs font-black tracking-wide text-brand-red font-sans uppercase leading-tight">
-              {language === 'bn' ? 'পারাবার' : 'PARABAR'}
-            </span>
-            <span className="text-[7.5px] text-slate-850 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
-              {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Theme toggler */}
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-1.5 rounded bg-slate-50 border border-slate-200 text-[#222222]"
-          >
-            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-          </button>
-
-          {/* Lang toggler */}
-          <button
-            onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-            className="text-xs font-bold border border-slate-200 px-3 py-1.5 rounded bg-slate-50 text-text-gray hover:border-slate-350 hover:text-[#222222] select-none cursor-pointer"
-          >
-            {language === 'bn' ? 'ENGLISH' : 'বাংলা'}
-          </button>
-        </div>
-      </header>
-
+    <div className="w-full flex flex-col items-center justify-center py-4 font-sans text-slate-800 dark:text-slate-100">
       {/* Main card */}
-      <main className="z-10 flex-1 flex items-center justify-center p-4">
+      <div className="z-10 w-full flex items-center justify-center p-1">
         {registeredStudent ? (
-          <div className="w-full max-w-md bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-md text-center relative z-20 font-sans">
-            <div className="inline-flex bg-emerald-50 p-4 rounded-full border border-emerald-200 text-brand-green mb-4 shadow-xs">
+          <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-md text-center relative z-20 font-sans">
+            <div className="inline-flex bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-full border border-emerald-200 dark:border-emerald-800 text-brand-green mb-4 shadow-xs">
               <CheckCircle size={36} />
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-[#222222] tracking-tight font-sans">
@@ -200,16 +163,16 @@ export const LoginView: React.FC = () => {
             </button>
           </div>
         ) : isRegistering ? (
-          <div className="w-full max-w-lg bg-white border border-slate-200/95 rounded-2xl p-6 sm:p-8 shadow-md relative">
+          <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200/95 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-md relative">
             <div className="absolute right-0 top-0 w-[150px] h-[150px] bg-brand-green/3 rounded-full blur-[50px] pointer-events-none"></div>
             <div className="text-center mb-6">
-              <div className="inline-flex bg-warm-cream p-3 rounded-full border border-slate-100 mb-2.5 text-brand-red shadow-inner font-sans">
+              <div className="inline-flex bg-warm-cream dark:bg-slate-800 p-3 rounded-full border border-slate-100 dark:border-slate-700 mb-2.5 text-brand-red shadow-inner font-sans">
                 <Sparkles size={20} className="animate-pulse" />
               </div>
-              <h2 className="text-lg sm:text-xl font-black text-[#222222] tracking-tight font-sans">
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight font-sans">
                 {language === 'bn' ? 'শিল্পী নিবন্ধন ফর্ম' : 'Artist Enrollment Register'}
               </h2>
-              <p className="text-[11px] text-text-gray mt-0.5 font-sans font-semibold">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 font-sans font-semibold">
                 {language === 'bn' 
                   ? 'পারাবার একাডেমিতে নতুন শিল্পী হিসেবে যোগ দিতে নিচের ফর্মটি পূরণ করুন' 
                   : 'Enroll and generate your digital academy profile in seconds'
@@ -220,7 +183,7 @@ export const LoginView: React.FC = () => {
             <form onSubmit={handleRegisterSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'বাংলা নাম *' : 'Name in Bengali *'}
                   </label>
                   <input
@@ -228,12 +191,12 @@ export const LoginView: React.FC = () => {
                     value={regName}
                     onChange={(e) => setRegName(e.target.value)}
                     placeholder="উদা: আরিয়ান রহমান"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'ইংরেজি নাম *' : 'Name in English *'}
                   </label>
                   <input
@@ -241,7 +204,7 @@ export const LoginView: React.FC = () => {
                     value={regNameEn}
                     onChange={(e) => setRegNameEn(e.target.value)}
                     placeholder="e.g. Aryan Rahman"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green"
                     required
                   />
                 </div>
@@ -249,7 +212,7 @@ export const LoginView: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'পিতার নাম' : "Father's Name"}
                   </label>
                   <input
@@ -257,11 +220,11 @@ export const LoginView: React.FC = () => {
                     value={regFather}
                     onChange={(e) => setRegFather(e.target.value)}
                     placeholder="উদা: মো: আব্দুর রহমান"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green shadow-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'মাতার নাম' : "Mother's Name"}
                   </label>
                   <input
@@ -269,14 +232,14 @@ export const LoginView: React.FC = () => {
                     value={regMother}
                     onChange={(e) => setRegMother(e.target.value)}
                     placeholder="উদা: খাদিজা বেগম"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green shadow-xs"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'মোবাইল নম্বর *' : 'Mobile Number *'}
                   </label>
                   <input
@@ -284,12 +247,12 @@ export const LoginView: React.FC = () => {
                     value={regMobile}
                     onChange={(e) => setRegMobile(e.target.value)}
                     placeholder="017XXXXXXXX"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] font-mono focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs font-mono focus:outline-none focus:border-brand-green"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'পাসওয়ার্ড / সিকিউরিটি পিন *' : 'Password / Security PIN *'}
                   </label>
                   <input
@@ -297,7 +260,7 @@ export const LoginView: React.FC = () => {
                     value={regPassword}
                     onChange={(e) => setRegPassword(e.target.value)}
                     placeholder="e.g. secret"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] font-mono focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs font-mono focus:outline-none focus:border-brand-green"
                     required
                   />
                 </div>
@@ -305,7 +268,7 @@ export const LoginView: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                 <div className="sm:col-span-2">
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'শিক্ষা প্রতিষ্ঠান' : 'Institution'}
                   </label>
                   <input
@@ -313,17 +276,17 @@ export const LoginView: React.FC = () => {
                     value={regInstitution}
                     onChange={(e) => setRegInstitution(e.target.value)}
                     placeholder="উদা: আইডিয়াল হাই স্কুল"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none shadow-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'শ্রেণী' : 'Academic Grade'}
                   </label>
                   <select
                     value={regGrade}
                     onChange={(e) => setRegGrade(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-2.5 text-xs text-[#222222] focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-2.5 text-xs focus:outline-none focus:border-brand-green"
                   >
                     {['Playgroup', 'Nursery', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'HSC 1st Yr', 'HSC 2nd Yr'].map(gr => <option key={gr} value={gr}>{gr}</option>)}
                   </select>
@@ -332,25 +295,25 @@ export const LoginView: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'জন্ম তারিখ *' : 'Birthdate *'}
                   </label>
                   <input
                     type="date"
                     value={regDob}
                     onChange={(e) => setRegDob(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] font-mono focus:outline-none focus:border-brand-green shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs font-mono focus:outline-none focus:border-brand-green shadow-xs"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                  <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                     {language === 'bn' ? 'রক্তের গ্রুপ' : 'Blood Group'}
                   </label>
                   <select
                     value={regBlood}
                     onChange={(e) => setRegBlood(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green"
                   >
                     {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(bg => <option key={bg} value={bg}>{bg}</option>)}
                   </select>
@@ -358,7 +321,7 @@ export const LoginView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-1 font-sans">
+                <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-1 font-sans">
                   {language === 'bn' ? 'বর্তমান ঠিকানা' : 'Current Address'}
                 </label>
                 <textarea
@@ -366,17 +329,17 @@ export const LoginView: React.FC = () => {
                   onChange={(e) => setRegAddress(e.target.value)}
                   placeholder="উদা: যাত্রাবাড়ী, ঢাকা"
                   rows={2}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs text-[#222222] focus:outline-none focus:border-brand-green shadow-xs"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brand-green shadow-xs"
                 />
               </div>
 
               {/* Departments checklist selection */}
               <div>
-                <label className="block text-[10px] uppercase font-bold text-text-gray tracking-wider mb-2 font-sans">
+                <label className="block text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-2 font-sans">
                   {language === 'bn' ? 'ভর্তি হতে ইচ্ছুক বিভাগ (কমপক্ষে ১টি সিলেক্ট করুন) *' : 'Ensemble Departments (Select min 1) *'}
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'].map(dept => {
+                  {['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Recitation', 'Theatre'].map(dept => {
                     const isChecked = regDepts.includes(dept);
                     return (
                       <button
@@ -392,11 +355,11 @@ export const LoginView: React.FC = () => {
                         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[11px] font-bold uppercase transition select-none cursor-pointer ${
                           isChecked
                             ? 'bg-brand-red/10 border-brand-red/40 text-brand-red'
-                            : 'bg-slate-50 border-slate-200 text-text-gray hover:border-slate-350'
+                            : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-slate-350 dark:hover:border-slate-700'
                         }`}
                       >
                         <span className={`w-3 h-3 rounded-md flex items-center justify-center border font-sans text-[8px] ${
-                          isChecked ? 'bg-brand-red text-white border-brand-red font-black' : 'border-slate-300'
+                          isChecked ? 'bg-brand-red text-white border-brand-red font-black' : 'border-slate-300 dark:border-slate-700'
                         }`}>
                           {isChecked && '✓'}
                         </span>
@@ -411,7 +374,7 @@ export const LoginView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsRegistering(false)}
-                  className="flex-1 bg-slate-50 hover:bg-slate-100 text-[#222222] font-sans font-bold text-xs py-3 rounded-xl border border-slate-200 cursor-pointer transition"
+                  className="flex-1 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-sans font-bold text-xs py-3 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer transition"
                 >
                   {language === 'bn' ? 'ফিরে যান' : 'Back to Login'}
                 </button>
@@ -425,15 +388,15 @@ export const LoginView: React.FC = () => {
             </form>
           </div>
         ) : (
-          <div className="w-full max-w-md bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-md relative">
+          <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-md relative">
             <div className="text-center mb-6">
               <div className="inline-flex mb-2">
                 <ParabarLogo size={90} />
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-[#222222] tracking-tight font-sans">
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight font-sans">
                 {language === 'bn' ? 'স্বাগতম' : 'Welcome'}
               </h2>
-              <p className="text-xs text-text-gray mt-1 max-w-xs mx-auto font-sans font-semibold">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto font-sans font-semibold">
                 {language === 'bn' 
                   ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম পরিচালনা পোর্টালে লগইন করুন' 
                   : 'Sign in to Parabar Sahittya Sangskriti Songsod Chattogram System'
@@ -442,7 +405,7 @@ export const LoginView: React.FC = () => {
             </div>
 
             {/* Toggle Tab */}
-            <div className="grid grid-cols-2 bg-slate-50 border border-slate-200 p-1 rounded-xl mb-6">
+            <div className="grid grid-cols-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-1 rounded-xl mb-6">
               <button
                 onClick={() => {
                   setRole('student');
@@ -450,8 +413,8 @@ export const LoginView: React.FC = () => {
                 }}
                 className={`flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-extrabold tracking-wide transition-all ${
                   role === 'student'
-                    ? 'bg-white text-brand-red border border-slate-200 shadow-xs'
-                    : 'text-text-gray hover:text-slate-800'
+                    ? 'bg-white dark:bg-slate-800 text-brand-red border border-slate-200 dark:border-slate-700 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
                 }`}
               >
                 <User size={14} />
@@ -464,8 +427,8 @@ export const LoginView: React.FC = () => {
                 }}
                 className={`flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-extrabold tracking-wide transition-all ${
                   role === 'admin'
-                    ? 'bg-white text-brand-red border border-slate-200 shadow-xs'
-                    : 'text-text-gray hover:text-slate-800'
+                    ? 'bg-white dark:bg-slate-800 text-brand-red border border-slate-200 dark:border-slate-700 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
                 }`}
               >
                 <Shield size={14} />
@@ -476,7 +439,7 @@ export const LoginView: React.FC = () => {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-sans font-extrabold text-[#222222] uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-sans font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   {role === 'admin' 
                     ? (language === 'bn' ? 'অ্যাডমিন ইমেইল' : 'Admin Email Address')
                     : (language === 'bn' ? 'শিল্পী আইডি বা মোবাইল নম্বর' : 'Artist ID or Registered Mobile')
@@ -491,13 +454,13 @@ export const LoginView: React.FC = () => {
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     placeholder={role === 'admin' ? 'rana@parabar.org' : 'PAR-2026-001'}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-10 pr-4 text-xs font-sans tracking-wide text-[#222222] focus:outline-none focus:border-brand-green placeholder-slate-400 shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-sans tracking-wide text-slate-850 dark:text-slate-100 focus:outline-none focus:border-brand-green dark:focus:border-emerald-500 placeholder-slate-400 shadow-xs"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-sans font-extrabold text-[#222222] uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-sans font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   {language === 'bn' ? 'পাসওয়ার্ড বা সিকিউরিটি পিন' : 'Password or PIN Code'}
                 </label>
                 <div className="relative">
@@ -509,13 +472,13 @@ export const LoginView: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-10 pr-4 text-xs font-sans tracking-widest text-[#222222] focus:outline-none focus:border-brand-green placeholder-slate-400 shadow-xs"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-xs font-sans tracking-widest text-slate-850 dark:text-slate-100 focus:outline-none focus:border-brand-green dark:focus:border-emerald-500 placeholder-slate-400 shadow-xs"
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="text-brand-red text-xs bg-red-50 border border-red-200 px-3 py-2 rounded-lg text-center font-bold">
+                <div className="text-brand-red text-xs bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 px-3 py-2 rounded-lg text-center font-bold">
                   {error}
                 </div>
               )}
@@ -549,12 +512,7 @@ export const LoginView: React.FC = () => {
             </div>
           </div>
         )}
-      </main>
-
-      {/* Footer credit */}
-      <footer className="z-10 text-center py-4 text-[10px] text-text-gray border-t border-slate-200 bg-white">
-        <p>© 2026 Parabar Sahittya Sangskriti Songsod Chattogram • {language === 'bn' ? 'সকল সত্ত্ব সংরক্ষিত' : 'All Rights Reserved'}</p>
-      </footer>
+      </div>
     </div>
   );
 };

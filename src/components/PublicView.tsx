@@ -140,10 +140,10 @@ export const PublicView: React.FC<PublicViewProps> = ({
   // Activities / Work data (Bilingual)
   const activities = [
     {
-      titleBn: 'সঙ্গীত একাডেমি (কণ্ঠসঙ্গীত ও যন্ত্রসঙ্গীত)',
-      titleEn: 'Music Academy (Vocal & Instruments)',
-      descBn: 'শিশু-কিশোরদের কণ্ঠশীলন, রবীন্দ্র-নজরুল সঙ্গীত, দেশাত্মবোধক গান এবং ঐতিহ্যবাহী লোক সঙ্গীতের পাশাপাশি তবলা, কিবোর্ড ও গিটার বাজানোর বিশেষ প্রশিক্ষণ দেয়া হয়।',
-      descEn: 'Specialized training in vocals, Rabindra Sangeet, Nazrul Geeti, patriotic tracks, traditional folk, as well as instrumental lessons in Tabla, Keyboard, and Guitar.',
+      titleBn: 'সঙ্গীত একাডেমি (কণ্ঠসঙ্গীত)',
+      titleEn: 'Music Academy (Vocal)',
+      descBn: 'শিশু-কিশোরদের কণ্ঠশীলন, রবীন্দ্র-নজরুল সঙ্গীত, দেশাত্মবোধক গান এবং ঐতিহ্যবাহী লোক সঙ্গীতের বিশেষ প্রশিক্ষণ দেয়া হয়।',
+      descEn: 'Specialized training in vocals, Rabindra Sangeet, Nazrul Geeti, patriotic tracks, and traditional folk music.',
       icon: <GraduationCap className="text-[#0F6A4B] dark:text-emerald-400 w-8 h-8" />
     },
     {
@@ -161,25 +161,11 @@ export const PublicView: React.FC<PublicViewProps> = ({
       icon: <Compass className="text-indigo-600 dark:text-indigo-400 w-8 h-8" />
     },
     {
-      titleBn: 'নৃত্যকলা ও লোকনৃত্য',
-      titleEn: 'Dance & Traditional Folklore',
-      descBn: 'ঐতিহ্যবাহী লোকনৃত্য, শাস্ত্রীয় বা ধ্রুপদী নৃত্য এবং নান্দনিক নৃত্যকলার মুদ্রা ও তালের নিয়মতান্ত্রিক ক্লাসের আয়োজন করা হয়।',
-      descEn: 'Choreographed folk dancing, classical mudras, rhythmic steps, and systematic training under veteran national instructors.',
-      icon: <Award className="text-amber-600 dark:text-amber-400 w-8 h-8" />
-    },
-    {
       titleBn: 'সৃজনশীল শিশু নাট্যকলা',
       titleEn: 'Creative Children’s Theatre',
-      descBn: 'অভিনয় কুশলতা, চরিত্র ফুটিয়ে তোলার নান্দনিক কৌশল এবং শিক্ষণীয় ও সচেতনতামূলক নাটক মঞ্চায়নের জন্য বিশেষ দলগত প্রশিক্ষণ দেওয়া হয়।',
+      descBn: 'অভিনয় কুশলতা, চরিত্র ফুটিয়ে তোলার নান্দনিক কৌশল এবং শিক্ষণীয় ও সচেতনতামূলক নাটক নাটক মঞ্চায়নের জন্য বিশেষ দলগত প্রশিক্ষণ দেওয়া হয়।',
       descEn: 'Acting techniques, screenplays, character execution, and creative stage plays designed to increase awareness and boost artistic intellect.',
       icon: <Users className="text-[#0F6A4B] dark:text-emerald-400 w-8 h-8" />
-    },
-    {
-      titleBn: 'সমাজকল্যাণমূলক ও গুণীজন সম্মাননা',
-      titleEn: 'Social welfare & Honors Programs',
-      descBn: 'মেধাবী শিক্ষার্থীদের বিশেষ বৃত্তি প্রদান, বার্ষিক সাংস্কৃতিক উৎসব আয়োজন, সাহিত্য সাময়িকী প্রকাশ এবং দেশের বরেণ্য গুণীজনদের সম্মাননা প্রদান।',
-      descEn: 'Scholarship distribution for bright talents, annual cultural festivals, publishing literary magazines, and honoring national legends.',
-      icon: <Heart className="text-[#B22222] dark:text-red-400 w-8 h-8" />
     }
   ];
 
@@ -452,20 +438,20 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 {/* Micro Stats Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-10">
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
-                    <p className="text-2xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">১২+</p>
-                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'গৌরবময় বছর' : 'Glorious Years'}</p>
+                    <p className="text-2xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">২২+</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'বছরের সফলতা' : 'Years of Success'}</p>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
                     <p className="text-2xl font-black text-[#B22222] dark:text-red-400 font-mono">৫টি</p>
-                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'সক্রিয় শাখা' : 'Active Branches'}</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'সক্রিয় শাখা' : 'Active Branches'}</p>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
-                    <p className="text-2xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">৫০০+</p>
-                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'নিবন্ধিত শিল্পী' : 'Active Students'}</p>
+                    <p className="text-2xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">২০০০+</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'নিবন্ধিত শিল্পী' : 'Total Artists'}</p>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
                     <p className="text-2xl font-black text-[#B22222] dark:text-red-400 font-mono">৩০+</p>
-                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'দক্ষ শিক্ষক' : 'Trainer Faculty'}</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'দক্ষ শিক্ষক' : 'Trainer Faculty'}</p>
                   </div>
                 </div>
 
@@ -938,6 +924,18 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 ? 'সুস্থ ও প্রগতিশীল সমাজ বিনির্মাণে কোমলমতি শিশুদের সৃজনশীল মনন গঠনে একটি নির্ভরযোগ্য আলোকবর্তিকা।' 
                 : 'A premium, weekend cultural academy dedicated to safeguarding youth from screen traps and nurturing creative leadership.'}
             </p>
+            <div className="pt-1">
+              <a
+                href="https://www.facebook.com/share/1cKiiEBNWu/"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 transition border border-blue-100 dark:border-blue-900/50 cursor-pointer"
+              >
+                <Facebook size={14} />
+                <span>{language === 'bn' ? 'ফেইসবুক পেইজ' : 'Facebook Page'}</span>
+              </a>
+            </div>
           </div>
 
           <div className="space-y-3.5">
@@ -961,15 +959,15 @@ export const PublicView: React.FC<PublicViewProps> = ({
             <div className="space-y-2 font-mono text-[11px]">
               <p className="flex items-center gap-2">
                 <Phone size={13} className="text-[#0F6A4B]" />
-                <span>+880 1819-345678, 031-625412</span>
+                <span>+880 1836-776227</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail size={13} className="text-[#B22222]" />
-                <span className="select-all">info@parabar-chg.org</span>
+                <span className="select-all">info@parabar.org</span>
               </p>
               <p className="flex items-center gap-2 font-sans">
                 <MapPin size={13} className="text-[#0F6A4B] shrink-0" />
-                <span className="leading-tight">{language === 'bn' ? 'ফতেয়াবাদ টাওয়ার, চকবাজার, চট্টগ্রাম' : 'Fateyabad Tower, Chawkbazar, Chattogram'}</span>
+                <span className="leading-tight">{language === 'bn' ? 'ডি.টি. রোড, দেওয়ানহাট, চট্টগ্রাম-৪১০০' : 'D.T. Road, Dewanhat, Chattogram-4100'}</span>
               </p>
             </div>
           </div>
