@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { 
   Admin, Artist, Trainer, ClassSchedule, AttendanceRecord, 
   Payment, Expense, Supporter, Donation, SystemNotification, 
@@ -87,6 +89,7 @@ interface AppContextType {
   logout: () => void;
   changeAdminPin: (adminId: string, newPin: string) => boolean;
   changeArtistPassword: (artistId: string, newPassword: string) => boolean;
+  isCloudSyncing: boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -113,62 +116,166 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [notifications, setNotifications] = useState<SystemNotification[]>([]);
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
 
-  // Load from local storage or set initial values on mount
+  const [isCloudSyncing, setIsCloudSyncing] = useState(false);
+
+  // Load from Firestore or fallback to local storage on mount
   useEffect(() => {
-    const storedArtists = localStorage.getItem('parabar_artists');
-    const storedTrainers = localStorage.getItem('parabar_trainers');
-    const storedResPersons = localStorage.getItem('parabar_respersons');
-    const storedClasses = localStorage.getItem('parabar_classes');
-    const storedAttendance = localStorage.getItem('parabar_attendance');
-    const storedPayments = localStorage.getItem('parabar_payments');
-    const storedExpenses = localStorage.getItem('parabar_expenses');
-    const storedSupporters = localStorage.getItem('parabar_supporters');
-    const storedDonations = localStorage.getItem('parabar_donations');
-    const storedNotifications = localStorage.getItem('parabar_notifications');
-    const storedActivity = localStorage.getItem('parabar_activity');
-    const storedLang = localStorage.getItem('parabar_language');
-    const storedTheme = localStorage.getItem('parabar_theme');
+    const fetchCloudData = async () => {
+      try {
+        setIsCloudSyncing(true);
+        
+        // 1. Fetch Admin Pins
+        const pinsRef = doc(db, 'parabar_data', 'admin_pins');
+        const pinsSnap = await getDoc(pinsRef);
+        let currentPins = {
+          'ADM-001': '1234',
+          'ADM-002': '4321',
+          'ADM-003': '0000',
+          'ADM-004': '1111',
+          'ADM-005': '2222',
+          'ADM-006': '3333'
+        };
+        if (pinsSnap.exists() && pinsSnap.data().pins) {
+          currentPins = pinsSnap.data().pins;
+        } else {
+          await setDoc(pinsRef, { pins: currentPins });
+        }
+        localStorage.setItem('parabar_admin_pins', JSON.stringify(currentPins));
 
-    if (storedArtists) setArtists(JSON.parse(storedArtists));
-    else { setArtists(INITIAL_ARTISTS); localStorage.setItem('parabar_artists', JSON.stringify(INITIAL_ARTISTS)); }
+        // Helper function to fetch list or initialize with fallback/localStorage/seedData
+        const fetchList = async (docId: string, initialData: any[], localKey: string) => {
+          const docRef = doc(db, 'parabar_data', docId);
+          const snap = await getDoc(docRef);
+          if (snap.exists() && snap.data().list) {
+            const list = snap.data().list;
+            localStorage.setItem(localKey, JSON.stringify(list));
+            return list;
+          } else {
+            // Check localStorage fallback
+            const stored = localStorage.getItem(localKey);
+            const fallbackList = stored ? JSON.parse(stored) : initialData;
+            await setDoc(docRef, { list: fallbackList });
+            return fallbackList;
+          }
+        };
 
-    if (storedTrainers) setTrainers(JSON.parse(storedTrainers));
-    else { setTrainers(INITIAL_TRAINERS); localStorage.setItem('parabar_trainers', JSON.stringify(INITIAL_TRAINERS)); }
+        const [
+          loadedArtists,
+          loadedTrainers,
+          loadedResPersons,
+          loadedClasses,
+          loadedAttendance,
+          loadedPayments,
+          loadedExpenses,
+          loadedSupporters,
+          loadedDonations,
+          loadedNotifications,
+          loadedActivity,
+          loadedAdmins
+        ] = await Promise.all([
+          fetchList('artists', INITIAL_ARTISTS, 'parabar_artists'),
+          fetchList('trainers', INITIAL_TRAINERS, 'parabar_trainers'),
+          fetchList('respersons', INITIAL_RESPONSIBLE, 'parabar_respersons'),
+          fetchList('classes', INITIAL_CLASSES, 'parabar_classes'),
+          fetchList('attendance', INITIAL_ATTENDANCE, 'parabar_attendance'),
+          fetchList('payments', INITIAL_PAYMENTS, 'parabar_payments'),
+          fetchList('expenses', INITIAL_EXPENSES, 'parabar_expenses'),
+          fetchList('supporters', INITIAL_SUPPORTERS, 'parabar_supporters'),
+          fetchList('donations', INITIAL_DONATIONS, 'parabar_donations'),
+          fetchList('notifications', INITIAL_NOTIFICATIONS, 'parabar_notifications'),
+          fetchList('activity', INITIAL_ACTIVITY, 'parabar_activity'),
+          fetchList('admins', INITIAL_ADMINS, 'parabar_admins')
+        ]);
 
-    if (storedResPersons) setResponsiblePersons(JSON.parse(storedResPersons));
-    else { setResponsiblePersons(INITIAL_RESPONSIBLE); localStorage.setItem('parabar_respersons', JSON.stringify(INITIAL_RESPONSIBLE)); }
+        setArtists(loadedArtists);
+        setTrainers(loadedTrainers);
+        setResponsiblePersons(loadedResPersons);
+        setClasses(loadedClasses);
+        setAttendance(loadedAttendance);
+        setPayments(loadedPayments);
+        setExpenses(loadedExpenses);
+        setSupporters(loadedSupporters);
+        setDonations(loadedDonations);
+        setNotifications(loadedNotifications);
+        setActivityLogs(loadedActivity);
+        setAdmins(loadedAdmins);
 
-    if (storedClasses) setClasses(JSON.parse(storedClasses));
-    else { setClasses(INITIAL_CLASSES); localStorage.setItem('parabar_classes', JSON.stringify(INITIAL_CLASSES)); }
+        // Language & Theme remain local preferences
+        const storedLang = localStorage.getItem('parabar_language');
+        const storedTheme = localStorage.getItem('parabar_theme');
+        if (storedLang) setLanguage(storedLang as 'bn' | 'en');
+        if (storedTheme) setTheme(storedTheme as 'light' | 'dark');
 
-    if (storedAttendance) setAttendance(JSON.parse(storedAttendance));
-    else { setAttendance(INITIAL_ATTENDANCE); localStorage.setItem('parabar_attendance', JSON.stringify(INITIAL_ATTENDANCE)); }
+        const storedUser = localStorage.getItem('parabar_current_user');
+        if (storedUser) {
+          setCurrentUser(JSON.parse(storedUser));
+        }
+      } catch (err) {
+        console.error('Error fetching Firestore cloud data:', err);
+        loadFromLocalStorageFallback();
+      } finally {
+        setIsCloudSyncing(false);
+      }
+    };
 
-    if (storedPayments) setPayments(JSON.parse(storedPayments));
-    else { setPayments(INITIAL_PAYMENTS); localStorage.setItem('parabar_payments', JSON.stringify(INITIAL_PAYMENTS)); }
+    const loadFromLocalStorageFallback = () => {
+      const storedArtists = localStorage.getItem('parabar_artists');
+      const storedTrainers = localStorage.getItem('parabar_trainers');
+      const storedResPersons = localStorage.getItem('parabar_respersons');
+      const storedClasses = localStorage.getItem('parabar_classes');
+      const storedAttendance = localStorage.getItem('parabar_attendance');
+      const storedPayments = localStorage.getItem('parabar_payments');
+      const storedExpenses = localStorage.getItem('parabar_expenses');
+      const storedSupporters = localStorage.getItem('parabar_supporters');
+      const storedDonations = localStorage.getItem('parabar_donations');
+      const storedNotifications = localStorage.getItem('parabar_notifications');
+      const storedActivity = localStorage.getItem('parabar_activity');
+      const storedLang = localStorage.getItem('parabar_language');
+      const storedTheme = localStorage.getItem('parabar_theme');
 
-    if (storedExpenses) setExpenses(JSON.parse(storedExpenses));
-    else { setExpenses(INITIAL_EXPENSES); localStorage.setItem('parabar_expenses', JSON.stringify(INITIAL_EXPENSES)); }
+      if (storedArtists) setArtists(JSON.parse(storedArtists));
+      else setArtists(INITIAL_ARTISTS);
 
-    if (storedSupporters) setSupporters(JSON.parse(storedSupporters));
-    else { setSupporters(INITIAL_SUPPORTERS); localStorage.setItem('parabar_supporters', JSON.stringify(INITIAL_SUPPORTERS)); }
+      if (storedTrainers) setTrainers(JSON.parse(storedTrainers));
+      else setTrainers(INITIAL_TRAINERS);
 
-    if (storedDonations) setDonations(JSON.parse(storedDonations));
-    else { setDonations(INITIAL_DONATIONS); localStorage.setItem('parabar_donations', JSON.stringify(INITIAL_DONATIONS)); }
+      if (storedResPersons) setResponsiblePersons(JSON.parse(storedResPersons));
+      else setResponsiblePersons(INITIAL_RESPONSIBLE);
 
-    if (storedNotifications) setNotifications(JSON.parse(storedNotifications));
-    else { setNotifications(INITIAL_NOTIFICATIONS); localStorage.setItem('parabar_notifications', JSON.stringify(INITIAL_NOTIFICATIONS)); }
+      if (storedClasses) setClasses(JSON.parse(storedClasses));
+      else setClasses(INITIAL_CLASSES);
 
-    if (storedActivity) setActivityLogs(JSON.parse(storedActivity));
-    else { setActivityLogs(INITIAL_ACTIVITY); localStorage.setItem('parabar_activity', JSON.stringify(INITIAL_ACTIVITY)); }
+      if (storedAttendance) setAttendance(JSON.parse(storedAttendance));
+      else setAttendance(INITIAL_ATTENDANCE);
 
-    if (storedLang) setLanguage(storedLang as 'bn' | 'en');
-    if (storedTheme) setTheme(storedTheme as 'light' | 'dark');
+      if (storedPayments) setPayments(JSON.parse(storedPayments));
+      else setPayments(INITIAL_PAYMENTS);
 
-    const storedUser = localStorage.getItem('parabar_current_user');
-    if (storedUser) {
-      setCurrentUser(JSON.parse(storedUser));
-    }
+      if (storedExpenses) setExpenses(JSON.parse(storedExpenses));
+      else setExpenses(INITIAL_EXPENSES);
+
+      if (storedSupporters) setSupporters(JSON.parse(storedSupporters));
+      else setSupporters(INITIAL_SUPPORTERS);
+
+      if (storedDonations) setDonations(JSON.parse(storedDonations));
+      else setDonations(INITIAL_DONATIONS);
+
+      if (storedNotifications) setNotifications(JSON.parse(storedNotifications));
+      else setNotifications(INITIAL_NOTIFICATIONS);
+
+      if (storedActivity) setActivityLogs(JSON.parse(storedActivity));
+      else setActivityLogs(INITIAL_ACTIVITY);
+
+      if (storedLang) setLanguage(storedLang as 'bn' | 'en');
+      if (storedTheme) setTheme(storedTheme as 'light' | 'dark');
+
+      const storedUser = localStorage.getItem('parabar_current_user');
+      if (storedUser) {
+        setCurrentUser(JSON.parse(storedUser));
+      }
+    };
+
+    fetchCloudData();
   }, []);
 
   useEffect(() => {
@@ -181,14 +288,39 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const setActiveTab = (tab: string) => {
     setActiveTabState(tab);
-    // Logging navigation actions lightly
     logAction('Tab Navigation', `Navigated to ${tab} module`);
   };
 
-  // Sync state functions that update local state and local storage
-  const syncState = (key: string, data: any, stateSetter: any) => {
+  // Sync state functions that update local state and local storage, and sync with Firestore
+  const syncState = async (key: string, data: any, stateSetter: any) => {
     stateSetter(data);
     localStorage.setItem(`parabar_${key}`, JSON.stringify(data));
+    try {
+      setIsCloudSyncing(true);
+      const docMap: { [key: string]: string } = {
+        'artists': 'artists',
+        'trainers': 'trainers',
+        'respersons': 'respersons',
+        'classes': 'classes',
+        'attendance': 'attendance',
+        'payments': 'payments',
+        'expenses': 'expenses',
+        'supporters': 'supporters',
+        'donations': 'donations',
+        'notifications': 'notifications',
+        'activity': 'activity',
+        'admins': 'admins'
+      };
+      
+      const docId = docMap[key];
+      if (docId) {
+        await setDoc(doc(db, 'parabar_data', docId), { list: data });
+      }
+    } catch (err) {
+      console.error(`Error syncing key "${key}" to Firestore:`, err);
+    } finally {
+      setIsCloudSyncing(false);
+    }
   };
 
   const t = (key: string) => {
@@ -206,8 +338,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19)
     };
     const updated = [newLog, ...activityLogs].slice(0, 500); // Caps logs at 500
-    setActivityLogs(updated);
-    localStorage.setItem('parabar_activity', JSON.stringify(updated));
+    syncState('activity', updated, setActivityLogs);
   };
 
   const clearActivityLogs = () => {
@@ -504,7 +635,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const updateAdminPermissions = (id: string, permissions: Admin['permissions']) => {
     const updated = admins.map(adm => adm.id === id ? { ...adm, permissions } : adm);
-    setAdmins(updated);
+    syncState('admins', updated, setAdmins);
     if (currentAdmin.id === id) {
       setCurrentAdmin({ ...currentAdmin, permissions });
     }
@@ -748,7 +879,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       loginUser,
       logout,
       changeAdminPin,
-      changeArtistPassword
+      changeArtistPassword,
+      isCloudSyncing
     }}>
       <div className={theme === 'dark' ? 'dark' : ''}>
         <div className="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans antialiased transition-colors duration-200">

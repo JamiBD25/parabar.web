@@ -1,0 +1,43 @@
+{
+  "collections": {
+    "artists": {
+      "rules": "allow read, write: if true;"
+    },
+    "trainers": {
+      "rules": "allow read, write: if true;"
+    },
+    "responsiblePersons": {
+      "rules": "allow read, write: if true;"
+    },
+    "classes": {
+      "rules": "allow read, write: if true;"
+    },
+    "attendance": {
+      "rules": "allow read, write: if true;"
+    },
+    "payments": {
+      "rules": "allow read, write: if true;"
+    },
+    "expenses": {
+      "rules": "allow read, write: if true;"
+    },
+    "supporters": {
+      "rules": "allow read, write: if true;"
+    },
+    "donations": {
+      "rules": "allow read, write: if true;"
+    },
+    "notifications": {
+      "rules": "allow read, write: if true;"
+    },
+    "activityLogs": {
+      "rules": "allow read, write: if true;"
+    },
+    "admins": {
+      "rules": "allow read, write: if true;"
+    },
+    "admin_pins": {
+      "rules": "allow read, write: if true;"
+    }
+  }
+}

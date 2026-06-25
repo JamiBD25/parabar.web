@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Sidenav } from './components/Sidenav';
 import { DashboardView } from './components/DashboardView';
@@ -15,14 +15,33 @@ import { NotificationView } from './components/NotificationView';
 import { AdminPanelView } from './components/AdminPanelView';
 import { LoginView } from './components/LoginView';
 import { StudentDashboardView } from './components/StudentDashboardView';
+import { PublicView } from './components/PublicView';
 import { ShieldAlert } from 'lucide-react';
 
 const AppContent: React.FC = () => {
   const { activeTab, currentUser, currentAdmin, language } = useApp();
+  const [isViewingERP, setIsViewingERP] = useState(false);
+  const [activePublicTab, setActivePublicTab] = useState<'home' | 'about' | 'committee' | 'branches' | 'activities' | 'login'>('home');
 
-  // Redirect to login if session doesn't exist
-  if (!currentUser) {
-    return <LoginView />;
+  // Automatically adjust view based on user authentication state
+  useEffect(() => {
+    if (currentUser) {
+      setIsViewingERP(true);
+    } else {
+      setIsViewingERP(false);
+      setActivePublicTab('home');
+    }
+  }, [currentUser]);
+
+  // If we are browsing the public website, return the PublicView landing page
+  if (!isViewingERP) {
+    return (
+      <PublicView 
+        onEnterERP={() => setIsViewingERP(true)}
+        activePublicTab={activePublicTab}
+        setActivePublicTab={setActivePublicTab}
+      />
+    );
   }
 
   // Sub Admin role verification filter block
@@ -92,7 +111,7 @@ const AppContent: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-warm-cream border-8 border-brand-green">
       <div className="flex flex-col lg:flex-row flex-1">
         {/* Sidebar block */}
-        <Sidenav />
+        <Sidenav onExitERP={() => setIsViewingERP(false)} />
 
         {/* Main viewport flow */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[calc(100vh-95px)] lg:max-h-[calc(100vh-73px)] bg-warm-cream">

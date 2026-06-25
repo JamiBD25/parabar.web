@@ -3,17 +3,23 @@ import { useApp } from '../context/AppContext';
 import { 
   BarChart3, Users, CreditCard, Send, ClipboardList, BookOpen, 
   Settings, ShieldAlert, Award, FileSpreadsheet, Bell, 
-  HelpCircle, ChevronRight, Menu, X, Sun, Moon, Sparkles, LogIn, LogOut
+  HelpCircle, ChevronRight, Menu, X, Sun, Moon, Sparkles, LogIn, LogOut,
+  Cloud, RefreshCw, Globe
 } from 'lucide-react';
 import { ParabarLogo } from './ParabarLogo';
 
-export const Sidenav: React.FC = () => {
+interface SidenavProps {
+  onExitERP?: () => void;
+}
+
+export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
   const { 
     language, setLanguage, 
     theme, setTheme, 
     activeTab, setActiveTab,
     currentAdmin, admins, setCurrentAdmin,
-    notifications, t, currentUser, logout
+    notifications, t, currentUser, logout,
+    isCloudSyncing
   } = useApp();
 
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -106,7 +112,23 @@ export const Sidenav: React.FC = () => {
         </div>
 
         {/* Action controls */}
-        <div className="flex items-center gap-2 lg:gap-4 text-xs md:text-sm">
+        <div className="flex items-center gap-2 lg:gap-3 text-xs md:text-sm">
+          {/* Cloud Sync Status Indicator */}
+          <div 
+            className="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200/60 dark:bg-slate-800 dark:border-slate-700/80 border border-slate-200 rounded-full px-3 py-1.5 text-[10px] font-bold text-slate-600 dark:text-slate-300 transition-all cursor-default shadow-xs"
+            title={language === 'bn' ? 'ফায়ারবেস ক্লাউড সিনক্রোনাইজেশন সচল' : 'Firebase Cloud Sync Active'}
+          >
+            {isCloudSyncing ? (
+              <RefreshCw size={11} className="text-indigo-500 animate-spin" />
+            ) : (
+              <div className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></div>
+            )}
+            <Cloud size={12} className="text-indigo-600 dark:text-indigo-400" />
+            <span className="hidden sm:inline text-slate-500 dark:text-slate-400 tracking-wider uppercase text-[8px] font-mono">
+              {isCloudSyncing ? (language === 'bn' ? 'সংরক্ষণ হচ্ছে' : 'Saving') : (language === 'bn' ? 'সুরক্ষিত' : 'Synced')}
+            </span>
+          </div>
+
           {/* Language Toggle */}
           <button
             id="lang-toggle-btn"
@@ -238,6 +260,22 @@ export const Sidenav: React.FC = () => {
                 </li>
               );
             })}
+
+            {/* Exit ERP to Public Website Option */}
+            {onExitERP && (
+              <li className="mt-2">
+                <button
+                  id="nav-exit-erp"
+                  onClick={onExitERP}
+                  className="w-full flex items-center gap-3 px-3 py-2 text-xs tracking-wide transition-all text-emerald-100 hover:text-white hover:bg-white/5 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <Globe size={15} className="text-emerald-300/60 shrink-0" />
+                    <span className="font-sans font-medium">{language === 'bn' ? 'পাবলিক ওয়েবসাইট' : 'Public Website'}</span>
+                  </div>
+                </button>
+              </li>
+            )}
 
             {/* Direct Logout Option */}
             <li className="mt-4 pt-3 border-t border-white/10">
