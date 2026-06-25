@@ -120,13 +120,13 @@ export const SupporterView: React.FC = () => {
 
           <div className="space-y-4 overflow-y-auto max-h-[400px] custom-scrollbar">
             {supporters.map(sup => (
-              <div key={sup.id} className="bg-slate-50 dark:bg-slate-950/50 p-4 border border-slate-100 dark:border-slate-850 rounded-xl space-y-2">
+              <div key={sup.id} className="bg-slate-50 dark:bg-slate-950/50 p-4 border border-slate-100 dark:border-slate-800 rounded-xl space-y-2">
                 <div className="flex items-start justify-between">
                   <div>
                     <h4 className="font-bold text-sm dark:text-slate-100">{sup.name}</h4>
                     <span className="text-[10px] text-slate-500 block">ID: {sup.id}</span>
                   </div>
-                  <span className={`px-2 py-0.5 rounded text-[8px] font-bold ${sup.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-550/10 text-slate-400'}`}>
+                  <span className={`px-2 py-0.5 rounded text-[8px] font-bold ${sup.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-500/10 text-slate-400'}`}>
                     {sup.status === 'Active' ? t('active') : t('inactive')}
                   </span>
                 </div>
@@ -159,9 +159,9 @@ export const SupporterView: React.FC = () => {
                 <th className="p-3 text-center">সার্টিফিকেট</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-350">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {donations.map(don => (
-                <tr key={don.id} className="hover:bg-slate-50 dark:hover:bg-slate-955/30 transition">
+                <tr key={don.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
                   <td className="p-3">
                     <p className="font-bold">{don.supporterName}</p>
                     <p className="text-[10px] text-slate-500">Method: {don.paymentMethod}</p>
@@ -191,7 +191,7 @@ export const SupporterView: React.FC = () => {
       {/* Add Patron Support modal */}
       {showAddSupporter && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl animate-scaleUp text-slate-850 dark:text-slate-100">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl animate-scaleUp text-slate-800 dark:text-slate-100">
             <div className="flex items-center justify-between p-5 border-b border-light-divider dark:border-slate-800/80">
               <h3 className="font-sans font-bold text-base">আজীবন পৃষ্ঠপোষক সংযোজন</h3>
               <button onClick={() => setShowAddSupporter(false)} className="p-1.5 rounded bg-slate-800 text-slate-400 hover:text-white">
@@ -207,7 +207,7 @@ export const SupporterView: React.FC = () => {
                   value={supName}
                   onChange={(e) => setSupName(e.target.value)}
                   placeholder="যেমন: আলহাজ্ব জসিম উদ্দিন"
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   required
                 />
               </div>
@@ -220,7 +220,7 @@ export const SupporterView: React.FC = () => {
                     value={supMobile}
                     onChange={(e) => setSupMobile(e.target.value)}
                     placeholder="017XXXXXXXX"
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                     required
                   />
                 </div>
@@ -230,7 +230,7 @@ export const SupporterView: React.FC = () => {
                     type="number"
                     value={supContribution}
                     onChange={(e) => setSupContribution(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   />
                 </div>
               </div>
@@ -242,7 +242,7 @@ export const SupporterView: React.FC = () => {
                   value={supEmail}
                   onChange={(e) => setSupEmail(e.target.value)}
                   placeholder="name@gmail.com"
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                 />
               </div>
 
@@ -252,7 +252,7 @@ export const SupporterView: React.FC = () => {
                   type="text"
                   value={supAddress}
                   onChange={(e) => setSupAddress(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                 />
               </div>
 
@@ -260,7 +260,7 @@ export const SupporterView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddSupporter(false)}
-                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-855 text-xs font-semibold"
+                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold"
                 >
                   {t('cancel')}
                 </button>
@@ -279,7 +279,7 @@ export const SupporterView: React.FC = () => {
       {/* Log Donation modal */}
       {showAddDonation && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl animate-scaleUp text-slate-850 dark:text-slate-100">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl animate-scaleUp text-slate-800 dark:text-slate-100">
             <div className="flex items-center justify-between p-5 border-b border-light-divider dark:border-slate-800/80">
               <h3 className="font-sans font-bold text-base">অনুদান গ্র্যান্ট এন্ট্রি করুন</h3>
               <button onClick={() => setShowAddDonation(false)} className="p-1.5 rounded bg-slate-800 text-slate-400 hover:text-white">
@@ -293,7 +293,7 @@ export const SupporterView: React.FC = () => {
                 <select
                   value={donSupId}
                   onChange={(e) => setDonSupId(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                 >
                   <option value="">-- Anonymous / External Donor (বেনামী) --</option>
                   {supporters.map(sup => <option key={sup.id} value={sup.id}>{sup.name}</option>)}
@@ -307,7 +307,7 @@ export const SupporterView: React.FC = () => {
                     type="number"
                     value={donAmount}
                     onChange={(e) => setDonAmount(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                     required
                   />
                 </div>
@@ -316,7 +316,7 @@ export const SupporterView: React.FC = () => {
                   <select
                     value={donMethod}
                     onChange={(e) => setDonMethod(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   >
                     {paymentMethods.map(m => <option key={m} value={m}>{m}</option>)}
                   </select>
@@ -329,7 +329,7 @@ export const SupporterView: React.FC = () => {
                   type="text"
                   value={donPurpose}
                   onChange={(e) => setDonPurpose(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                 />
               </div>
 
@@ -337,7 +337,7 @@ export const SupporterView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddDonation(false)}
-                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-855 text-xs font-semibold"
+                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs font-semibold"
                 >
                   {t('cancel')}
                 </button>
@@ -362,7 +362,7 @@ export const SupporterView: React.FC = () => {
             </button>
 
             {/* Simulated certificate vector */}
-            <div className="bg-amber-50 dark:bg-slate-950 border-4 border-double border-amber-500/50 rounded-2xl p-6 text-slate-900 dark:text-slate-150 shadow shadow-inner my-3 space-y-4 relative">
+            <div className="bg-amber-50 dark:bg-slate-950 border-4 border-double border-amber-500/50 rounded-2xl p-6 text-slate-900 dark:text-slate-200 shadow shadow-inner my-3 space-y-4 relative">
               <div className="absolute top-2 right-2 text-amber-500/20"><Award size={100} /></div>
               
               <div className="text-center font-serif">
@@ -381,7 +381,7 @@ export const SupporterView: React.FC = () => {
                   <p className="font-bold font-mono">Ref: {activeCertificate.id.substring(0, 8)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="border-t border-slate-850 pt-1 font-semibold text-slate-800 dark:text-slate-350">President, Parabar Songsod</p>
+                  <p className="border-t border-slate-800 pt-1 font-semibold text-slate-800 dark:text-slate-300">President, Parabar Songsod</p>
                 </div>
               </div>
             </div>

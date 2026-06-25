@@ -5,7 +5,7 @@ import { LoginView } from './LoginView';
 import { 
   BookOpen, Users, MapPin, Compass, ArrowRight, CheckCircle, 
   Award, Heart, Phone, Mail, Globe, Menu, X, Sparkles, GraduationCap,
-  Calendar, Shield, Play, HelpCircle, ChevronRight
+  Calendar, Shield, Play, HelpCircle, ChevronRight, Facebook, Youtube, Clock
 } from 'lucide-react';
 
 interface PublicViewProps {
@@ -92,59 +92,48 @@ export const PublicView: React.FC<PublicViewProps> = ({
   // Branches data (Bilingual)
   const branches = [
     {
-      nameBn: 'চকবাজার প্রধান শাখা',
-      nameEn: 'Chawkbazar Main Branch',
-      addressBn: 'ফতেয়াবাদ টাওয়ার, ৪র্থ তলা, চকবাজার মোড়, চট্টগ্রাম',
-      addressEn: 'Fateyabad Tower, 4th Floor, Chawkbazar Crossing, Chattogram',
+      nameBn: '১) পারাবার শিল্পীগোষ্ঠী (প্রধান কার্যালয়)',
+      nameEn: '1) Parabar Shilpigoshthi (Head Office)',
+      addressBn: 'ডি.টি. রোড, দেওয়ানহাট, চট্টগ্রাম-৪১০০।',
+      addressEn: 'D.T. Road, Dewanhat, Chattogram-4100',
       established: '2012',
-      phone: '+880 31-625412',
-      managerBn: 'অধ্যাপক মোস্তফা রানা',
-      managerEn: 'Prof. Mostafa Rana',
-      status: 'Active'
+      phone: '01836-776227',
+      managerBn: 'পরিচালনা পর্ষদ',
+      managerEn: 'Executive Board',
+      status: 'Active',
+      facebook: 'Parabar Shilpigoshthi',
+      facebookUrl: 'https://www.facebook.com/share/1cKiiEBNWu/'
     },
     {
-      nameBn: 'হালিশহর শাখা',
-      nameEn: 'Halishahar Branch',
-      addressBn: 'এইচ ব্লক রোড ৩, হাউস ২৫, হালিশহর হাউজিং এস্টেট, চট্টগ্রাম',
-      addressEn: 'H-Block Road 3, House 25, Halishahar Housing Estate, Chattogram',
+      nameBn: '২) সৈকত সাহিত্য সাংস্কৃতিক সংসদ চট্টগ্রাম',
+      nameEn: '2) Soikat Sahittya Sangskriti Sangshad Chattogram',
+      addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
+      addressEn: 'Kathgora, Patenga, Chattogram',
+      established: '2015',
+      phone: '01862-065224',
+      managerBn: 'পরিচালনা পর্ষদ',
+      managerEn: 'Executive Board',
+      status: 'Active',
+      facebook: 'সৈকত সাহিত্য সাংস্কৃতিক সংসদ চট্টগ্রাম',
+      facebookUrl: 'https://www.facebook.com/share/1BPg8KWrbt/',
+      youtube: 'Soikat TV'
+    },
+    {
+      nameBn: '৩) শাখা কার্যালয় – হালিশহর (কিশলয় আর্ট এন্ড কালচারাল একাডেমি)',
+      nameEn: '3) Halishahar Branch (Kisholoy Art & Cultural Academy)',
+      addressBn: 'গ্রিনল্যান্ড স্কুল এন্ড কলেজ, এল ব্লক, হালিশহর, চট্টগ্রাম।',
+      addressEn: 'Greenland School & College, L-Block, Halishahar, Chattogram',
       established: '2016',
-      phone: '+880 1715-234234',
+      phone: '01862-849913',
       managerBn: 'আরিফুল ইসলাম',
       managerEn: 'Ariful Islam',
-      status: 'Active'
-    },
-    {
-      nameBn: 'বহদ্দারহাট শাখা',
-      nameEn: 'Bahaddarhat Branch',
-      addressBn: 'ফজলুল কাদের কমপ্লেক্স, ২য় তলা, বহদ্দারহাট মোড়, চট্টগ্রাম',
-      addressEn: 'Fazlul Kader Complex, 2nd Floor, Bahaddarhat Crossing, Chattogram',
-      established: '2018',
-      phone: '+880 1819-334455',
-      managerBn: 'ওমর ফারুক',
-      managerEn: 'Omar Faruq',
-      status: 'Active'
-    },
-    {
-      nameBn: 'আগ্রাবাদ শাখা',
-      nameEn: 'Agrabad Branch',
-      addressBn: 'জাকির ভিলা, রোড ২, সিডিএ আবাসিক এলাকা, আগ্রাবাদ, চট্টগ্রাম',
-      addressEn: 'Zakir Villa, Road 2, CDA Residential Area, Agrabad, Chattogram',
-      established: '2021',
-      phone: '+880 1912-887766',
-      managerBn: 'সাজ্জাদুল ইসলাম',
-      managerEn: 'Sajjadul Islam',
-      status: 'Active'
-    },
-    {
-      nameBn: 'হাটহাজারী শাখা',
-      nameEn: 'Hathazari Branch',
-      addressBn: 'আলহাজ্ব ওসমান মার্কেট, ৩য় তলা, হাটহাজারী বাস স্ট্যান্ড, চট্টগ্রাম',
-      addressEn: 'Alhaj Osman Market, 3rd Floor, Hathazari Bus Stand, Chattogram',
-      established: '2023',
-      phone: '+880 1554-123456',
-      managerBn: 'মঈনুল হাসান',
-      managerEn: 'Moinul Hasan',
-      status: 'Active'
+      status: 'Active',
+      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:০০ – ০৫:০০',
+      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:00 PM - 05:00 PM',
+      activitiesBn: 'গান, চিত্রাংকন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
+      activitiesEn: 'Song, Drawing, Calligraphy, Beautiful Handwriting',
+      facebook: 'কিশলয় আর্ট এন্ড কালচারাল একাডেমি',
+      facebookUrl: 'https://www.facebook.com/share/1CJcUwwqTo/'
     }
   ];
 
@@ -169,7 +158,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
       titleEn: 'Elocution & Recitation Training',
       descBn: 'বাংলা শব্দের সঠিক ও প্রমিত উচ্চারণ, বাচনভঙ্গি উন্নয়ন, জড়তা দূরীকরণ এবং দেশবরেণ্য কবিদের কালজয়ী কবিতার আবৃত্তি প্রশিক্ষণ দেওয়া হয়।',
       descEn: 'Correct and standardized Bengali pronunciation, voice modulation, stage performance confidence building, and recitation of timeless classical poems.',
-      icon: <Compass className="text-indigo-650 dark:text-indigo-400 w-8 h-8" />
+      icon: <Compass className="text-indigo-600 dark:text-indigo-400 w-8 h-8" />
     },
     {
       titleBn: 'নৃত্যকলা ও লোকনৃত্য',
@@ -227,8 +216,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               onClick={() => handleTabClick('home')}
               className={`px-3 py-2 rounded-xl transition ${
                 activePublicTab === 'home'
-                  ? 'bg-emerald-55/10 text-[#0F6A4B] dark:text-emerald-450 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900'
+                  ? 'bg-emerald-500/10 text-[#0F6A4B] dark:text-emerald-400 dark:bg-emerald-500/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-white hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'নীড়পাতা' : 'Home'}
@@ -238,8 +227,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               onClick={() => handleTabClick('about')}
               className={`px-3 py-2 rounded-xl transition ${
                 activePublicTab === 'about'
-                  ? 'bg-emerald-55/10 text-[#0F6A4B] dark:text-emerald-450 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900'
+                  ? 'bg-emerald-500/10 text-[#0F6A4B] dark:text-emerald-400 dark:bg-emerald-500/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-white hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'পরিচিতি' : 'About'}
@@ -249,8 +238,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               onClick={() => handleTabClick('committee')}
               className={`px-3 py-2 rounded-xl transition ${
                 activePublicTab === 'committee'
-                  ? 'bg-emerald-55/10 text-[#0F6A4B] dark:text-emerald-450 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900'
+                  ? 'bg-emerald-500/10 text-[#0F6A4B] dark:text-emerald-400 dark:bg-emerald-500/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-white hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'পরিচালনা পরিষদ' : 'Committee'}
@@ -260,8 +249,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               onClick={() => handleTabClick('branches')}
               className={`px-3 py-2 rounded-xl transition ${
                 activePublicTab === 'branches'
-                  ? 'bg-emerald-55/10 text-[#0F6A4B] dark:text-emerald-450 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900'
+                  ? 'bg-emerald-500/10 text-[#0F6A4B] dark:text-emerald-400 dark:bg-emerald-500/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-white hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'শাখা সমূহ' : 'Our Branches'}
@@ -271,8 +260,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               onClick={() => handleTabClick('activities')}
               className={`px-3 py-2 rounded-xl transition ${
                 activePublicTab === 'activities'
-                  ? 'bg-emerald-55/10 text-[#0F6A4B] dark:text-emerald-450 dark:bg-emerald-500/10'
-                  : 'text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900'
+                  ? 'bg-emerald-500/10 text-[#0F6A4B] dark:text-emerald-400 dark:bg-emerald-500/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-white hover:text-slate-900'
               }`}
             >
               {language === 'bn' ? 'কার্যক্রম' : 'Work'}
@@ -285,7 +274,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
             <button
               id="header-lang-btn"
               onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-              className="text-[11px] tracking-wider font-black border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-slate-350 dark:hover:border-slate-700 select-none cursor-pointer"
+              className="text-[11px] tracking-wider font-black border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700 select-none cursor-pointer"
             >
               {language === 'bn' ? 'ENGLISH' : 'বাংলা'}
             </button>
@@ -337,7 +326,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
       {/* Mobile Drawer Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-850 absolute top-20 w-full z-30 shadow-lg px-4 py-6 space-y-3.5 transition-all duration-200 font-sans font-extrabold text-sm">
+        <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 absolute top-20 w-full z-30 shadow-lg px-4 py-6 space-y-3.5 transition-all duration-200 font-sans font-extrabold text-sm">
           <button
             onClick={() => handleTabClick('home')}
             className={`w-full text-left px-3.5 py-2.5 rounded-lg flex items-center justify-between ${
@@ -416,7 +405,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
                 
-                <div className="inline-flex bg-white dark:bg-slate-900 hover:scale-105 border border-slate-200 dark:border-slate-850 p-2 rounded-2xl shadow-sm transition">
+                <div className="inline-flex bg-white dark:bg-slate-900 hover:scale-105 border border-slate-200 dark:border-slate-800 p-2 rounded-2xl shadow-sm transition">
                   <ParabarLogo size={80} />
                 </div>
 
@@ -493,7 +482,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   <h2 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white font-sans">
                     {language === 'bn' ? 'কেন আপনার সন্তানকে পারাবারে ভর্তি করবেন?' : 'Why Enroll Your Child at Parabar?'}
                   </h2>
-                  <p className="text-slate-650 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-semibold">
+                  <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-semibold">
                     {language === 'bn' 
                       ? 'আজকের ডিজিটাল যুগে শিশুরা মোবাইল গেমস ও সোশ্যাল মিডিয়ার ক্ষতিকর আসক্তিতে নিমজ্জিত হচ্ছে। পারাবার একাডেমি তাদের হাত থেকে শিশুদের ফিরিয়ে এনে সৃজনশীল সাহিত্য, শিল্প, গান ও অভিনয়ের সুস্থ ধারায় ফিরিয়ে আনে।' 
                       : 'In modern times of screen exposure, screen addictions damage focus. Parabar organizes children to find joy in traditional values, voice culture, painting landscapes, poetry, drama, and collective discipline.'}
@@ -546,7 +535,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {activities.map((act, index) => (
                   <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 p-6 rounded-2xl shadow-xs hover:shadow transition space-y-4">
-                    <div className="p-3 bg-slate-50 dark:bg-slate-850 w-fit rounded-xl border border-slate-100 dark:border-slate-800">
+                    <div className="p-3 bg-slate-50 dark:bg-slate-800 w-fit rounded-xl border border-slate-100 dark:border-slate-800">
                       {act.icon}
                     </div>
                     <h3 className="text-sm sm:text-base font-black text-slate-900 dark:text-white font-sans">
@@ -562,7 +551,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <div className="text-center pt-4">
                 <button
                   onClick={() => handleTabClick('activities')}
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#0F6A4B] dark:text-emerald-450 hover:underline"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#0F6A4B] dark:text-emerald-400 hover:underline"
                 >
                   <span>{language === 'bn' ? 'সকল কার্যক্রমের বিস্তারিত দেখুন' : 'Explore Detailed Activities'}</span>
                   <ArrowRight size={14} />
@@ -580,7 +569,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-sans tracking-tight">
                     {language === 'bn' ? 'চট্টগ্রামের প্রধান শাখা সমূহ' : 'Regional Branch Centers'}
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-semibold">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
                     {language === 'bn' 
                       ? 'চট্টগ্রামের বিভিন্ন গুরুত্বপূর্ণ এলাকায় পারবারের শাখা সমূহ বিস্তৃত। আপনার নিকটস্থ শাখায় আজই যোগাযোগ করে ভর্তি সম্পন্ন করুন।' 
                       : 'Parabar branches operate in multiple prime neighborhoods inside Chattogram City to make weekend academy accessible.'}
@@ -594,7 +583,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 </div>
 
                 <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {branches.slice(0, 4).map((br, index) => (
+                  {branches.slice(0, 3).map((br, index) => (
                     <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-xl space-y-2 shadow-xs">
                       <div className="flex items-center gap-2 text-[#B22222]">
                         <MapPin size={16} />
@@ -602,7 +591,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                           {language === 'bn' ? br.nameBn : br.nameEn}
                         </h3>
                       </div>
-                      <p className="text-[11px] text-slate-550 dark:text-slate-400 font-semibold leading-relaxed">
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold leading-relaxed">
                         {language === 'bn' ? br.addressBn : br.addressEn}
                       </p>
                       <p className="text-[10px] font-mono text-slate-500 pt-1.5 border-t border-slate-100 dark:border-slate-800/50">
@@ -637,7 +626,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 <h2 className="text-lg sm:text-xl font-black text-[#0F6A4B] dark:text-emerald-400 font-sans border-b pb-2 border-slate-100 dark:border-slate-800">
                   {language === 'bn' ? 'প্রতিষ্ঠার ইতিহাস ও পটভূমি' : 'Our Story & Background'}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                   {language === 'bn' ? (
                     <>
                       পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম ২০১২ সালে প্রতিষ্ঠিত একটি সৃজনশীল ও মননশীল শিশু-কিশোর একাডেমি। চট্টগ্রামের একদল নিবেদিতপ্রাণ শিক্ষাবিদ, সাংস্কৃতিক ব্যক্তিত্ব এবং সমাজসেবকের যৌথ উদ্যোগে এই একাডেমির যাত্রা শুরু হয়। শিশুদের যান্ত্রিক ও মোবাইল আসক্তি থেকে দূরে রেখে শিল্পকলা, শুদ্ধ সঙ্গীত, মননশীল আবৃত্তি এবং দেশপ্রেমমূলক কর্মকাণ্ডে সম্পৃক্ত করাই ছিল এই প্রতিষ্ঠানের মূল লক্ষ্য।
@@ -651,24 +640,24 @@ export const PublicView: React.FC<PublicViewProps> = ({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                <div className="bg-slate-50 dark:bg-slate-850 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
+                <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
                   <h3 className="text-sm sm:text-base font-black text-slate-900 dark:text-white font-sans flex items-center gap-2">
                     <CheckCircle className="text-[#0F6A4B] size={18}" />
                     <span>{language === 'bn' ? 'লক্ষ্য ও ভিশন' : 'Our Vision'}</span>
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-355 leading-relaxed font-semibold">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                     {language === 'bn' 
                       ? 'একটি নৈতিক গুণসম্পন্ন, দেশপ্রেমিক ও সাংস্কৃতিকভাবে মননশীল শিশু-কিশোর প্রজন্ম গড়ে তোলা, যারা আগামী দিনে দেশের নেতৃত্ব দেবে।'
                       : 'To build a robust, morally sound, creative, and patriotic generation of kids and youths capable of serving the nation with empathy, skills, and outstanding aesthetic intelligence.'}
                   </p>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-slate-850 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
+                <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
                   <h3 className="text-sm sm:text-base font-black text-slate-900 dark:text-white font-sans flex items-center gap-2">
                     <CheckCircle className="text-[#B22222] size={18}" />
                     <span>{language === 'bn' ? 'আমাদের মূলনীতি' : 'Core Principles'}</span>
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-355 leading-relaxed font-semibold">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                     {language === 'bn' 
                       ? 'সুস্থ সংস্কৃতির বিকাশ, নৈতিক মূল্যবোধ জাগ্রতকরণ, মেধার সুষ্ঠু বিকাশ এবং সামাজিক দায়বদ্ধতার মাধ্যমে সুস্থ সমাজ বিনির্মাণ।'
                       : 'Nurture constructive talents, awaken artistic hunger, eliminate digital addiction, and instill continuous moral values through weekly interactive physical workshops.'}
@@ -681,15 +670,15 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   {language === 'bn' ? 'আমাদের অর্জিত সাফল্য' : 'Key Milestones & Achievements'}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="p-4 border border-slate-150 dark:border-slate-805 rounded-xl text-center space-y-1">
+                  <div className="p-4 border border-slate-200 dark:border-slate-800 rounded-xl text-center space-y-1">
                     <p className="text-xl font-black text-[#B22222]">৫০০০+</p>
                     <p className="text-[10px] text-slate-500 uppercase font-black tracking-wide">{language === 'bn' ? 'প্রশিক্ষিত শিক্ষার্থী' : 'Alumni Students'}</p>
                   </div>
-                  <div className="p-4 border border-slate-150 dark:border-slate-805 rounded-xl text-center space-y-1">
-                    <p className="text-xl font-black text-[#0F6A4B] dark:text-emerald-450">৫০+</p>
+                  <div className="p-4 border border-slate-200 dark:border-slate-800 rounded-xl text-center space-y-1">
+                    <p className="text-xl font-black text-[#0F6A4B] dark:text-emerald-400">৫০+</p>
                     <p className="text-[10px] text-slate-500 uppercase font-black tracking-wide">{language === 'bn' ? 'জাতীয় স্তরের পুরষ্কার' : 'National Gold Medals'}</p>
                   </div>
-                  <div className="p-4 border border-slate-150 dark:border-slate-805 rounded-xl text-center space-y-1">
+                  <div className="p-4 border border-slate-200 dark:border-slate-800 rounded-xl text-center space-y-1">
                     <p className="text-xl font-black text-indigo-600 dark:text-indigo-400">১০০%</p>
                     <p className="text-[10px] text-slate-500 uppercase font-black tracking-wide">{language === 'bn' ? 'অভিভাবকের সন্তুষ্টি' : 'Guardian Trust'}</p>
                   </div>
@@ -710,7 +699,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <h1 className="text-3xl font-black text-slate-900 dark:text-white font-sans tracking-tight">
                 {language === 'bn' ? 'পরিচালনা পরিষদ' : 'Managing Executive Committee'}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-550 max-w-xl mx-auto font-semibold">
+              <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto font-semibold">
                 {language === 'bn' 
                   ? 'পারাবার একাডেমি ও সংসদের সুষ্ঠু পরিচালনা ও দিকনির্দেশনা প্রদানকারী সম্মানীত কার্যনির্বাহী পরিষদ সদস্যবৃন্দ।' 
                   : 'Meet our respected executive committee members guiding Parabar’s operational decisions and academic curriculum.'}
@@ -740,7 +729,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-805 space-y-1.5 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1.5 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
                     <p className="flex items-center justify-center gap-1.5">
                       <Phone size={12} />
                       <span>{member.phone}</span>
@@ -766,19 +755,19 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <h1 className="text-3xl font-black text-slate-900 dark:text-white font-sans tracking-tight">
                 {language === 'bn' ? 'আমাদের শাখা সমূহ' : 'Our Branches'}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-550 max-w-xl mx-auto font-semibold">
+              <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto font-semibold">
                 {language === 'bn' 
                   ? 'চট্টগ্রাম শহরের গুরুত্বপূর্ণ কেন্দ্র সমূহে আমাদের একাডেমির শাখা রয়েছে। আপনার সবচেয়ে কাছের শাখায় যোগাযোগ করতে পারেন।' 
                   : 'Parabar weekend schooling has 5 active regional learning centers inside Chattogram City. Select your nearest center.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {branches.map((br, index) => (
                 <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-xs hover:shadow-md transition flex flex-col justify-between space-y-4">
                   <div className="space-y-3">
                     <div className="flex items-start justify-between">
-                      <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-150/15 dark:bg-emerald-900/30 text-[#0F6A4B] dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-900 px-2.5 py-1 rounded-full font-mono">
+                      <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-100/15 dark:bg-emerald-900/30 text-[#0F6A4B] dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-900 px-2.5 py-1 rounded-full font-mono">
                         {language === 'bn' ? `প্রতিষ্ঠা: ${br.established} খ্রি:` : `Estd. ${br.established}`}
                       </span>
                       <span className="text-[9px] font-black uppercase tracking-wider bg-red-100 text-brand-red px-2.5 py-1 rounded-full font-mono">
@@ -786,25 +775,79 @@ export const PublicView: React.FC<PublicViewProps> = ({
                       </span>
                     </div>
 
-                    <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-sans flex items-center gap-2">
-                      <MapPin size={18} className="text-[#B22222] shrink-0" />
+                    <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-sans flex items-start gap-2">
+                      <MapPin size={18} className="text-[#B22222] shrink-0 mt-1" />
                       <span>{language === 'bn' ? br.nameBn : br.nameEn}</span>
                     </h2>
 
-                    <p className="text-xs text-slate-600 dark:text-slate-350 font-semibold leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 font-semibold leading-relaxed">
                       <span className="text-[10px] text-slate-400 block uppercase tracking-wider mb-0.5">{language === 'bn' ? 'ঠিকানা:' : 'Location Address:'}</span>
                       {language === 'bn' ? br.addressBn : br.addressEn}
                     </p>
+
+                    {/* Schedule if available */}
+                    {'scheduleBn' in br && br.scheduleBn && (
+                      <div className="bg-amber-50/50 dark:bg-slate-800/40 p-3 rounded-xl border border-amber-100/30 dark:border-slate-800 space-y-1">
+                        <span className="text-[10px] font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
+                          <Clock size={12} />
+                          {language === 'bn' ? 'ক্লাস সময়সূচি:' : 'Class Schedule:'}
+                        </span>
+                        <p className="text-xs text-slate-600 dark:text-slate-300 font-semibold leading-relaxed">
+                          {language === 'bn' ? (br as any).scheduleBn : (br as any).scheduleEn}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Activities if available */}
+                    {'activitiesBn' in br && br.activitiesBn && (
+                      <div className="bg-indigo-50/30 dark:bg-slate-800/30 p-3 rounded-xl border border-indigo-100/20 dark:border-slate-800 space-y-1">
+                        <span className="text-[10px] font-bold text-indigo-700 dark:text-indigo-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
+                          <Compass size={12} />
+                          {language === 'bn' ? 'কার্যক্রম:' : 'Activities:'}
+                        </span>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {(language === 'bn' ? (br as any).activitiesBn : (br as any).activitiesEn).split(',').map((act: string, i: number) => (
+                            <span key={i} className="text-[10px] bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-md font-sans font-semibold border border-indigo-100/50 dark:border-indigo-950/50">
+                              {act.trim()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Social Media Links */}
+                    {(('facebookUrl' in br && br.facebookUrl) || ('youtube' in br && br.youtube)) && (
+                      <div className="pt-2 flex flex-wrap gap-2">
+                        {'facebookUrl' in br && br.facebookUrl && (
+                          <a
+                            href={(br as any).facebookUrl}
+                            target="_blank"
+                            referrerPolicy="no-referrer"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 transition border border-blue-100 dark:border-blue-900/50 cursor-pointer"
+                          >
+                            <Facebook size={14} />
+                            <span>{(br as any).facebook || 'Facebook'}</span>
+                          </a>
+                        )}
+                        {'youtube' in br && br.youtube && (
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/50">
+                            <Youtube size={14} />
+                            <span>{(br as any).youtube}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-805 grid grid-cols-2 gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400">
                     <div>
                       <span className="text-[9px] text-slate-400 block uppercase font-sans tracking-wide mb-0.5">{language === 'bn' ? 'শাখা প্রধান:' : 'Center Manager:'}</span>
                       <span className="font-bold text-slate-700 dark:text-slate-300">{language === 'bn' ? br.managerBn : br.managerEn}</span>
                     </div>
                     <div>
                       <span className="text-[9px] text-slate-400 block uppercase font-sans tracking-wide mb-0.5">{language === 'bn' ? 'হেল্পলাইন:' : 'Helpline:'}</span>
-                      <span className="font-bold text-[#B22222] dark:text-red-400">{br.phone}</span>
+                      <a href={`tel:${br.phone}`} className="font-bold text-[#B22222] dark:text-red-400 hover:underline">{br.phone}</a>
                     </div>
                   </div>
                 </div>
@@ -823,7 +866,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <h1 className="text-3xl font-black text-slate-900 dark:text-white font-sans tracking-tight">
                 {language === 'bn' ? 'কার্যক্রম ও কর্মশালা' : 'Our Work & Activities'}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-550 max-w-xl mx-auto font-semibold">
+              <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto font-semibold">
                 {language === 'bn' 
                   ? 'আমরা সাহিত্য ও সুস্থ সংস্কৃতির প্রসারে নিয়মিত সেমিনার, কর্মশালা, ও শিশু বিকাশমূলক সাপ্তাহিক ক্লাস পরিচালনা করে আসছি।' 
                   : 'Explore our weekend cultural classes, workshops, poetry/recitation camps, and annual physical sports/creative festivals.'}
@@ -834,7 +877,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               {activities.map((act, index) => (
                 <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl space-y-5 shadow-xs hover:shadow-md transition">
                   <div className="flex items-center gap-4">
-                    <div className="p-3.5 bg-slate-50 dark:bg-slate-850 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-800">
                       {act.icon}
                     </div>
                     <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-sans">
@@ -842,11 +885,11 @@ export const PublicView: React.FC<PublicViewProps> = ({
                     </h2>
                   </div>
 
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-650 dark:text-slate-300 font-semibold">
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-semibold">
                     {language === 'bn' ? act.descBn : act.descEn}
                   </p>
 
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-805 flex items-center justify-between text-xs font-bold text-[#0F6A4B] dark:text-emerald-400">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-[#0F6A4B] dark:text-emerald-400">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle size={14} />
                       {language === 'bn' ? 'সাপ্তাহিক ক্লাস' : 'Weekly Session Included'}
@@ -875,7 +918,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
       </div>
 
       {/* FOOTER CREDIT SECTION */}
-      <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-850 py-12 text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
+      <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 text-xs text-slate-500 dark:text-slate-400 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="space-y-4">
@@ -885,7 +928,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 <span className="text-xs font-black tracking-wide text-brand-red uppercase">
                   {language === 'bn' ? 'পারাবার' : 'PARABAR'}
                 </span>
-                <span className="text-[7.5px] text-slate-550 dark:text-slate-400 tracking-wider font-black uppercase">
+                <span className="text-[7.5px] text-slate-500 dark:text-slate-400 tracking-wider font-black uppercase">
                   {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
                 </span>
               </div>
@@ -933,7 +976,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-200 dark:border-slate-805 text-center text-[10px] text-slate-400 font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-[10px] text-slate-400 font-sans">
           <p>© 2026 Parabar Sahittya Sangskriti Songsod Chattogram • {language === 'bn' ? 'সকল সত্ত্ব সংরক্ষিত।' : 'All Rights Reserved.'}</p>
         </div>
       </footer>

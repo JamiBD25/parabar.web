@@ -140,7 +140,7 @@ export const TrainerView: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {trainers.map((trn) => {
           return (
-            <div key={trn.id} className="bg-white dark:bg-slate-900 border border-slate-150 dark:border-slate-800 p-5 rounded-2xl shadow hover:border-sky-500/30 transition duration-300 flex flex-col justify-between">
+            <div key={trn.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow hover:border-sky-500/30 transition duration-300 flex flex-col justify-between">
               <div>
                 {/* Header info */}
                 <div className="flex items-start gap-3">
@@ -185,7 +185,7 @@ export const TrainerView: React.FC = () => {
               </div>
 
               {/* Action operations footer */}
-              <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-805/50 pt-3 mt-1.5">
+              <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/50 pt-3 mt-1.5">
                 {/* Salary disbursement simulation link */}
                 <button
                   onClick={() => setShowPayModal(trn)}
@@ -199,7 +199,7 @@ export const TrainerView: React.FC = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleOpenEditModal(trn)}
-                    className="p-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-200 transition"
+                    className="p-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-200 transition"
                   >
                     <Edit2 size={12} />
                   </button>
@@ -237,7 +237,7 @@ export const TrainerView: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="যেমন: ওস্তাদ শফি মণ্ডল"
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   required
                 />
               </div>
@@ -250,7 +250,7 @@ export const TrainerView: React.FC = () => {
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
                     placeholder="017XXXXXXXX"
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                     required
                   />
                 </div>
@@ -260,7 +260,7 @@ export const TrainerView: React.FC = () => {
                     type="number"
                     value={salary}
                     onChange={(e) => setSalary(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                     required
                   />
                 </div>
@@ -273,7 +273,7 @@ export const TrainerView: React.FC = () => {
                     type="date"
                     value={joiningDate}
                     onChange={(e) => setJoiningDate(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   />
                 </div>
                 <div>
@@ -281,7 +281,7 @@ export const TrainerView: React.FC = () => {
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value as any)}
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                   >
                     <option value="Active">{t('active')}</option>
                     <option value="Inactive">{t('inactive')}</option>
@@ -295,7 +295,7 @@ export const TrainerView: React.FC = () => {
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none"
                 />
               </div>
 
@@ -323,7 +323,7 @@ export const TrainerView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-855 text-xs text-slate-700 dark:text-slate-300 font-semibold"
+                  className="px-4 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 font-semibold"
                 >
                   {t('cancel')}
                 </button>
@@ -369,12 +369,12 @@ export const TrainerView: React.FC = () => {
                 </select>
               </div>
 
-              <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 space-y-2 text-xs font-mono">
+              <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-2 text-xs font-mono">
                 <div className="flex justify-between">
                   <span className="text-slate-500">Committed salary:</span>
                   <span className="text-sky-400 font-bold">৳{showPayModal.salary} BDT</span>
                 </div>
-                <div className="flex justify-between border-t border-slate-850 pt-1.5 font-bold">
+                <div className="flex justify-between border-t border-slate-800 pt-1.5 font-bold">
                   <span className="text-slate-400">Total Outflow:</span>
                   <span className="text-rose-400">৳{showPayModal.salary}</span>
                 </div>
