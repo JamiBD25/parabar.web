@@ -306,15 +306,15 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
       {/* Admin Access Switch Pin Verification Modal */}
       {showAdminPinModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 max-w-sm w-full text-white shadow-2xl animate-scaleUp">
-            <div className="flex items-center gap-3 text-sky-400 mb-4">
+          <div className="bg-white border border-slate-200 rounded-xl p-6 max-w-sm w-full text-slate-900 shadow-2xl animate-scaleUp">
+            <div className="flex items-center gap-3 text-sky-600 mb-4">
               <ShieldAlert size={28} />
               <h3 className="font-sans font-bold text-lg">
                 {language === 'bn' ? 'নিরাপত্তা নিশ্চিতকরণ' : 'Security Check'}
               </h3>
             </div>
             
-            <p className="text-sm text-slate-400 mb-4">
+            <p className="text-sm text-slate-600 mb-4">
               {language === 'bn' 
                 ? `প্রশাসক "${selectedAdminToSwitch?.name}" হিসেবে লগইন করার জন্য সিকিউরিটি পিন দিন।`
                 : `Enter the security passcode to login as Admin "${selectedAdminToSwitch?.name}".`
@@ -323,7 +323,7 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
 
             <form onSubmit={handleVerifyPin} className="space-y-4">
               <div>
-                <label className="block text-[11px] font-sans text-slate-400 mb-1">
+                <label className="block text-[11px] font-sans text-slate-500 mb-1">
                   {language === 'bn' ? 'সিকিউরিটি পিন দিন' : 'Security Pin'}
                 </label>
                 <input
@@ -331,7 +331,7 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
                   value={enteredPin}
                   onChange={(e) => setEnteredPin(e.target.value)}
                   placeholder="••••"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-center text-xl font-mono tracking-widest text-sky-400 focus:outline-none focus:border-sky-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-center text-xl font-mono tracking-widest text-sky-600 focus:outline-none focus:border-sky-500"
                   autoFocus
                 />
                 {pinError && <p className="text-rose-500 text-xs mt-1">{pinError}</p>}
@@ -341,13 +341,13 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
                 <button
                   type="button"
                   onClick={() => setShowAdminPinModal(false)}
-                  className="flex-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition font-medium text-sm text-slate-300"
+                  className="flex-1 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition font-medium text-sm text-slate-700"
                 >
                   {t('cancel')}
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 transition font-semibold text-sm"
+                  className="flex-1 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white transition font-semibold text-sm"
                 >
                   {language === 'bn' ? 'যাচাই করুন' : 'Authenticate'}
                 </button>

@@ -96,7 +96,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<'bn' | 'en'>('bn');
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [activeTab, setActiveTabState] = useState<string>('dashboard');
   
   const [currentUser, setCurrentUser] = useState<LoggedInUser | null>(null);
@@ -202,9 +202,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
         // Language & Theme remain local preferences
         const storedLang = localStorage.getItem('parabar_language');
-        const storedTheme = localStorage.getItem('parabar_theme');
         if (storedLang) setLanguage(storedLang as 'bn' | 'en');
-        if (storedTheme) setTheme(storedTheme as 'light' | 'dark');
+        setTheme('light');
 
         const storedUser = localStorage.getItem('parabar_current_user');
         if (storedUser) {
@@ -267,7 +266,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       else setActivityLogs(INITIAL_ACTIVITY);
 
       if (storedLang) setLanguage(storedLang as 'bn' | 'en');
-      if (storedTheme) setTheme(storedTheme as 'light' | 'dark');
+      setTheme('light');
 
       const storedUser = localStorage.getItem('parabar_current_user');
       if (storedUser) {
@@ -279,11 +278,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   }, []);
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.remove('dark');
   }, [theme]);
 
   const setActiveTab = (tab: string) => {

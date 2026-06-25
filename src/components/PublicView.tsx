@@ -355,7 +355,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
               activePublicTab === 'activities' ? 'bg-emerald-50 text-[#0F6A4B] dark:bg-slate-800' : 'text-slate-700 dark:text-slate-300'
             }`}
           >
-            <span>{language === 'bn' ? 'কার্যক্রম' : 'Work'}</span>
+            <span>{language === 'bn' ? 'কার্যক্রম' : 'Activities'}</span>
             <ChevronRight size={15} />
           </button>
           <hr className="border-slate-100 dark:border-slate-800" />
@@ -396,13 +396,10 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 </div>
 
                 <div className="space-y-3.5 max-w-4xl mx-auto">
-                  <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-emerald-700 dark:text-emerald-400 bg-emerald-100/65 dark:bg-emerald-900/30 px-3.5 py-1.5 rounded-full font-mono">
-                    {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Cultural Excellence Academy Chattogram'}
-                  </span>
                   <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.15] text-slate-900 dark:text-white font-sans">
                     {language === 'bn' ? (
                       <>
-                        শিশু-কিশোরের মেধা বিকাশে <br />
+                         শিশু-কিশোরের মেধা বিকাশে <br />
                         <span className="text-[#B22222]">পারাবার সাংস্কৃতিক একাডেমি</span>
                       </>
                     ) : (
@@ -412,11 +409,13 @@ export const PublicView: React.FC<PublicViewProps> = ({
                       </>
                     )}
                   </h1>
-                  <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-semibold">
-                    {language === 'bn' 
-                      ? 'কোমলমতি শিশুদের সুপ্ত প্রতিভা বিকাশ, শিল্প-সংস্কৃতির সুস্থ চর্চা এবং নৈতিক মূল্যবোধ সম্পন্ন সুনাগরিক হিসেবে গড়ে তোলার লক্ষ্যে আমরা নিরলস কাজ করছি।' 
-                      : 'We provide specialized creative schooling to kids in Music, Painting, Recitation, Dance, and Theatre. Let’s protect youth from digital addictions through creative culture.'}
-                  </p>
+                  <div className="py-3">
+                    <p className="text-lg sm:text-xl md:text-2xl text-[#0F6A4B] dark:text-emerald-400 font-extrabold max-w-3xl mx-auto leading-relaxed tracking-wide font-sans">
+                      {language === 'bn' 
+                        ? '“সুস্থ সংস্কৃতির পায়রা উড়ৃক নিলীমার দশ দিগন্তে।”' 
+                        : '“Let the pigeon of healthy culture fly in the ten horizons of the blue sky.”'}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
