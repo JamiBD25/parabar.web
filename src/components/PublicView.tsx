@@ -169,6 +169,53 @@ export const PublicView: React.FC<PublicViewProps> = ({
     }
   ];
 
+  const featuresList = [
+    {
+      bn: 'প্রমিত উচ্চারণ শিক্ষা প্রদান।',
+      en: 'Providing standard pronunciation tutoring.'
+    },
+    {
+      bn: 'দক্ষ প্রশিক্ষক দ্বারা নিয়মিত প্রশিক্ষণ প্রদান।',
+      en: 'Regular training sessions conducted by highly skilled instructors.'
+    },
+    {
+      bn: '৩ বছর মেয়াদি নিজস্ব চিত্রাঙ্কন সিলেবাস।',
+      en: 'A 3-year proprietary syllabus specifically designed for painting.'
+    },
+    {
+      bn: 'জেলা শিল্পকলা একাডেমি/ শিশু-একাডেমির দক্ষ শিল্পী দ্বারা চিত্রাঙ্কন ক্লাস পরিচালনা।',
+      en: 'Art classes facilitated by expert artists from District Shilpakala Academy and Shishu Academy.'
+    },
+    {
+      bn: 'হাতে ধরে ধরে চিত্রাঙ্কন প্রশিক্ষণ প্রদান।',
+      en: 'Hands-on personalized guidance for painting training.'
+    },
+    {
+      bn: 'নিয়মিত একক ও দলীয় প্রোডাকশন তৈরী।',
+      en: 'Creating regular solo and group cultural productions.'
+    },
+    {
+      bn: 'বিভিন্ন জাতীয় প্রতিযোগিতায় অংশগ্রহণ করানো।',
+      en: 'Facilitating participation in various national-level competitions.'
+    },
+    {
+      bn: 'নিয়মিত বিভিন্ন সাংস্কৃতিক প্রতিযোগিতার আয়োজন।',
+      en: 'Organizing regular cultural competitions to foster healthy rivalry.'
+    },
+    {
+      bn: 'মঞ্চ ও টিভি প্রোগ্রামে অংশগ্রহণের সুযোগ।',
+      en: 'Opportunities to perform on prestigious stage and television programs.'
+    },
+    {
+      bn: 'সংগীত, আবৃত্তি ও অভিনয়সহ বিভিন্ন বিষয়ে কর্মশালার সুযোগ ও সনদপত্র প্রদান',
+      en: 'Offering training workshops in music, recitation, acting, and awarding certificates.'
+    },
+    {
+      bn: 'বিভিন্ন সামাজিক অনুষ্ঠানে মনোজ্ঞ সাংস্কৃতিক পরিবেশনা করা হয়।',
+      en: 'Presenting beautiful cultural performances at various social ceremonies.'
+    }
+  ];
+
   const handleTabClick = (tab: 'home' | 'about' | 'committee' | 'branches' | 'activities' | 'login') => {
     setActivePublicTab(tab);
     setMobileMenuOpen(false);
@@ -500,6 +547,29 @@ export const PublicView: React.FC<PublicViewProps> = ({
                       {language === 'bn' ? 'সাপ্তাহিক চারুকলা অঙ্কন ক্লাস' : 'Weekly Fine Arts & Drawing Class Session'}
                     </span>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Academy Features Section */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-emerald-50/45 dark:bg-slate-900/40 border border-emerald-100/60 dark:border-slate-800/80 p-8 sm:p-12 rounded-3xl space-y-8">
+                <div className="space-y-2 text-center md:text-left">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0F6A4B] dark:text-emerald-400 font-mono">
+                    {language === 'bn' ? 'আমাদের অনন্যতা' : 'Our Uniqueness'}
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-black text-[#0F6A4B] dark:text-emerald-400 font-sans tracking-tight">
+                    {language === 'bn' ? 'আমাদের বৈশিষ্টসমূহ:' : 'Our Key Features:'}
+                  </h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                  {featuresList.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-3.5 bg-white dark:bg-slate-950/40 rounded-2xl border border-slate-200/50 dark:border-slate-800/60 shadow-xs hover:shadow-md transition duration-250 hover:scale-[1.01]">
+                      <span className="text-[#0F6A4B] dark:text-emerald-400 text-base shrink-0 mt-0.5 select-none">◑</span>
+                      <span className="leading-relaxed">{language === 'bn' ? feature.bn : feature.en}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
