@@ -265,7 +265,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (storedActivity) setActivityLogs(JSON.parse(storedActivity));
       else setActivityLogs(INITIAL_ACTIVITY);
 
-      if (storedLang) setLanguage(storedLang as 'bn' | 'en');
+      setLanguage('bn');
       setTheme('light');
 
       const storedUser = localStorage.getItem('parabar_current_user');
@@ -638,13 +638,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Auto-set core UI toggles
   const handleSetLanguage = (lang: 'bn' | 'en') => {
-    setLanguage(lang);
-    localStorage.setItem('parabar_language', lang);
+    setLanguage('bn');
+    localStorage.setItem('parabar_language', 'bn');
   };
 
   const handleSetTheme = (tName: 'light' | 'dark') => {
-    setTheme(tName);
-    localStorage.setItem('parabar_theme', tName);
+    setTheme('light');
+    localStorage.setItem('parabar_theme', 'light');
   };
 
   const loginUser = (idOrEmail: string, passwordMobile: string) => {

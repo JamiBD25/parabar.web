@@ -237,7 +237,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 {language === 'bn' ? 'পারাবার' : 'PARABAR'}
               </span>
               <span className="text-[8.5px] text-slate-600 dark:text-slate-400 font-sans tracking-[0.01em] font-black uppercase leading-none mt-0.5">
-                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
+                {language === 'bn' ? 'শিল্পীগোষ্ঠী' : 'SHILPIGOSTI'}
               </span>
             </div>
           </div>
@@ -303,15 +303,6 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
           {/* Action buttons (Theme, Lang, Login) */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Language Switch */}
-            <button
-              id="header-lang-btn"
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-              className="text-[11px] tracking-wider font-black border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700 select-none cursor-pointer"
-            >
-              {language === 'bn' ? 'ENGLISH' : 'বাংলা'}
-            </button>
-
             {/* ERP / Log In Button */}
             {currentUser ? (
               <button
@@ -340,12 +331,6 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
           {/* Mobile hamburger menu */}
           <div className="flex items-center gap-2.5 md:hidden">
-            <button
-              onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-              className="text-[10px] font-bold border border-slate-200 dark:border-slate-800 px-2.5 py-1.5 rounded bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
-            >
-              {language === 'bn' ? 'EN' : 'বাং'}
-            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"
@@ -447,12 +432,12 @@ export const PublicView: React.FC<PublicViewProps> = ({
                     {language === 'bn' ? (
                       <>
                          শিশু-কিশোরের মেধা বিকাশে <br />
-                        <span className="text-[#B22222]">পারাবার সাংস্কৃতিক একাডেমি</span>
+                        <span className="text-[#B22222]">পারাবার শিল্পীগোষ্ঠী</span>
                       </>
                     ) : (
                       <>
                         Nurturing Young Talents at <br />
-                        <span className="text-[#B22222]">Parabar Cultural Academy</span>
+                        <span className="text-[#B22222]">Parabar SHILPIGOSTI</span>
                       </>
                     )}
                   </h1>
@@ -984,7 +969,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   {language === 'bn' ? 'পারাবার' : 'PARABAR'}
                 </span>
                 <span className="text-[7.5px] text-slate-500 dark:text-slate-400 tracking-wider font-black uppercase">
-                  {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
+                  {language === 'bn' ? 'শিল্পীগোষ্ঠী' : 'SHILPIGOSTI'}
                 </span>
               </div>
             </div>
@@ -1044,7 +1029,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-[10px] text-slate-400 font-sans">
-          <p>© 2026 Parabar Sahittya Sangskriti Songsod Chattogram • {language === 'bn' ? 'সকল সত্ত্ব সংরক্ষিত।' : 'All Rights Reserved.'}</p>
+          <p>© 2026 Parabar SHILPIGOSTI • {language === 'bn' ? 'সকল সত্ত্ব সংরক্ষিত।' : 'All Rights Reserved.'}</p>
         </div>
       </footer>
 

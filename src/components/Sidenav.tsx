@@ -105,7 +105,7 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
                 {language === 'bn' ? 'পারাবার' : 'PARABAR'}
               </h1>
               <p className="text-[7.5px] text-slate-800 dark:text-slate-300 font-sans tracking-[0.02em] font-black uppercase leading-none mt-0.5">
-                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'Sahittya Sangskriti Sangshad Chattogram'}
+                {language === 'bn' ? 'শিল্পীগোষ্ঠী' : 'SHILPIGOSTI'}
               </p>
             </div>
           </div>
@@ -128,17 +128,6 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
               {isCloudSyncing ? (language === 'bn' ? 'সংরক্ষণ হচ্ছে' : 'Saving') : (language === 'bn' ? 'সুরক্ষিত' : 'Synced')}
             </span>
           </div>
-
-          {/* Language Toggle */}
-          <button
-            id="lang-toggle-btn"
-            onClick={() => setLanguage(language === 'bn' ? 'en' : 'bn')}
-            className="flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all cursor-pointer"
-          >
-            <span className={language === 'en' ? 'text-brand-red' : 'text-slate-400'}>EN</span>
-            <span className="text-slate-300">/</span>
-            <span className={language === 'bn' ? 'text-brand-red' : 'text-slate-400'}>BN</span>
-          </button>
 
           {/* Active Administrator Switcher */}
           {isStudent ? (
