@@ -21,6 +21,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
 }) => {
   const { language, setLanguage, theme, setTheme, currentUser } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [branchSearch, setBranchSearch] = useState('');
+  const [branchFilterActivity, setBranchFilterActivity] = useState('');
 
   // Committee data (Bilingual)
   const committeeMembers = [
@@ -92,8 +94,9 @@ export const PublicView: React.FC<PublicViewProps> = ({
   // Branches data (Bilingual)
   const branches = [
     {
-      nameBn: '১) পারাবার শিল্পীগোষ্ঠী (প্রধান কার্যালয়)',
-      nameEn: '1) Parabar Shilpigoshthi (Head Office)',
+      id: 'dewanhat',
+      nameBn: '১) পারাবার শিল্পীগোষ্ঠী (প্রধান কার্যালয় - দেওয়ানহাট)',
+      nameEn: '1) Parabar Shilpigoshthi (Head Office - Dewanhat)',
       addressBn: 'ডি.টি. রোড, দেওয়ানহাট, চট্টগ্রাম-৪১০০।',
       addressEn: 'D.T. Road, Dewanhat, Chattogram-4100',
       established: '2012',
@@ -101,12 +104,18 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'পরিচালনা পর্ষদ',
       managerEn: 'Executive Board',
       status: 'Active',
+      image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=400&fit=crop',
+      scheduleBn: 'শুক্রবার ও শনিবার: সকাল ০৮:৩০ – ১১:৩০',
+      scheduleEn: 'Friday & Saturday: 08:30 AM - 11:30 AM',
+      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ ও আবৃত্তি, শিশু নাট্যকলা',
+      activitiesEn: 'Vocal, Fine Arts, Recitation, Children\'s Theatre',
       facebook: 'Parabar Shilpigoshthi',
       facebookUrl: 'https://www.facebook.com/share/1cKiiEBNWu/'
     },
     {
-      nameBn: '২) সৈকত সাহিত্য সাংস্কৃতিক সংসদ চট্টগ্রাম',
-      nameEn: '2) Soikat Sahittya Sangskriti Sangshad Chattogram',
+      id: 'patenga',
+      nameBn: '২) সৈকত সাহিত্য সাংস্কৃতিক সংসদ (পতেঙ্গা শাখা)',
+      nameEn: '2) Soikat Sahittya Sangskriti Sangshad (Patenga Branch)',
       addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
       addressEn: 'Kathgora, Patenga, Chattogram',
       established: '2015',
@@ -114,12 +123,18 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'পরিচালনা পর্ষদ',
       managerEn: 'Executive Board',
       status: 'Active',
+      image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop',
+      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:৩০ – ০৫:৩০',
+      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:30 PM - 05:30 PM',
+      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ',
+      activitiesEn: 'Vocal, Fine Arts, Standard Pronunciation',
       facebook: 'সৈকত সাহিত্য সাংস্কৃতিক সংসদ চট্টগ্রাম',
       facebookUrl: 'https://www.facebook.com/share/1BPg8KWrbt/',
       youtube: 'Soikat TV'
     },
     {
-      nameBn: '৩) শাখা কার্যালয় – হালিশহর (কিশলয় আর্ট এন্ড কালচারাল একাডেমি)',
+      id: 'halishahar',
+      nameBn: '৩) হালিশহর শাখা (কিশলয় আর্ট এন্ড কালচারাল একাডেমি)',
       nameEn: '3) Halishahar Branch (Kisholoy Art & Cultural Academy)',
       addressBn: 'গ্রিনল্যান্ড স্কুল এন্ড কলেজ, এল ব্লক, হালিশহর, চট্টগ্রাম।',
       addressEn: 'Greenland School & College, L-Block, Halishahar, Chattogram',
@@ -128,12 +143,51 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'আরিফুল ইসলাম',
       managerEn: 'Ariful Islam',
       status: 'Active',
+      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop',
       scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:০০ – ০৫:০০',
       scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:00 PM - 05:00 PM',
-      activitiesBn: 'গান, চিত্রাংকন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
-      activitiesEn: 'Song, Drawing, Calligraphy, Beautiful Handwriting',
+      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
+      activitiesEn: 'Vocal, Drawing, Calligraphy, Beautiful Handwriting',
       facebook: 'কিশলয় আর্ট এন্ড কালচারাল একাডেমি',
       facebookUrl: 'https://www.facebook.com/share/1CJcUwwqTo/'
+    },
+    {
+      id: 'chawkbazar',
+      nameBn: '৪) চকবাজার শাখা (কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি)',
+      nameEn: '4) Chawkbazar Branch (Kolkakoli Sur & Chitrankon Academy)',
+      addressBn: 'কেয়ারী প্লাজা সংলগ্ন রোড, চকবাজার, চট্টগ্রাম।',
+      addressEn: 'Near Qaree Plaza, Chawkbazar, Chattogram',
+      established: '2018',
+      phone: '01712-789012',
+      managerBn: 'সাজ্জাদুল ইসলাম',
+      managerEn: 'Sajjadul Islam',
+      status: 'Active',
+      image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop',
+      scheduleBn: 'শুক্রবার: সকাল ০৮:৩০ – ১১:৩০, শনিবার: বিকাল ০৪:০০ – ০৬:০০',
+      scheduleEn: 'Friday: 08:30 AM - 11:30 AM, Saturday: 04:00 PM - 06:00 PM',
+      activitiesBn: 'চারুকলা অঙ্কন, ক্যালিগ্রাফি, শুদ্ধ উচ্চারণ',
+      activitiesEn: 'Fine Arts, Calligraphy, Standard Pronunciation',
+      facebook: 'কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি',
+      facebookUrl: 'https://www.facebook.com/'
+    },
+    {
+      id: 'agrabad',
+      nameBn: '৫) আগ্রাবাদ শাখা (বর্ণমালা শিশু কানন)',
+      nameEn: '5) Agrabad Branch (Bornomala Shishu Kanon)',
+      addressBn: 'সিডিএ আবাসিক এলাকা, রোড নং-০৩, আগ্রাবাদ, চট্টগ্রাম।',
+      addressEn: 'CDA Residential Area, Road-03, Agrabad, Chattogram',
+      established: '2020',
+      phone: '01812-890123',
+      managerBn: 'মঈনুল হাসান',
+      managerEn: 'Moinul Hasan',
+      status: 'Active',
+      image: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&h=400&fit=crop',
+      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, রবিবার: বিকাল ০৩:৩০ – ০৫:৩০',
+      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Sunday: 03:30 PM - 05:30 PM',
+      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শিশু নাট্যকলা, ক্যালিগ্রাফি',
+      activitiesEn: 'Vocal, Fine Arts, Theatre, Calligraphy',
+      facebook: 'বর্ণমালা শিশু কানন',
+      facebookUrl: 'https://www.facebook.com/'
     }
   ];
 
@@ -787,112 +841,336 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
         {/* 4. BRANCHES (শাখা সমুহ) TAB */}
         {activePublicTab === 'branches' && (
-          <div className="animate-fade-in max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-10">
-            <div className="text-center space-y-3">
-              <div className="inline-flex bg-amber-500/10 text-amber-600 p-3 rounded-2xl mb-1">
-                <MapPin size={28} />
+          <div className="animate-fade-in max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+            
+            {/* Header Section */}
+            <div className="text-center space-y-4">
+              <div className="inline-flex bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-3.5 rounded-3xl mb-1 border border-emerald-500/20 shadow-sm animate-pulse">
+                <MapPin size={32} />
               </div>
-              <h1 className="text-3xl font-black text-slate-900 dark:text-white font-sans tracking-tight">
-                {language === 'bn' ? 'আমাদের শাখা সমূহ' : 'Our Branches'}
+              <h1 className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white font-sans tracking-tight">
+                {language === 'bn' ? 'আমাদের সক্রিয় শাখা সমূহ' : 'Our Active Branches'}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto font-semibold">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto font-semibold leading-relaxed">
                 {language === 'bn' 
-                  ? 'চট্টগ্রাম শহরের গুরুত্বপূর্ণ কেন্দ্র সমূহে আমাদের একাডেমির শাখা রয়েছে। আপনার সবচেয়ে কাছের শাখায় যোগাযোগ করতে পারেন।' 
-                  : 'Parabar weekend schooling has 5 active regional learning centers inside Chattogram City. Select your nearest center.'}
+                  ? 'শিশু-কিশোরের মেধা ও নান্দনিক সুকুমার বৃত্তি বিকাশে চট্টগ্রাম শহরের ৫টি গুরুত্বপূর্ণ কেন্দ্রে আমাদের নিয়মিত ক্লাস ও কার্যক্রম পরিচালিত হয়।' 
+                  : 'Parabar weekend academy operates 5 highly vibrant regional learning centers inside Chattogram City. Select your nearest center.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {branches.map((br, index) => (
-                <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-xs hover:shadow-md transition flex flex-col justify-between space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between">
-                      <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-100/15 dark:bg-emerald-900/30 text-[#0F6A4B] dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-900 px-2.5 py-1 rounded-full font-mono">
-                        {language === 'bn' ? `প্রতিষ্ঠা: ${br.established} খ্রি:` : `Estd. ${br.established}`}
-                      </span>
-                      <span className="text-[9px] font-black uppercase tracking-wider bg-red-100 text-brand-red px-2.5 py-1 rounded-full font-mono">
-                        {language === 'bn' ? 'সক্রিয়' : 'Active'}
-                      </span>
-                    </div>
+            {/* Bento Statistics Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-emerald-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
+                <span className="text-2xl sm:text-3xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">০৫টি</span>
+                <p className="text-[10px] sm:text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
+                  {language === 'bn' ? 'সক্রিয় শাখা কেন্দ্র' : 'Active Branches'}
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-red-50 to-red-100/40 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-red-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
+                <span className="text-2xl sm:text-3xl font-black text-[#B22222] dark:text-red-400 font-mono">৫০০+</span>
+                <p className="text-[10px] sm:text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
+                  {language === 'bn' ? 'নিয়মিত শিক্ষার্থী' : 'Active Students'}
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100/40 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-indigo-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
+                <span className="text-2xl sm:text-3xl font-black text-indigo-700 dark:text-indigo-400 font-mono">২৫+</span>
+                <p className="text-[10px] sm:text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
+                  {language === 'bn' ? 'দক্ষ মেন্টর ও শিক্ষক' : 'Expert Trainers'}
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100/40 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-amber-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
+                <span className="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-mono">১৫+</span>
+                <p className="text-[10px] sm:text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
+                  {language === 'bn' ? 'জাতীয় ও বিভাগীয় সম্মাননা' : 'National Awards'}
+                </p>
+              </div>
+            </div>
 
-                    <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-sans flex items-start gap-2">
-                      <MapPin size={18} className="text-[#B22222] shrink-0 mt-1" />
-                      <span>{language === 'bn' ? br.nameBn : br.nameEn}</span>
-                    </h2>
+            {/* Interactive Control Filter Dashboard */}
+            <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 max-w-5xl mx-auto space-y-4">
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                {/* Search Bar */}
+                <div className="relative w-full md:w-72">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                    <Compass size={16} className="animate-spin-slow" />
+                  </span>
+                  <input
+                    type="text"
+                    value={branchSearch}
+                    onChange={(e) => setBranchSearch(e.target.value)}
+                    placeholder={language === 'bn' ? 'শাখার নাম, ঠিকানা বা প্রধান খুঁজুন...' : 'Search branch name, area or head...'}
+                    className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 dark:text-slate-200 font-medium placeholder-slate-400 transition"
+                  />
+                  {branchSearch && (
+                    <button
+                      onClick={() => setBranchSearch('')}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
+                </div>
 
-                    <p className="text-xs text-slate-600 dark:text-slate-400 font-semibold leading-relaxed">
-                      <span className="text-[10px] text-slate-400 block uppercase tracking-wider mb-0.5">{language === 'bn' ? 'ঠিকানা:' : 'Location Address:'}</span>
-                      {language === 'bn' ? br.addressBn : br.addressEn}
-                    </p>
+                {/* Reset Filters / Counters */}
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 font-bold flex items-center gap-2">
+                  <span>
+                    {language === 'bn' 
+                      ? `প্রাপ্ত ফলাফল: ${branches.filter(br => {
+                          const query = branchSearch.toLowerCase();
+                          const matchesSearch = br.nameBn.toLowerCase().includes(query) || br.nameEn.toLowerCase().includes(query) || br.addressBn.toLowerCase().includes(query) || br.addressEn.toLowerCase().includes(query) || br.managerBn.toLowerCase().includes(query) || br.managerEn.toLowerCase().includes(query);
+                          const matchesActivity = !branchFilterActivity || br.activitiesBn.includes(branchFilterActivity) || br.activitiesEn.toLowerCase().includes(branchFilterActivity.toLowerCase());
+                          return matchesSearch && matchesActivity;
+                        }).length} টি কেন্দ্র`
+                      : `Found: ${branches.filter(br => {
+                          const query = branchSearch.toLowerCase();
+                          const matchesSearch = br.nameBn.toLowerCase().includes(query) || br.nameEn.toLowerCase().includes(query) || br.addressBn.toLowerCase().includes(query) || br.addressEn.toLowerCase().includes(query) || br.managerBn.toLowerCase().includes(query) || br.managerEn.toLowerCase().includes(query);
+                          const matchesActivity = !branchFilterActivity || br.activitiesBn.includes(branchFilterActivity) || br.activitiesEn.toLowerCase().includes(branchFilterActivity.toLowerCase());
+                          return matchesSearch && matchesActivity;
+                        }).length} centers`
+                    }
+                  </span>
+                  {(branchSearch || branchFilterActivity) && (
+                    <button
+                      onClick={() => {
+                        setBranchSearch('');
+                        setBranchFilterActivity('');
+                      }}
+                      className="text-[#B22222] hover:underline cursor-pointer ml-2"
+                    >
+                      {language === 'bn' ? '[ফিল্টার মুছুন]' : '[Clear Filters]'}
+                    </button>
+                  )}
+                </div>
+              </div>
 
-                    {/* Schedule if available */}
-                    {'scheduleBn' in br && br.scheduleBn && (
-                      <div className="bg-amber-50/50 dark:bg-slate-800/40 p-3 rounded-xl border border-amber-100/30 dark:border-slate-800 space-y-1">
-                        <span className="text-[10px] font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
-                          <Clock size={12} />
-                          {language === 'bn' ? 'ক্লাস সময়সূচি:' : 'Class Schedule:'}
-                        </span>
-                        <p className="text-xs text-slate-600 dark:text-slate-300 font-semibold leading-relaxed">
-                          {language === 'bn' ? (br as any).scheduleBn : (br as any).scheduleEn}
-                        </p>
-                      </div>
-                    )}
+              {/* Subject Category Filtering Chips */}
+              <div className="flex flex-wrap gap-2 items-center pt-2 border-t border-slate-200/50 dark:border-slate-900">
+                <span className="text-[11px] font-black text-slate-400 uppercase tracking-wider mr-1">
+                  {language === 'bn' ? 'কার্যক্রম বিভাগ:' : 'Subject Area:'}
+                </span>
+                
+                {[
+                  { bn: 'সব বিষয়', key: '' },
+                  { bn: 'কণ্ঠসঙ্গীত', key: 'কণ্ঠসঙ্গীত' },
+                  { bn: 'চারুকলা অঙ্কন', key: 'চারুকলা' },
+                  { bn: 'ক্যালিগ্রাফি', key: 'ক্যালিগ্রাফি' },
+                  { bn: 'সুন্দর হাতের লেখা', key: 'সুন্দর হাতের লেখা' },
+                  { bn: 'আবৃত্তি', key: 'আবৃত্তি' },
+                  { bn: 'শিশু নাট্যকলা', key: 'নাট্যকলা' }
+                ].map((chip) => {
+                  const isActive = branchFilterActivity === chip.key;
+                  return (
+                    <button
+                      key={chip.bn}
+                      onClick={() => setBranchFilterActivity(chip.key)}
+                      className={`text-[11px] font-black px-3 py-1.5 rounded-xl border transition cursor-pointer ${
+                        isActive
+                          ? 'bg-emerald-600 border-emerald-600 text-white shadow-xs'
+                          : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
+                      }`}
+                    >
+                      {language === 'bn' ? chip.bn : chip.key || 'All Subjects'}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-                    {/* Activities if available */}
-                    {'activitiesBn' in br && br.activitiesBn && (
-                      <div className="bg-indigo-50/30 dark:bg-slate-800/30 p-3 rounded-xl border border-indigo-100/20 dark:border-slate-800 space-y-1">
-                        <span className="text-[10px] font-bold text-indigo-700 dark:text-indigo-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
-                          <Compass size={12} />
-                          {language === 'bn' ? 'কার্যক্রম:' : 'Activities:'}
-                        </span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {(language === 'bn' ? (br as any).activitiesBn : (br as any).activitiesEn).split(',').map((act: string, i: number) => (
-                            <span key={i} className="text-[10px] bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-md font-sans font-semibold border border-indigo-100/50 dark:border-indigo-950/50">
-                              {act.trim()}
+            {/* Branches Card Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {branches
+                .filter(br => {
+                  const query = branchSearch.toLowerCase();
+                  const matchesSearch = 
+                    br.nameBn.toLowerCase().includes(query) || 
+                    br.nameEn.toLowerCase().includes(query) ||
+                    br.addressBn.toLowerCase().includes(query) ||
+                    br.addressEn.toLowerCase().includes(query) ||
+                    br.managerBn.toLowerCase().includes(query) ||
+                    br.managerEn.toLowerCase().includes(query);
+                  
+                  const matchesActivity = !branchFilterActivity || 
+                    br.activitiesBn.includes(branchFilterActivity) || 
+                    br.activitiesEn.toLowerCase().includes(branchFilterActivity.toLowerCase());
+
+                  return matchesSearch && matchesActivity;
+                })
+                .map((br, index) => {
+                  const isHeadOffice = br.id === 'dewanhat';
+                  return (
+                    <div 
+                      key={br.id} 
+                      className={`bg-white dark:bg-slate-900 border rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1.5 ${
+                        isHeadOffice 
+                          ? 'border-amber-400/80 dark:border-amber-500 ring-2 ring-amber-400/10' 
+                          : 'border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800'
+                      }`}
+                    >
+                      {/* Branch Header with Image & Overlay */}
+                      <div className="relative h-44 overflow-hidden">
+                        <img 
+                          src={br.image} 
+                          alt={br.nameEn} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          referrerPolicy="no-referrer"
+                        />
+                        {/* Gradient shade */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                        
+                        {/* Top floating badges */}
+                        <div className="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center">
+                          <span className={`text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-xs ${
+                            isHeadOffice 
+                              ? 'bg-amber-500 text-slate-950 border-amber-300' 
+                              : 'bg-emerald-600 text-white border-emerald-500'
+                          }`}>
+                            {language === 'bn' ? `প্রতিষ্ঠা: ${br.established} খ্রি:` : `Estd. ${br.established}`}
+                          </span>
+                          
+                          <div className="flex gap-1.5">
+                            {isHeadOffice && (
+                              <span className="text-[9px] font-black uppercase tracking-wider bg-red-600 text-white px-2.5 py-1 rounded-full shadow-xs border border-red-500">
+                                {language === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}
+                              </span>
+                            )}
+                            <span className="text-[9px] font-black uppercase tracking-wider bg-slate-900/90 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-950/40">
+                              {language === 'bn' ? 'সক্রিয়' : 'Active'}
                             </span>
-                          ))}
+                          </div>
+                        </div>
+
+                        {/* Title inside the card header for visual integration */}
+                        <div className="absolute bottom-3.5 left-4 right-4">
+                          <h2 className="text-sm sm:text-base font-black text-white leading-tight font-sans drop-shadow-md">
+                            {language === 'bn' ? br.nameBn : br.nameEn}
+                          </h2>
                         </div>
                       </div>
-                    )}
 
-                    {/* Social Media Links */}
-                    {(('facebookUrl' in br && br.facebookUrl) || ('youtube' in br && br.youtube)) && (
-                      <div className="pt-2 flex flex-wrap gap-2">
-                        {'facebookUrl' in br && br.facebookUrl && (
-                          <a
-                            href={(br as any).facebookUrl}
-                            target="_blank"
-                            referrerPolicy="no-referrer"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 transition border border-blue-100 dark:border-blue-900/50 cursor-pointer"
-                          >
-                            <Facebook size={14} />
-                            <span>{(br as any).facebook || 'Facebook'}</span>
-                          </a>
-                        )}
-                        {'youtube' in br && br.youtube && (
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/50">
-                            <Youtube size={14} />
-                            <span>{(br as any).youtube}</span>
+                      {/* Card Body */}
+                      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        
+                        <div className="space-y-3">
+                          {/* Location details */}
+                          <div className="space-y-1">
+                            <span className="text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
+                              {language === 'bn' ? 'ঠিকানা ও অবস্থান:' : 'Location Address:'}
+                            </span>
+                            <p className="text-xs text-slate-700 dark:text-slate-300 font-bold leading-relaxed flex items-start gap-1.5">
+                              <MapPin size={14} className="text-[#B22222] shrink-0 mt-0.5" />
+                              <span>{language === 'bn' ? br.addressBn : br.addressEn}</span>
+                            </p>
                           </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
 
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                    <div>
-                      <span className="text-[9px] text-slate-400 block uppercase font-sans tracking-wide mb-0.5">{language === 'bn' ? 'শাখা প্রধান:' : 'Center Manager:'}</span>
-                      <span className="font-bold text-slate-700 dark:text-slate-300">{language === 'bn' ? br.managerBn : br.managerEn}</span>
+                          {/* Routine / schedule */}
+                          <div className="bg-amber-50/45 dark:bg-slate-950/40 p-3 rounded-2xl border border-amber-100/40 dark:border-slate-800/80 space-y-1">
+                            <span className="text-[9px] font-black text-amber-700 dark:text-amber-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
+                              <Clock size={12} className="animate-pulse" />
+                              {language === 'bn' ? 'ক্লাস সময়সূচি:' : 'Class Schedule:'}
+                            </span>
+                            <p className="text-[11px] text-slate-700 dark:text-slate-300 font-bold leading-relaxed">
+                              {language === 'bn' ? br.scheduleBn : br.scheduleEn}
+                            </p>
+                          </div>
+
+                          {/* Dynamic features / Activities tags */}
+                          <div className="space-y-1.5">
+                            <span className="text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
+                              {language === 'bn' ? 'প্রশিক্ষণ বিষয়সমূহ:' : 'Subjects Offered:'}
+                            </span>
+                            <div className="flex flex-wrap gap-1">
+                              {br.activitiesBn.split(',').map((act: string, i: number) => (
+                                <span 
+                                  key={i} 
+                                  className="text-[10px] bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 px-2.5 py-1 rounded-lg font-sans font-bold border border-slate-200/50 dark:border-slate-800 group-hover:bg-emerald-50/50 dark:group-hover:bg-emerald-950/10 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 group-hover:border-emerald-100/50 dark:group-hover:border-emerald-900/30 transition duration-300"
+                                >
+                                  {act.trim()}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Social, manager, helpline */}
+                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                          
+                          {/* Manager & helpline panel */}
+                          <div className="grid grid-cols-2 gap-3 bg-slate-50 dark:bg-slate-950 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-[10px]">
+                            <div>
+                              <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold mb-0.5">
+                                {language === 'bn' ? 'শাখা প্রধান:' : 'Center Head:'}
+                              </span>
+                              <span className="font-extrabold text-slate-800 dark:text-slate-200">
+                                {language === 'bn' ? br.managerBn : br.managerEn}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold mb-0.5">
+                                {language === 'bn' ? 'যোগাযোগ নম্বর:' : 'Helpline:'}
+                              </span>
+                              <a href={`tel:${br.phone}`} className="font-extrabold text-[#B22222] dark:text-red-400 hover:underline flex items-center gap-1">
+                                <Phone size={10} />
+                                <span>{br.phone}</span>
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* Social handles block */}
+                          <div className="flex gap-2 justify-end">
+                            {br.facebookUrl && (
+                              <a
+                                href={br.facebookUrl}
+                                target="_blank"
+                                referrerPolicy="no-referrer"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/20 dark:hover:bg-blue-950/40 text-blue-700 dark:text-blue-300 transition border border-blue-100/40 dark:border-blue-900/40 cursor-pointer"
+                              >
+                                <Facebook size={12} />
+                                <span>{br.facebook || 'Facebook'}</span>
+                              </a>
+                            )}
+                            {'youtube' in br && br.youtube && (
+                              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 border border-red-100/40 dark:border-red-900/40">
+                                <Youtube size={12} />
+                                <span>{(br as any).youtube}</span>
+                              </div>
+                            )}
+                          </div>
+
+                        </div>
+
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-[9px] text-slate-400 block uppercase font-sans tracking-wide mb-0.5">{language === 'bn' ? 'হেল্পলাইন:' : 'Helpline:'}</span>
-                      <a href={`tel:${br.phone}`} className="font-bold text-[#B22222] dark:text-red-400 hover:underline">{br.phone}</a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
             </div>
+
+            {/* Empty filter outcome state */}
+            {branches.filter(br => {
+              const query = branchSearch.toLowerCase();
+              const matchesSearch = br.nameBn.toLowerCase().includes(query) || br.nameEn.toLowerCase().includes(query) || br.addressBn.toLowerCase().includes(query) || br.addressEn.toLowerCase().includes(query) || br.managerBn.toLowerCase().includes(query) || br.managerEn.toLowerCase().includes(query);
+              const matchesActivity = !branchFilterActivity || br.activitiesBn.includes(branchFilterActivity) || br.activitiesEn.toLowerCase().includes(branchFilterActivity.toLowerCase());
+              return matchesSearch && matchesActivity;
+            }).length === 0 && (
+              <div className="text-center py-12 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg mx-auto">
+                <p className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
+                  {language === 'bn' 
+                    ? 'দুঃখিত! আপনার অনুসন্ধান অনুযায়ী কোনো সক্রিয় শাখা কেন্দ্র পাওয়া যায়নি।' 
+                    : 'No active branch centers match your search criteria.'}
+                </p>
+                <button
+                  onClick={() => {
+                    setBranchSearch('');
+                    setBranchFilterActivity('');
+                  }}
+                  className="mt-3 text-xs font-black text-emerald-600 dark:text-emerald-400 hover:underline"
+                >
+                  {language === 'bn' ? 'সকল ফিল্টার রিসেট করুন' : 'Reset All Filters'}
+                </button>
+              </div>
+            )}
+
           </div>
         )}
 
