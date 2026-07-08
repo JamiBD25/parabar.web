@@ -114,7 +114,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
     },
     {
       id: 'patenga',
-      nameBn: '২) সৈকত সাহিত্য সাংস্কৃতিক সংসদ (পতেঙ্গা শাখা)',
+      nameBn: 'পতেঙ্গা শাখা ',
       nameEn: '2) Soikat Sahittya Sangskriti Sangshad (Patenga Branch)',
       addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
       addressEn: 'Kathgora, Patenga, Chattogram',
@@ -134,7 +134,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
     },
     {
       id: 'halishahar',
-      nameBn: '৩) হালিশহর শাখা (কিশলয় আর্ট এন্ড কালচারাল একাডেমি)',
+      nameBn: ' হালিশহর শাখা ',
       nameEn: '3) Halishahar Branch (Kisholoy Art & Cultural Academy)',
       addressBn: 'গ্রিনল্যান্ড স্কুল এন্ড কলেজ, এল ব্লক, হালিশহর, চট্টগ্রাম।',
       addressEn: 'Greenland School & College, L-Block, Halishahar, Chattogram',
