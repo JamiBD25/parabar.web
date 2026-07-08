@@ -104,7 +104,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'পরিচালনা পর্ষদ',
       managerEn: 'Executive Board',
       status: 'Active',
-      image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=400&fit=crop',
+      image: 'https://i.postimg.cc/nrp3hkft/Dewanhat-jpg.jpg',
       scheduleBn: 'শুক্রবার ও শনিবার: সকাল ০৮:৩০ – ১১:৩০',
       scheduleEn: 'Friday & Saturday: 08:30 AM - 11:30 AM',
       activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ ও আবৃত্তি, শিশু নাট্যকলা',
@@ -123,7 +123,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'আরিফুল ইসলাম',
       managerEn: 'Ariful Islam',
       status: 'Active',
-      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop',
+      image: 'https://i.postimg.cc/nrp3hkfn/Halisahar-jpg.jpg',
       scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:০০ – ০৫:০০',
       scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:00 PM - 05:00 PM',
       activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
@@ -142,7 +142,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
       managerBn: 'পরিচালনা পর্ষদ',
       managerEn: 'Executive Board',
       status: 'Active',
-      image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop',
+      image: 'https://i.postimg.cc/bJX6KP6Y/Potenga-jpg.jpg',
       scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:৩০ – ০৫:৩০',
       scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:30 PM - 05:30 PM',
       activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ',
@@ -642,19 +642,23 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
                 <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {branches.slice(0, 3).map((br, index) => (
-                    <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-xl space-y-2 shadow-xs">
-                      <div className="flex items-center gap-2 text-[#B22222]">
-                        <MapPin size={16} />
-                        <h3 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white font-sans">
-                          {language === 'bn' ? br.nameBn : br.nameEn}
-                        </h3>
+                    <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between group">
+                      <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-950">
+                        <img 
+                          src={br.image} 
+                          alt={br.nameEn} 
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          referrerPolicy="no-referrer"
+                        />
                       </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold leading-relaxed">
-                        {language === 'bn' ? br.addressBn : br.addressEn}
-                      </p>
-                      <p className="text-[10px] font-mono text-slate-500 pt-1.5 border-t border-slate-100 dark:border-slate-800/50">
-                        {language === 'bn' ? 'যোগাযোগ:' : 'Tel:'} {br.phone}
-                      </p>
+                      <div className="p-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] bg-slate-50/40 dark:bg-slate-950/25">
+                        <span className="font-bold text-slate-500 dark:text-slate-400">
+                          {language === 'bn' ? 'প্রতিষ্ঠাকাল:' : 'Established:'}
+                        </span>
+                        <span className="font-black text-[#B22222] dark:text-red-400 font-mono">
+                          {language === 'bn' ? `${br.established} খ্রি:` : `${br.established}`}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -965,142 +969,41 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   return (
                     <div 
                       key={br.id} 
-                      className={`bg-white dark:bg-slate-900 border rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1.5 ${
+                      className={`bg-white dark:bg-slate-900 border rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1.5 ${
                         isHeadOffice 
                           ? 'border-amber-400/80 dark:border-amber-500 ring-2 ring-amber-400/10' 
                           : 'border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800'
                       }`}
                     >
-                      {/* Branch Header with Image & Overlay */}
-                      <div className="relative h-44 overflow-hidden">
+                      {/* Branch Header with Image */}
+                      <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
                         <img 
                           src={br.image} 
                           alt={br.nameEn} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           referrerPolicy="no-referrer"
                         />
-                        {/* Gradient shade */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                        
-                        {/* Top floating badges */}
-                        <div className="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center">
-                          <span className={`text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-xs ${
-                            isHeadOffice 
-                              ? 'bg-amber-500 text-slate-950 border-amber-300' 
-                              : 'bg-emerald-600 text-white border-emerald-500'
-                          }`}>
-                            {language === 'bn' ? `প্রতিষ্ঠা: ${br.established} খ্রি:` : `Estd. ${br.established}`}
-                          </span>
-                          
-                          <div className="flex gap-1.5">
-                            {isHeadOffice && (
-                              <span className="text-[9px] font-black uppercase tracking-wider bg-red-600 text-white px-2.5 py-1 rounded-full shadow-xs border border-red-500">
-                                {language === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Title inside the card header for visual integration */}
-                        <div className="absolute bottom-3.5 left-4 right-4">
-                          <h2 className="text-sm sm:text-base font-black text-white leading-tight font-sans drop-shadow-md">
-                            {language === 'bn' ? br.nameBn : br.nameEn}
-                          </h2>
-                        </div>
                       </div>
 
-                      {/* Card Body */}
-                      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                        
-                        <div className="space-y-3">
-                          {/* Location details */}
-                          <div className="space-y-1">
-                            <span className="text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
-                              {language === 'bn' ? 'ঠিকানা ও অবস্থান:' : 'Location Address:'}
+                      {/* Small Minimalist Footer: Only displays Establishment year */}
+                      <div className="p-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/20">
+                        <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
+                          {language === 'bn' ? 'প্রতিষ্ঠাকাল:' : 'Established:'}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          {isHeadOffice && (
+                            <span className="text-[9px] font-black uppercase tracking-wider bg-red-600 text-white px-2.5 py-1 rounded-full shadow-xs border border-red-500">
+                              {language === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}
                             </span>
-                            <p className="text-xs text-slate-700 dark:text-slate-300 font-bold leading-relaxed flex items-start gap-1.5">
-                              <MapPin size={14} className="text-[#B22222] shrink-0 mt-0.5" />
-                              <span>{language === 'bn' ? br.addressBn : br.addressEn}</span>
-                            </p>
-                          </div>
-
-                          {/* Routine / schedule */}
-                          <div className="bg-amber-50/45 dark:bg-slate-950/40 p-3 rounded-2xl border border-amber-100/40 dark:border-slate-800/80 space-y-1">
-                            <span className="text-[9px] font-black text-amber-700 dark:text-amber-400 flex items-center gap-1.5 uppercase tracking-wider font-mono">
-                              <Clock size={12} className="animate-pulse" />
-                              {language === 'bn' ? 'ক্লাস সময়সূচি:' : 'Class Schedule:'}
-                            </span>
-                            <p className="text-[11px] text-slate-700 dark:text-slate-300 font-bold leading-relaxed">
-                              {language === 'bn' ? br.scheduleBn : br.scheduleEn}
-                            </p>
-                          </div>
-
-                          {/* Dynamic features / Activities tags */}
-                          <div className="space-y-1.5">
-                            <span className="text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
-                              {language === 'bn' ? 'প্রশিক্ষণ বিষয়সমূহ:' : 'Subjects Offered:'}
-                            </span>
-                            <div className="flex flex-wrap gap-1">
-                              {br.activitiesBn.split(',').map((act: string, i: number) => (
-                                <span 
-                                  key={i} 
-                                  className="text-[10px] bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 px-2.5 py-1 rounded-lg font-sans font-bold border border-slate-200/50 dark:border-slate-800 group-hover:bg-emerald-50/50 dark:group-hover:bg-emerald-950/10 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 group-hover:border-emerald-100/50 dark:group-hover:border-emerald-900/30 transition duration-300"
-                                >
-                                  {act.trim()}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
+                          )}
+                          <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-xs ${
+                            isHeadOffice 
+                              ? 'bg-amber-500 text-slate-950 border-amber-300 font-mono' 
+                              : 'bg-emerald-600 text-white border-emerald-500 font-mono'
+                          }`}>
+                            {language === 'bn' ? `${br.established} খ্রি:` : `${br.established}`}
+                          </span>
                         </div>
-
-                        {/* Social, manager, helpline */}
-                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
-                          
-                          {/* Manager & helpline panel */}
-                          <div className="grid grid-cols-2 gap-3 bg-slate-50 dark:bg-slate-950 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-[10px]">
-                            <div>
-                              <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold mb-0.5">
-                                {language === 'bn' ? 'শাখা প্রধান:' : 'Center Head:'}
-                              </span>
-                              <span className="font-extrabold text-slate-800 dark:text-slate-200">
-                                {language === 'bn' ? br.managerBn : br.managerEn}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold mb-0.5">
-                                {language === 'bn' ? 'যোগাযোগ নম্বর:' : 'Helpline:'}
-                              </span>
-                              <a href={`tel:${br.phone}`} className="font-extrabold text-[#B22222] dark:text-red-400 hover:underline flex items-center gap-1">
-                                <Phone size={10} />
-                                <span>{br.phone}</span>
-                              </a>
-                            </div>
-                          </div>
-
-                          {/* Social handles block */}
-                          <div className="flex gap-2 justify-end">
-                            {br.facebookUrl && (
-                              <a
-                                href={br.facebookUrl}
-                                target="_blank"
-                                referrerPolicy="no-referrer"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/20 dark:hover:bg-blue-950/40 text-blue-700 dark:text-blue-300 transition border border-blue-100/40 dark:border-blue-900/40 cursor-pointer"
-                              >
-                                <Facebook size={12} />
-                                <span>{br.facebook || 'Facebook'}</span>
-                              </a>
-                            )}
-                            {'youtube' in br && br.youtube && (
-                              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 border border-red-100/40 dark:border-red-900/40">
-                                <Youtube size={12} />
-                                <span>{(br as any).youtube}</span>
-                              </div>
-                            )}
-                          </div>
-
-                        </div>
-
                       </div>
                     </div>
                   );
