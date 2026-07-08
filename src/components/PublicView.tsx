@@ -95,7 +95,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
   const branches = [
     {
       id: 'dewanhat',
-      nameBn: '১) পারাবার শিল্পীগোষ্ঠী (প্রধান কার্যালয় - দেওয়ানহাট)',
+      nameBn: 'প্রধান কার্যালয় - দেওয়ানহাট',
       nameEn: '1) Parabar Shilpigoshthi (Head Office - Dewanhat)',
       addressBn: 'ডি.টি. রোড, দেওয়ানহাট, চট্টগ্রাম-৪১০০।',
       addressEn: 'D.T. Road, Dewanhat, Chattogram-4100',
@@ -114,7 +114,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
     },
     {
       id: 'patenga',
-      nameBn: '২) সৈকত সাহিত্য সাংস্কৃতিক সংসদ (পতেঙ্গা শাখা)',
+      nameBn: '২) পতেঙ্গা শাখ',
       nameEn: '2) Soikat Sahittya Sangskriti Sangshad (Patenga Branch)',
       addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
       addressEn: 'Kathgora, Patenga, Chattogram',
@@ -134,11 +134,11 @@ export const PublicView: React.FC<PublicViewProps> = ({
     },
     {
       id: 'halishahar',
-      nameBn: '৩) হালিশহর শাখা (কিশলয় আর্ট এন্ড কালচারাল একাডেমি)',
+      nameBn: '৩) হালিশহর শাখা ',
       nameEn: '3) Halishahar Branch (Kisholoy Art & Cultural Academy)',
       addressBn: 'গ্রিনল্যান্ড স্কুল এন্ড কলেজ, এল ব্লক, হালিশহর, চট্টগ্রাম।',
       addressEn: 'Greenland School & College, L-Block, Halishahar, Chattogram',
-      established: '2016',
+      established: '2017',
       phone: '01862-849913',
       managerBn: 'আরিফুল ইসলাম',
       managerEn: 'Ariful Islam',
@@ -148,46 +148,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
       scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:00 PM - 05:00 PM',
       activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
       activitiesEn: 'Vocal, Drawing, Calligraphy, Beautiful Handwriting',
-      facebook: 'কিশলয় আর্ট এন্ড কালচারাল একাডেমি',
+      facebook: '',
       facebookUrl: 'https://www.facebook.com/share/1CJcUwwqTo/'
-    },
-    {
-      id: 'chawkbazar',
-      nameBn: '৪) চকবাজার শাখা (কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি)',
-      nameEn: '4) Chawkbazar Branch (Kolkakoli Sur & Chitrankon Academy)',
-      addressBn: 'কেয়ারী প্লাজা সংলগ্ন রোড, চকবাজার, চট্টগ্রাম।',
-      addressEn: 'Near Qaree Plaza, Chawkbazar, Chattogram',
-      established: '2018',
-      phone: '01712-789012',
-      managerBn: 'সাজ্জাদুল ইসলাম',
-      managerEn: 'Sajjadul Islam',
-      status: 'Active',
-      image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop',
-      scheduleBn: 'শুক্রবার: সকাল ০৮:৩০ – ১১:৩০, শনিবার: বিকাল ০৪:০০ – ০৬:০০',
-      scheduleEn: 'Friday: 08:30 AM - 11:30 AM, Saturday: 04:00 PM - 06:00 PM',
-      activitiesBn: 'চারুকলা অঙ্কন, ক্যালিগ্রাফি, শুদ্ধ উচ্চারণ',
-      activitiesEn: 'Fine Arts, Calligraphy, Standard Pronunciation',
-      facebook: 'কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি',
-      facebookUrl: 'https://www.facebook.com/'
-    },
-    {
-      id: 'agrabad',
-      nameBn: '৫) আগ্রাবাদ শাখা (বর্ণমালা শিশু কানন)',
-      nameEn: '5) Agrabad Branch (Bornomala Shishu Kanon)',
-      addressBn: 'সিডিএ আবাসিক এলাকা, রোড নং-০৩, আগ্রাবাদ, চট্টগ্রাম।',
-      addressEn: 'CDA Residential Area, Road-03, Agrabad, Chattogram',
-      established: '2020',
-      phone: '01812-890123',
-      managerBn: 'মঈনুল হাসান',
-      managerEn: 'Moinul Hasan',
-      status: 'Active',
-      image: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&h=400&fit=crop',
-      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, রবিবার: বিকাল ০৩:৩০ – ০৫:৩০',
-      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Sunday: 03:30 PM - 05:30 PM',
-      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শিশু নাট্যকলা, ক্যালিগ্রাফি',
-      activitiesEn: 'Vocal, Fine Arts, Theatre, Calligraphy',
-      facebook: 'বর্ণমালা শিশু কানন',
-      facebookUrl: 'https://www.facebook.com/'
     }
   ];
 
