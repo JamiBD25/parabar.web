@@ -286,14 +286,12 @@ export const PublicView: React.FC<PublicViewProps> = ({
           {/* Logo Brand */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleTabClick('home')}>
             <ParabarLogo size={42} />
-            <div className="flex flex-col">
-              <span className="text-sm font-black tracking-wide text-[#B22222] font-sans uppercase leading-tight">
-                {language === 'bn' ? 'পারাবার' : 'PARABAR'}
-              </span>
-              <span className="text-[8.5px] text-slate-600 dark:text-slate-400 font-sans tracking-[0.01em] font-black uppercase leading-none mt-0.5">
-                {language === 'bn' ? 'শিল্পীগোষ্ঠী' : 'SHILPIGOSTI'}
-              </span>
-            </div>
+            <img 
+              src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
+              alt="PARABAR" 
+              className="h-10 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
           </div>
 
           {/* Desktop Navigation Links */}
@@ -1242,14 +1240,12 @@ export const PublicView: React.FC<PublicViewProps> = ({
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
               <ParabarLogo size={36} />
-              <div className="flex flex-col">
-                <span className="text-xs font-black tracking-wide text-brand-red uppercase">
-                  {language === 'bn' ? 'পারাবার' : 'PARABAR'}
-                </span>
-                <span className="text-[7.5px] text-slate-500 dark:text-slate-400 tracking-wider font-black uppercase">
-                  {language === 'bn' ? 'শিল্পীগোষ্ঠী' : 'SHILPIGOSTI'}
-                </span>
-              </div>
+              <img 
+                src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
+                alt="PARABAR" 
+                className="h-8 w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <p className="text-[11px] leading-relaxed font-semibold">
               {language === 'bn' 
