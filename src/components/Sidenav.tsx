@@ -100,12 +100,17 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
           
           <div className="flex items-center gap-2">
             <ParabarLogo size={34} />
-            <img 
-              src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
-              alt="PARABAR" 
-              className="h-8 w-auto object-contain"
-              referrerPolicy="no-referrer"
-            />
+            <div className="flex flex-col items-start justify-center translate-x-[3.5px] translate-y-[3.5px]">
+              <img 
+                src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
+                alt="PARABAR" 
+                className="h-[18px] w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
+              <span className="text-[6px] text-slate-800 dark:text-slate-300 font-sans tracking-[0.03em] font-black uppercase leading-none mt-0.5">
+                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'SAHITYA SANSKRITI SANSAD CHITTAGONG'}
+              </span>
+            </div>
           </div>
         </div>
 

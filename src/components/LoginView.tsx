@@ -128,7 +128,7 @@ export const LoginView: React.FC = () => {
             </h2>
             <p className="text-xs text-text-gray mt-2 font-medium">
               {language === 'bn' 
-                ? 'পারাবার শিল্পীগোষ্ঠীতে আপনার অ্যাকাউন্ট সফলভাবে তৈরি করা হয়েছে।' 
+                ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রামে আপনার অ্যাকাউন্ট সফলভাবে তৈরি করা হয়েছে।' 
                 : 'Your student profile has been successfully compiled.'}
             </p>
 
@@ -398,8 +398,8 @@ export const LoginView: React.FC = () => {
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto font-sans font-semibold">
                 {language === 'bn' 
-                  ? 'পারাবার শিল্পীগোষ্ঠী পরিচালনা পোর্টালে লগইন করুন' 
-                  : 'Sign in to Parabar SHILPIGOSTI System'
+                  ? 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম পরিচালনা পোর্টালে লগইন করুন' 
+                  : 'Sign in to Parabar Sahitya Sanskriti Sansad Chittagong System'
                 }
               </p>
             </div>
