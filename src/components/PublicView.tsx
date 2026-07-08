@@ -95,10 +95,10 @@ export const PublicView: React.FC<PublicViewProps> = ({
   const branches = [
     {
       id: 'dewanhat',
-      nameBn: '১) পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (প্রধান কার্যালয় - দেওয়ানহাট)',
-      nameEn: '1) Parabar Sahitya Sanskriti Sansad Chittagong (Head Office - Dewanhat)',
-      addressBn: 'ডি.টি. রোড, দেওয়ানহাট, চট্টগ্রাম-৪১০০।',
-      addressEn: 'D.T. Road, Dewanhat, Chattogram-4100',
+      nameBn: '১) পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (প্রধান কার্যালয় - দেওয়ান হাট)',
+      nameEn: '1) Parabar Sahitya Sanskriti Sansad Chittagong (Head Office - Dewan Hat)',
+      addressBn: 'ডি.টি. রোড, দেওয়ান হাট, চট্টগ্রাম-৪১০০।',
+      addressEn: 'D.T. Road, Dewan Hat, Chattogram-4100',
       established: '2012',
       phone: '01836-776227',
       managerBn: 'পরিচালনা পর্ষদ',
@@ -113,29 +113,9 @@ export const PublicView: React.FC<PublicViewProps> = ({
       facebookUrl: 'https://www.facebook.com/share/1cKiiEBNWu/'
     },
     {
-      id: 'patenga',
-      nameBn: 'পতেঙ্গা শাখা ',
-      nameEn: '2) Soikat Sahittya Sangskriti Sangshad (Patenga Branch)',
-      addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
-      addressEn: 'Kathgora, Patenga, Chattogram',
-      established: '2015',
-      phone: '01862-065224',
-      managerBn: 'পরিচালনা পর্ষদ',
-      managerEn: 'Executive Board',
-      status: 'Active',
-      image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop',
-      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:৩০ – ০৫:৩০',
-      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:30 PM - 05:30 PM',
-      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ',
-      activitiesEn: 'Vocal, Fine Arts, Standard Pronunciation',
-      facebook: 'সৈকত সাহিত্য সাংস্কৃতিক সংসদ চট্টগ্রাম',
-      facebookUrl: 'https://www.facebook.com/share/1BPg8KWrbt/',
-      youtube: 'Soikat TV'
-    },
-    {
       id: 'halishahar',
-      nameBn: ' হালিশহর শাখা ',
-      nameEn: '3) Halishahar Branch (Kisholoy Art & Cultural Academy)',
+      nameBn: '২) পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (হালিশহর শাখা)',
+      nameEn: '2) Parabar Sahitya Sanskriti Sansad Chittagong (Halishahar Branch)',
       addressBn: 'গ্রিনল্যান্ড স্কুল এন্ড কলেজ, এল ব্লক, হালিশহর, চট্টগ্রাম।',
       addressEn: 'Greenland School & College, L-Block, Halishahar, Chattogram',
       established: '2016',
@@ -148,45 +128,26 @@ export const PublicView: React.FC<PublicViewProps> = ({
       scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:00 PM - 05:00 PM',
       activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, ক্যালিগ্রাফি, সুন্দর হাতের লেখা',
       activitiesEn: 'Vocal, Drawing, Calligraphy, Beautiful Handwriting',
-      facebook: 'কিশলয় আর্ট এন্ড কালচারাল একাডেমি',
-      facebookUrl: 'https://www.facebook.com/share/1CJcUwwqTo/'
-    },
-    {
-      id: 'chawkbazar',
-      nameBn: '৪) চকবাজার শাখা (কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি)',
-      nameEn: '4) Chawkbazar Branch (Kolkakoli Sur & Chitrankon Academy)',
-      addressBn: 'কেয়ারী প্লাজা সংলগ্ন রোড, চকবাজার, চট্টগ্রাম।',
-      addressEn: 'Near Qaree Plaza, Chawkbazar, Chattogram',
-      established: '2018',
-      phone: '01712-789012',
-      managerBn: 'সাজ্জাদুল ইসলাম',
-      managerEn: 'Sajjadul Islam',
-      status: 'Active',
-      image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop',
-      scheduleBn: 'শুক্রবার: সকাল ০৮:৩০ – ১১:৩০, শনিবার: বিকাল ০৪:০০ – ০৬:০০',
-      scheduleEn: 'Friday: 08:30 AM - 11:30 AM, Saturday: 04:00 PM - 06:00 PM',
-      activitiesBn: 'চারুকলা অঙ্কন, ক্যালিগ্রাফি, শুদ্ধ উচ্চারণ',
-      activitiesEn: 'Fine Arts, Calligraphy, Standard Pronunciation',
-      facebook: 'কলকাকলি সুর ও চিত্রাঙ্কন একাডেমি',
+      facebook: 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (হালিশহর শাখা)',
       facebookUrl: 'https://www.facebook.com/'
     },
     {
-      id: 'agrabad',
-      nameBn: '৫) আগ্রাবাদ শাখা (বর্ণমালা শিশু কানন)',
-      nameEn: '5) Agrabad Branch (Bornomala Shishu Kanon)',
-      addressBn: 'সিডিএ আবাসিক এলাকা, রোড নং-০৩, আগ্রাবাদ, চট্টগ্রাম।',
-      addressEn: 'CDA Residential Area, Road-03, Agrabad, Chattogram',
-      established: '2020',
-      phone: '01812-890123',
-      managerBn: 'মঈনুল হাসান',
-      managerEn: 'Moinul Hasan',
+      id: 'patenga',
+      nameBn: '৩) পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (পতেঙ্গা শাখা)',
+      nameEn: '3) Parabar Sahitya Sanskriti Sansad Chittagong (Patenga Branch)',
+      addressBn: 'কাঠগড়, পতেঙ্গা, চট্টগ্রাম।',
+      addressEn: 'Kathgora, Patenga, Chattogram',
+      established: '2015',
+      phone: '01862-065224',
+      managerBn: 'পরিচালনা পর্ষদ',
+      managerEn: 'Executive Board',
       status: 'Active',
-      image: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&h=400&fit=crop',
-      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, রবিবার: বিকাল ০৩:৩০ – ০৫:৩০',
-      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Sunday: 03:30 PM - 05:30 PM',
-      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শিশু নাট্যকলা, ক্যালিগ্রাফি',
-      activitiesEn: 'Vocal, Fine Arts, Theatre, Calligraphy',
-      facebook: 'বর্ণমালা শিশু কানন',
+      image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop',
+      scheduleBn: 'শুক্রবার: সকাল ০৯:০০ – ১২:০০, শনিবার: বিকাল ০৩:৩০ – ০৫:৩০',
+      scheduleEn: 'Friday: 09:00 AM - 12:00 PM, Saturday: 03:30 PM - 05:30 PM',
+      activitiesBn: 'কণ্ঠসঙ্গীত, চারুকলা অঙ্কন, শুদ্ধ উচ্চারণ',
+      activitiesEn: 'Vocal, Fine Arts, Standard Pronunciation',
+      facebook: 'পারাবার সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম (পতেঙ্গা শাখা)',
       facebookUrl: 'https://www.facebook.com/'
     }
   ];
@@ -530,8 +491,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
                     <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'বছরের সফলতা' : 'Years of Success'}</p>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
-                    <p className="text-2xl font-black text-[#B22222] dark:text-red-400 font-mono">৫টি</p>
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'সক্রিয় শাখা' : 'Active Branches'}</p>
+                    <p className="text-2xl font-black text-[#B22222] dark:text-red-400 font-mono">৩টি</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-black tracking-wider mt-1">{language === 'bn' ? 'শাখা সমূহ' : 'Branches'}</p>
                   </div>
                   <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-xs text-center">
                     <p className="text-2xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">২০০০+</p>
@@ -852,21 +813,21 @@ export const PublicView: React.FC<PublicViewProps> = ({
                 <MapPin size={32} />
               </div>
               <h1 className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white font-sans tracking-tight">
-                {language === 'bn' ? 'আমাদের সক্রিয় শাখা সমূহ' : 'Our Active Branches'}
+                {language === 'bn' ? 'আমাদের শাখা সমূহ' : 'Our Branches'}
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto font-semibold leading-relaxed">
                 {language === 'bn' 
-                  ? 'শিশু-কিশোরের মেধা ও নান্দনিক সুকুমার বৃত্তি বিকাশে চট্টগ্রাম শহরের ৫টি গুরুত্বপূর্ণ কেন্দ্রে আমাদের নিয়মিত ক্লাস ও কার্যক্রম পরিচালিত হয়।' 
-                  : 'Parabar weekend academy operates 5 highly vibrant regional learning centers inside Chattogram City. Select your nearest center.'}
+                  ? 'শিশু-কিশোরের মেধা ও নান্দনিক সুকুমার বৃত্তি বিকাশে চট্টগ্রাম শহরের ৩টি গুরুত্বপূর্ণ কেন্দ্রে আমাদের নিয়মিত ক্লাস ও কার্যক্রম পরিচালিত হয়।' 
+                  : 'Parabar Sahitya Sanskriti Sansad operates 3 regional learning centers inside Chattogram City. Select your nearest center.'}
               </p>
             </div>
 
             {/* Bento Statistics Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
               <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-emerald-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
-                <span className="text-2xl sm:text-3xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">০৫টি</span>
+                <span className="text-2xl sm:text-3xl font-black text-[#0F6A4B] dark:text-emerald-400 font-mono">০৩টি</span>
                 <p className="text-[10px] sm:text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-                  {language === 'bn' ? 'সক্রিয় শাখা কেন্দ্র' : 'Active Branches'}
+                  {language === 'bn' ? 'শাখা কেন্দ্র' : 'Branches'}
                 </p>
               </div>
               <div className="bg-gradient-to-br from-red-50 to-red-100/40 dark:from-slate-900/60 dark:to-slate-900/30 p-5 rounded-2xl border border-red-100/40 dark:border-slate-800 text-center space-y-1 hover:scale-[1.02] transition-transform duration-250">
@@ -1037,9 +998,6 @@ export const PublicView: React.FC<PublicViewProps> = ({
                                 {language === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}
                               </span>
                             )}
-                            <span className="text-[9px] font-black uppercase tracking-wider bg-slate-900/90 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-950/40">
-                              {language === 'bn' ? 'সক্রিয়' : 'Active'}
-                            </span>
                           </div>
                         </div>
 
@@ -1159,8 +1117,8 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <div className="text-center py-12 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg mx-auto">
                 <p className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
                   {language === 'bn' 
-                    ? 'দুঃখিত! আপনার অনুসন্ধান অনুযায়ী কোনো সক্রিয় শাখা কেন্দ্র পাওয়া যায়নি।' 
-                    : 'No active branch centers match your search criteria.'}
+                    ? 'দুঃখিত! আপনার অনুসন্ধান অনুযায়ী কোনো শাখা কেন্দ্র পাওয়া যায়নি।' 
+                    : 'No branch centers match your search criteria.'}
                 </p>
                 <button
                   onClick={() => {
