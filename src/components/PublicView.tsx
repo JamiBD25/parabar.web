@@ -5,7 +5,8 @@ import { LoginView } from './LoginView';
 import { 
   BookOpen, Users, MapPin, Compass, ArrowRight, CheckCircle, 
   Award, Heart, Phone, Mail, Globe, Menu, X, Sparkles, GraduationCap,
-  Calendar, Shield, Play, HelpCircle, ChevronRight, Facebook, Youtube, Clock
+  Calendar, Shield, Play, HelpCircle, ChevronRight, Facebook, Youtube, Clock,
+  ArrowLeft, Check
 } from 'lucide-react';
 
 interface PublicViewProps {
@@ -23,6 +24,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [branchSearch, setBranchSearch] = useState('');
   const [branchFilterActivity, setBranchFilterActivity] = useState('');
+  const [selectedBranchId, setSelectedBranchId] = useState<string | null>(null);
 
   // Committee data (Bilingual)
   const committeeMembers = [
@@ -233,6 +235,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
   const handleTabClick = (tab: 'home' | 'about' | 'committee' | 'branches' | 'activities' | 'login') => {
     setActivePublicTab(tab);
+    setSelectedBranchId(null);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -249,14 +252,11 @@ export const PublicView: React.FC<PublicViewProps> = ({
             <ParabarLogo size={42} />
             <div className="flex flex-col items-start justify-center translate-x-[3.5px] translate-y-[3.5px]">
               <img 
-                src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
+                src="https://i.postimg.cc/02JC1Fwc/Parabar-Typo.png" 
                 alt="PARABAR" 
                 className="h-[22px] w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
-              <span className="text-[6.5px] text-slate-600 dark:text-slate-400 font-sans tracking-[0.03em] font-black uppercase leading-none mt-0.5">
-                {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'SAHITYA SANSKRITI SANSAD CHITTAGONG'}
-              </span>
             </div>
           </div>
 
@@ -430,8 +430,180 @@ export const PublicView: React.FC<PublicViewProps> = ({
       {/* VIEW CONDITIONAL RENDERING */}
       <div className="flex-1">
 
+        {/* INDIVIDUAL BRANCH DETAIL VIEW */}
+        {selectedBranchId && (() => {
+          const br = branches.find(b => b.id === selectedBranchId);
+          if (!br) return null;
+          const isHeadOffice = br.id === 'dewanhat';
+
+          return (
+            <div className="animate-fade-in max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
+              
+              {/* Back Button and Navigation Breadcrumb */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200/60 dark:border-slate-800/80">
+                <button
+                  onClick={() => setSelectedBranchId(null)}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-black text-[#0F6A4B] dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100/30 dark:border-emerald-900/40 hover:bg-emerald-100/50 dark:hover:bg-emerald-950/40 rounded-xl transition cursor-pointer self-start"
+                >
+                  <ArrowLeft size={16} />
+                  <span>{language === 'bn' ? 'ফিরে যান' : 'Go Back'}</span>
+                </button>
+
+                <div className="text-xs font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-sans">
+                  <span className="hover:text-[#0F6A4B] cursor-pointer" onClick={() => handleTabClick('home')}>
+                    {language === 'bn' ? 'হোম' : 'Home'}
+                  </span>
+                  <ChevronRight size={12} className="text-slate-400" />
+                  <span className="hover:text-[#0F6A4B] cursor-pointer" onClick={() => handleTabClick('branches')}>
+                    {language === 'bn' ? 'আমাদের শাখা সমূহ' : 'Our Branches'}
+                  </span>
+                  <ChevronRight size={12} className="text-slate-400" />
+                  <span className="text-slate-800 dark:text-slate-200 truncate">
+                    {language === 'bn' ? br.nameBn : br.nameEn}
+                  </span>
+                </div>
+              </div>
+
+              {/* Two-Column Grid: Left (Grand Cover Banner), Right (Branch details) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Left Column (Banner Cover) */}
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="relative aspect-video w-full rounded-3xl overflow-hidden shadow-md bg-slate-100 dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/80 group">
+                    <img 
+                      src={br.image} 
+                      alt={br.nameEn} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      referrerPolicy="no-referrer"
+                    />
+                    {isHeadOffice && (
+                      <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-wider bg-red-600 text-white px-3 py-1.5 rounded-full shadow-md border border-red-500">
+                        {language === 'bn' ? 'প্রধান কার্যালয়' : 'Head Office'}
+                      </span>
+                    )}
+                  </div>
+                  
+                  {/* Quote or Welcome message */}
+                  <div className="bg-emerald-500/5 dark:bg-slate-900/40 p-5 rounded-2xl border border-emerald-500/10 dark:border-slate-800/60">
+                    <h3 className="text-xs sm:text-sm font-black text-emerald-800 dark:text-emerald-400 mb-1.5 uppercase tracking-wide">
+                      {language === 'bn' ? 'ভর্তি বিষয়ক বার্তা:' : 'Admission & Guidance Message:'}
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+                      {language === 'bn' 
+                        ? 'আমাদের প্রতিটি শাখায় অভিজ্ঞ প্রশিক্ষকগণের মাধ্যমে চমৎকার পরিবেশে শিশুদের মেধা বিকাশে যত্নসহকারে ক্লাস পরিচালনা করা হয়। নির্ধারিত আসন খালি থাকা সাপেক্ষে ভর্তি চলছে।'
+                        : 'Classes at all our branches are meticulously guided by elite trainers in a screen-free supportive environment. Admissions are ongoing subject to available seats.'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right Column (Details Dashboard) */}
+                <div className="lg:col-span-5 space-y-5">
+                  
+                  {/* Title & Badge */}
+                  <div className="space-y-2">
+                    <h1 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white leading-tight font-sans">
+                      {language === 'bn' ? br.nameBn : br.nameEn}
+                    </h1>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[10px] font-black bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-2.5 py-1 rounded-full border border-slate-200/60 dark:border-slate-700">
+                        {language === 'bn' ? `প্রতিষ্ঠা: ${br.established} খ্রি:` : `Estd. ${br.established}`}
+                      </span>
+                      <span className="text-[10px] font-black bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                        {language === 'bn' ? 'সচল শাখা' : 'Active Branch'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Details Cards Container */}
+                  <div className="space-y-4">
+                    
+                    {/* Location Card */}
+                    <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-250/60 dark:border-slate-800/80 shadow-xs space-y-1.5">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
+                        {language === 'bn' ? 'ঠিকানা ও অবস্থান:' : 'Location Address:'}
+                      </span>
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-bold leading-relaxed flex items-start gap-2">
+                        <MapPin size={16} className="text-[#B22222] shrink-0 mt-0.5" />
+                        <span>{language === 'bn' ? br.addressBn : br.addressEn}</span>
+                      </p>
+                    </div>
+
+                    {/* Schedule Card */}
+                    <div className="bg-amber-50/40 dark:bg-amber-950/10 p-4 rounded-2xl border border-amber-250/50 dark:border-amber-900/30 shadow-xs space-y-1.5">
+                      <span className="text-[10px] text-amber-700 dark:text-amber-400 uppercase tracking-widest font-black block flex items-center gap-1.5 font-mono">
+                        <Clock size={14} className="animate-pulse" />
+                        {language === 'bn' ? 'ক্লাস সময়সূচি:' : 'Class Schedule:'}
+                      </span>
+                      <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-black leading-relaxed">
+                        {language === 'bn' ? br.scheduleBn : br.scheduleEn}
+                      </p>
+                    </div>
+
+                    {/* Manager / Supervisor */}
+                    <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-250/60 dark:border-slate-800/80 shadow-xs space-y-1.5">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
+                        {language === 'bn' ? 'পরিচালনায় / দায়িত্বে:' : 'Management / Contact Person:'}
+                      </span>
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-bold leading-relaxed flex items-center gap-2">
+                        <Users size={16} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <span>{language === 'bn' ? br.managerBn : br.managerEn}</span>
+                      </p>
+                    </div>
+
+                    {/* Subjects Offered Card */}
+                    <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-250/60 dark:border-slate-800/80 shadow-xs space-y-2">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black block">
+                        {language === 'bn' ? 'প্রশিক্ষণ বিষয়সমূহ:' : 'Subjects Offered:'}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {br.activitiesBn.split(',').map((act: string, i: number) => (
+                          <span 
+                            key={i} 
+                            className="text-[11px] bg-slate-100 dark:bg-slate-850 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-xl font-sans font-black border border-slate-200/60 dark:border-slate-800 flex items-center gap-1.5"
+                          >
+                            <Check size={12} className="text-[#0F6A4B] dark:text-emerald-400 shrink-0" />
+                            <span>{act.trim()}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Contact & Social Buttons Container */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                      <a 
+                        href={`tel:${br.phone}`} 
+                        className="inline-flex items-center justify-center gap-2 bg-[#B22222] hover:bg-red-700 text-white font-sans font-black text-xs tracking-wider px-4 py-3.5 rounded-2xl transition shadow-sm cursor-pointer border border-[#B22222]"
+                      >
+                        <Phone size={14} />
+                        <span>{language === 'bn' ? `কল করুন: ${br.phone}` : `Call: ${br.phone}`}</span>
+                      </a>
+
+                      {br.facebookUrl && (
+                        <a
+                          href={br.facebookUrl}
+                          target="_blank"
+                          referrerPolicy="no-referrer"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 bg-[#1877F2]/10 dark:bg-[#1877F2]/20 hover:bg-[#1877F2]/20 text-[#1877F2] dark:text-blue-400 font-sans font-black text-xs tracking-wider px-4 py-3.5 rounded-2xl transition shadow-sm border border-[#1877F2]/20 dark:border-blue-900/30 cursor-pointer"
+                        >
+                          <Facebook size={14} />
+                          <span>{language === 'bn' ? 'ফেইসবুক পেইজ' : 'Facebook Page'}</span>
+                        </a>
+                      )}
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          );
+        })()}
+
         {/* 1. HOME TAB */}
-        {activePublicTab === 'home' && (
+        {!selectedBranchId && activePublicTab === 'home' && (
           <div className="animate-fade-in space-y-16 pb-16">
             
             {/* Hero Interactive Banner Section */}
@@ -642,7 +814,14 @@ export const PublicView: React.FC<PublicViewProps> = ({
 
                 <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {branches.slice(0, 3).map((br, index) => (
-                    <div key={index} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between group">
+                    <div 
+                      key={index} 
+                      onClick={() => {
+                        setSelectedBranchId(br.id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-xs hover:shadow-lg hover:border-emerald-500/50 dark:hover:border-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group cursor-pointer"
+                    >
                       <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-950">
                         <img 
                           src={br.image} 
@@ -669,7 +848,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         )}
 
         {/* 2. ABOUT (পরিচিতি) TAB */}
-        {activePublicTab === 'about' && (
+        {!selectedBranchId && activePublicTab === 'about' && (
           <div className="animate-fade-in max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
             <div className="text-center space-y-3">
               <div className="inline-flex bg-red-100/60 dark:bg-red-950/25 text-[#B22222] p-3 rounded-2xl mb-1 border border-red-200/50">
@@ -752,7 +931,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         )}
 
         {/* 3. COMMITTEE (পরিচালনা পরিষদ) TAB */}
-        {activePublicTab === 'committee' && (
+        {!selectedBranchId && activePublicTab === 'committee' && (
           <div className="animate-fade-in max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-10">
             <div className="text-center space-y-3">
               <div className="inline-flex bg-[#0F6A4B]/10 text-[#0F6A4B] p-3 rounded-2xl mb-1">
@@ -808,7 +987,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         )}
 
         {/* 4. BRANCHES (শাখা সমুহ) TAB */}
-        {activePublicTab === 'branches' && (
+        {!selectedBranchId && activePublicTab === 'branches' && (
           <div className="animate-fade-in max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
             
             {/* Header Section */}
@@ -969,9 +1148,13 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   return (
                     <div 
                       key={br.id} 
-                      className={`bg-white dark:bg-slate-900 border rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1.5 ${
+                      onClick={() => {
+                        setSelectedBranchId(br.id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`bg-white dark:bg-slate-900 border rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group transform hover:-translate-y-1.5 cursor-pointer ${
                         isHeadOffice 
-                          ? 'border-amber-400/80 dark:border-amber-500 ring-2 ring-amber-400/10' 
+                          ? 'border-amber-400/80 dark:border-amber-500 ring-2 ring-amber-400/10 hover:border-amber-400' 
                           : 'border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800'
                       }`}
                     >
@@ -1039,7 +1222,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         )}
 
         {/* 5. ACTIVITIES (কার্যক্রম) TAB */}
-        {activePublicTab === 'activities' && (
+        {!selectedBranchId && activePublicTab === 'activities' && (
           <div className="animate-fade-in max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
             <div className="text-center space-y-3">
               <div className="inline-flex bg-indigo-500/10 text-indigo-600 p-3 rounded-2xl mb-1">
@@ -1091,7 +1274,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
         )}
 
         {/* 6. LOGIN (লগ ইন) TAB */}
-        {activePublicTab === 'login' && (
+        {!selectedBranchId && activePublicTab === 'login' && (
           <div className="animate-fade-in relative">
             <LoginView />
           </div>
@@ -1108,14 +1291,11 @@ export const PublicView: React.FC<PublicViewProps> = ({
               <ParabarLogo size={36} />
               <div className="flex flex-col items-start justify-center translate-x-[3.5px] translate-y-[3.5px]">
                 <img 
-                  src="https://i.postimg.cc/FFP1TbVG/Parabar-Typo.png" 
+                  src="https://i.postimg.cc/02JC1Fwc/Parabar-Typo.png" 
                   alt="PARABAR" 
                   className="h-[18px] w-auto object-contain"
                   referrerPolicy="no-referrer"
                 />
-                <span className="text-[6px] text-slate-500 dark:text-slate-400 font-sans tracking-[0.03em] font-black uppercase leading-none mt-0.5">
-                  {language === 'bn' ? 'সাহিত্য সংস্কৃতি সংসদ চট্টগ্রাম' : 'SAHITYA SANSKRITI SANSAD CHITTAGONG'}
-                </span>
               </div>
             </div>
             <p className="text-[11px] leading-relaxed font-semibold">
