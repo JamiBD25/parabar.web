@@ -634,7 +634,7 @@ export const PublicView: React.FC<PublicViewProps> = ({
                   <div className="py-3">
                     <p className="text-lg sm:text-xl md:text-2xl text-[#0F6A4B] dark:text-emerald-400 font-extrabold max-w-3xl mx-auto leading-relaxed tracking-wide font-sans">
                       {language === 'bn' 
-                        ? '“সুস্থ সংস্কৃতির পায়রা উড়ৃক নিলীমার দশ দিগন্তে।”' 
+                        ? '“সুস্থ সংস্কৃতির পায়রা উড়ুক নিলীমার দশ দিগন্তে।”' 
                         : '“Let the pigeon of healthy culture fly in the ten horizons of the blue sky.”'}
                     </p>
                   </div>
