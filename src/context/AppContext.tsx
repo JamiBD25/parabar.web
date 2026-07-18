@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { supabase } from '../supabase';
 import { 
   Admin, Artist, Trainer, ClassSchedule, AttendanceRecord, 
   Payment, Expense, Supporter, Donation, SystemNotification, 
@@ -118,15 +119,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [isCloudSyncing, setIsCloudSyncing] = useState(false);
 
-  // Load from Firestore or fallback to local storage on mount
+  // Load from Firestore/Supabase or fallback to local storage on mount
   useEffect(() => {
     const fetchCloudData = async () => {
       try {
         setIsCloudSyncing(true);
         
         // 1. Fetch Admin Pins
-        const pinsRef = doc(db, 'parabar_data', 'admin_pins');
-        const pinsSnap = await getDoc(pinsRef);
         let currentPins = {
           'ADM-001': '1234',
           'ADM-002': '4321',
@@ -135,15 +134,72 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           'ADM-005': '2222',
           'ADM-006': '3333'
         };
-        if (pinsSnap.exists() && pinsSnap.data().pins) {
-          currentPins = pinsSnap.data().pins;
-        } else {
-          await setDoc(pinsRef, { pins: currentPins });
+        let pinsLoaded = false;
+
+        if (supabase) {
+          try {
+            const { data, error } = await supabase
+              .from('parabar_data')
+              .select('data')
+              .eq('key', 'admin_pins')
+              .maybeSingle();
+            
+            if (!error && data && data.data && data.data.pins) {
+              currentPins = data.data.pins;
+              pinsLoaded = true;
+            } else if (!error && !data) {
+              // Seed Supabase with default pins
+              const storedPins = localStorage.getItem('parabar_admin_pins');
+              if (storedPins) {
+                currentPins = JSON.parse(storedPins);
+              }
+              await supabase.from('parabar_data').upsert({ key: 'admin_pins', data: { pins: currentPins } });
+              pinsLoaded = true;
+            }
+          } catch (err) {
+            console.warn('Supabase fetch failed for admin_pins, falling back to Firestore:', err);
+          }
+        }
+
+        if (!pinsLoaded) {
+          const pinsRef = doc(db, 'parabar_data', 'admin_pins');
+          const pinsSnap = await getDoc(pinsRef);
+          if (pinsSnap.exists() && pinsSnap.data().pins) {
+            currentPins = pinsSnap.data().pins;
+          } else {
+            await setDoc(pinsRef, { pins: currentPins });
+          }
         }
         localStorage.setItem('parabar_admin_pins', JSON.stringify(currentPins));
 
         // Helper function to fetch list or initialize with fallback/localStorage/seedData
         const fetchList = async (docId: string, initialData: any[], localKey: string) => {
+          if (supabase) {
+            try {
+              const { data, error } = await supabase
+                .from('parabar_data')
+                .select('data')
+                .eq('key', docId)
+                .maybeSingle();
+
+              if (!error && data && data.data && data.data.list) {
+                const list = data.data.list;
+                localStorage.setItem(localKey, JSON.stringify(list));
+                return list;
+              } else if (!error && !data) {
+                // Not found, let's seed Supabase with fallback/localStorage
+                const stored = localStorage.getItem(localKey);
+                const fallbackList = stored ? JSON.parse(stored) : initialData;
+                await supabase.from('parabar_data').upsert({ key: docId, data: { list: fallbackList } });
+                localStorage.setItem(localKey, JSON.stringify(fallbackList));
+                return fallbackList;
+              }
+            } catch (err) {
+              console.warn(`Supabase fetch failed for key "${docId}", falling back to Firestore:`, err);
+            }
+          }
+
+          // Fallback to Firestore
           const docRef = doc(db, 'parabar_data', docId);
           const snap = await getDoc(docRef);
           if (snap.exists() && snap.data().list) {
@@ -210,7 +266,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           setCurrentUser(JSON.parse(storedUser));
         }
       } catch (err) {
-        console.error('Error fetching Firestore cloud data:', err);
+        console.error('Error fetching cloud data:', err);
         loadFromLocalStorageFallback();
       } finally {
         setIsCloudSyncing(false);
@@ -286,7 +342,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     logAction('Tab Navigation', `Navigated to ${tab} module`);
   };
 
-  // Sync state functions that update local state and local storage, and sync with Firestore
+  // Sync state functions that update local state and local storage, and sync with Firestore/Supabase
   const syncState = async (key: string, data: any, stateSetter: any) => {
     stateSetter(data);
     localStorage.setItem(`parabar_${key}`, JSON.stringify(data));
@@ -309,10 +365,25 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       
       const docId = docMap[key];
       if (docId) {
-        await setDoc(doc(db, 'parabar_data', docId), { list: data });
+        let synced = false;
+        if (supabase) {
+          try {
+            const { error } = await supabase
+              .from('parabar_data')
+              .upsert({ key: docId, data: { list: data } });
+            if (!error) synced = true;
+          } catch (err) {
+            console.warn(`Supabase sync failed for key "${key}", falling back to Firestore:`, err);
+          }
+        }
+        
+        // If Supabase failed or isn't active, save to Firestore
+        if (!synced) {
+          await setDoc(doc(db, 'parabar_data', docId), { list: data });
+        }
       }
     } catch (err) {
-      console.error(`Error syncing key "${key}" to Firestore:`, err);
+      console.error(`Error syncing key "${key}" to Cloud Database:`, err);
     } finally {
       setIsCloudSyncing(false);
     }
@@ -782,6 +853,25 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       };
       pins[adminId] = newPin;
       localStorage.setItem('parabar_admin_pins', JSON.stringify(pins));
+      
+      const syncPins = async () => {
+        try {
+          let synced = false;
+          if (supabase) {
+            const { error } = await supabase
+              .from('parabar_data')
+              .upsert({ key: 'admin_pins', data: { pins } });
+            if (!error) synced = true;
+          }
+          if (!synced) {
+            await setDoc(doc(db, 'parabar_data', 'admin_pins'), { pins });
+          }
+        } catch (err) {
+          console.error('Error syncing PINs to cloud:', err);
+        }
+      };
+      syncPins();
+
       logAction('Change Password', `Admin changed security PIN.`);
       return true;
     } catch (e) {

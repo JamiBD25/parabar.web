@@ -4,6 +4,7 @@ import { ClassSchedule } from '../types';
 import { 
   BookOpen, Plus, Clock, User, Sparkles, X, Edit2, Trash2 
 } from 'lucide-react';
+import { isDepartmentAllowedForAdmin } from '../utils/adminLevels';
 
 const getDeptStyles = (dept: string) => {
   switch (dept) {
@@ -45,27 +46,28 @@ const getDeptStyles = (dept: string) => {
 
 export const ClassView: React.FC = () => {
   const { 
-    classes, addClass, updateClass, deleteClass, trainers, language, t 
+    classes, addClass, updateClass, deleteClass, trainers, language, t, currentAdmin 
   } = useApp();
+
+  const allowedClasses = (classes || []).filter(cls => isDepartmentAllowedForAdmin(currentAdmin.id, cls.department));
+  const departmentsList = ['Music', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'].filter(d => isDepartmentAllowedForAdmin(currentAdmin.id, d));
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingClass, setEditingClass] = useState<ClassSchedule | null>(null);
 
   // Form Fields
   const [className, setClassName] = useState('');
-  const [dept, setDept] = useState('Music');
+  const [dept, setDept] = useState(departmentsList[0] || 'Music');
   const [trainerId, setTrainerId] = useState(trainers[0]?.id || '');
   const [day, setDay] = useState('Friday');
   const [time, setTime] = useState('09:00 AM - 11:00 AM');
   const [isSpecial, setIsSpecial] = useState(false);
   const [conductedBy, setConductedBy] = useState('');
 
-  const departmentsList = ['Music', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'];
-
   const handleOpenAdd = () => {
     setEditingClass(null);
     setClassName('');
-    setDept('Music');
+    setDept(departmentsList[0] || 'Music');
     setTrainerId(trainers[0]?.id || '');
     setDay('Friday');
     setTime('09:00 AM - 11:00 AM');
@@ -143,7 +145,7 @@ export const ClassView: React.FC = () => {
 
       {/* Roster Cards list */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {classes.map((cls) => {
+        {allowedClasses.map((cls) => {
           const deptStyles = getDeptStyles(cls.department);
           return (
             <div key={cls.id} className="bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm hover:shadow hover:border-brand-green/20 transition duration-300 flex flex-col justify-between">

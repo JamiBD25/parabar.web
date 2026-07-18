@@ -7,6 +7,7 @@ import {
   X, Camera, User, School, Calendar, Smartphone, MapPin,
   ClipboardList, CreditCard, Lock
 } from 'lucide-react';
+import { isDepartmentAllowedForAdmin } from '../utils/adminLevels';
 
 const getDeptLabel = (dept: string, lang: 'bn' | 'en') => {
   if (dept === 'Music') return lang === 'bn' ? 'সঙ্গীত' : 'Music';
@@ -21,7 +22,7 @@ const getDeptLabel = (dept: string, lang: 'bn' | 'en') => {
 
 export const ArtistView: React.FC = () => {
   const { 
-    artists, addArtist, updateArtist, deleteArtist, t, language, logAction, payments, attendance
+    artists, addArtist, updateArtist, deleteArtist, t, language, logAction, payments, attendance, currentAdmin
   } = useApp();
 
   // Search, Filter and Sort states
@@ -61,7 +62,7 @@ export const ArtistView: React.FC = () => {
   // Mock Camera State
   const [cameraActive, setCameraActive] = useState(false);
 
-  const departmentsList = ['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'];
+  const departmentsList = ['Music (Khude Parabar)', 'Music (Kishore Parabar)', 'Fine Arts', 'Dance', 'Recitation', 'Theatre'].filter(dept => isDepartmentAllowedForAdmin(currentAdmin.id, dept));
   const bloodGroupsList = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   const gradesList = ['Playgroup', 'Nursery', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'HSC 1st Yr', 'HSC 2nd Yr'];
 
@@ -181,6 +182,9 @@ export const ArtistView: React.FC = () => {
   const filteredArtists = (artists || [])
     .filter(art => {
       if (!art) return false;
+      if (!isDepartmentAllowedForAdmin(currentAdmin.id, art.departments)) {
+        return false;
+      }
       const searchLower = (searchTerm || '').toLowerCase();
       const nameLower = (art.name || '').toLowerCase();
       const nameEnLower = (art.nameEn || '').toLowerCase();

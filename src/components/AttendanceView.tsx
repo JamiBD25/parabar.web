@@ -5,15 +5,18 @@ import {
   ClipboardList, Calendar, CheckCircle, AlertCircle, 
   HelpCircle, Sparkles, Plus, Search, FileText 
 } from 'lucide-react';
+import { isDepartmentAllowedForAdmin } from '../utils/adminLevels';
 
 export const AttendanceView: React.FC = () => {
   const { 
-    artists, classes, attendance, saveAttendanceList, language, t, logAction 
+    artists, classes, attendance, saveAttendanceList, language, t, logAction, currentAdmin
   } = useApp();
+
+  const allowedClasses = (classes || []).filter(cls => isDepartmentAllowedForAdmin(currentAdmin.id, cls.department));
 
   // Date selectors
   const [selectedDate, setSelectedDate] = useState('2026-06-19');
-  const [selectedClassId, setSelectedClassId] = useState(classes[0]?.id || '');
+  const [selectedClassId, setSelectedClassId] = useState(allowedClasses[0]?.id || '');
   const [selectedType, setSelectedType] = useState<'Friday Class' | 'Special Class'>('Friday Class');
 
   // Search filter
@@ -22,7 +25,7 @@ export const AttendanceView: React.FC = () => {
   // Active status grid inputs
   const [tempAttendance, setTempAttendance] = useState<{ [artistId: string]: 'Present' | 'Absent' | 'Leave' | 'Late' }>({});
 
-  const chosenClass = classes.find(c => c.id === selectedClassId);
+  const chosenClass = allowedClasses.find(c => c.id === selectedClassId);
   const targetedDept = chosenClass ? chosenClass.department : 'Music';
 
   // Artists currently enrolled in the department of the active course
@@ -132,7 +135,7 @@ export const AttendanceView: React.FC = () => {
               onChange={(e) => setSelectedClassId(e.target.value)}
               className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
             >
-              {classes.map(cls => (
+              {allowedClasses.map(cls => (
                 <option key={cls.id} value={cls.id}>{cls.className} ({cls.department} - {cls.time})</option>
               ))}
             </select>

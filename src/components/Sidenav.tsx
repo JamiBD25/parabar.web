@@ -7,6 +7,7 @@ import {
   Cloud, RefreshCw, Globe
 } from 'lucide-react';
 import { ParabarLogo } from './ParabarLogo';
+import { isTabAllowedForAdmin, getAdminLevelLabel } from '../utils/adminLevels';
 
 interface SidenavProps {
   onExitERP?: () => void;
@@ -29,16 +30,13 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
   const [enteredPin, setEnteredPin] = useState('');
   const [pinError, setPinError] = useState('');
 
-  const getRoleLabel = (role: string, lang: 'bn' | 'en') => {
-    if (role === 'Super Admin') return lang === 'bn' ? 'পারাবার পরিচালক' : 'Parabar Director';
-    if (role === 'Sub Admin') return lang === 'bn' ? 'শাখা পরিচালক' : 'Branch Director';
-    if (role === 'Sub Admin 2') return lang === 'bn' ? 'বিভাগীয় পরিচালক' : 'Departmental Director';
-    return role;
+  const getRoleLabel = (adminId: string, lang: 'bn' | 'en') => {
+    return getAdminLevelLabel(adminId, lang);
   };
 
   const isStudent = currentUser?.role === 'student';
 
-  const menuItems = isStudent
+  const rawMenuItems = isStudent
     ? [
         { id: 'studentDashboard', labelBn: 'আমার পোর্টাল', labelEn: 'My Student Portal', icon: Users },
         { id: 'notifications', labelBn: 'বিজ্ঞপ্তি কেন্দ্র', labelEn: 'Notice Board', icon: Bell },
@@ -58,6 +56,10 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
         { id: 'adminPanel', labelBn: 'অ্যাডমিন প্যানেল', labelEn: 'Admin Control', icon: ShieldAlert },
       ];
 
+  const menuItems = isStudent 
+    ? rawMenuItems 
+    : rawMenuItems.filter(item => isTabAllowedForAdmin(currentAdmin.id, item.id));
+
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
   const handleAdminSwitchAttempt = (admin: any) => {
@@ -69,11 +71,14 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
 
   const handleVerifyPin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Predefined pins for ease of validation (Super Admin: 1234, Sub Admins: 4321, 0000)
-    const pins: { [key: string]: string } = {
+    const storedPins = localStorage.getItem('parabar_admin_pins');
+    const pins: { [key: string]: string } = storedPins ? JSON.parse(storedPins) : {
       'ADM-001': '1234',
       'ADM-002': '4321',
-      'ADM-003': '0000'
+      'ADM-003': '0000',
+      'ADM-004': '1111',
+      'ADM-005': '2222',
+      'ADM-006': '3333'
     };
 
     if (pins[selectedAdminToSwitch.id] === enteredPin) {
@@ -159,11 +164,11 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
                 />
                 <span className="hidden sm:inline max-w-[125px] truncate font-semibold text-xs">{currentAdmin.name}</span>
                 <span className="bg-brand-green text-white font-bold px-1.5 py-0.5 rounded text-[9px] uppercase">
-                  {currentAdmin.role === 'Super Admin' 
-                    ? (language === 'bn' ? 'পরিচালক' : 'Director') 
-                    : currentAdmin.role === 'Sub Admin' 
-                      ? (language === 'bn' ? 'শাখা' : 'Branch') 
-                      : (language === 'bn' ? 'বিভাগীয়' : 'Dept')}
+                  {currentAdmin.id === 'ADM-001' ? 'L1' :
+                   currentAdmin.id === 'ADM-002' ? 'L2' :
+                   currentAdmin.id === 'ADM-003' ? 'L3' :
+                   currentAdmin.id === 'ADM-004' ? 'L4' :
+                   currentAdmin.id === 'ADM-005' ? 'L5' : 'L6'}
                 </span>
               </button>
 
@@ -182,7 +187,7 @@ export const Sidenav: React.FC<SidenavProps> = ({ onExitERP }) => {
                         <img src={admin.avatar} alt="" className="w-6 h-6 rounded-full object-cover" />
                         <div>
                           <p className="font-semibold text-slate-800">{admin.name}</p>
-                          <p className="text-[9px] text-[#6B6B6B]">{getRoleLabel(admin.role, language)}</p>
+                          <p className="text-[9px] text-[#6B6B6B]">{getRoleLabel(admin.id, language)}</p>
                         </div>
                       </div>
                       {currentAdmin.id === admin.id && (

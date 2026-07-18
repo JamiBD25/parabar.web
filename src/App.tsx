@@ -17,6 +17,7 @@ import { LoginView } from './components/LoginView';
 import { StudentDashboardView } from './components/StudentDashboardView';
 import { PublicView } from './components/PublicView';
 import { ShieldAlert } from 'lucide-react';
+import { isTabAllowedForAdmin } from './utils/adminLevels';
 
 const AppContent: React.FC = () => {
   const { activeTab, currentUser, currentAdmin, language } = useApp();
@@ -44,8 +45,8 @@ const AppContent: React.FC = () => {
     );
   }
 
-  // Sub Admin role verification filter block
-  const canViewModule = currentUser.role === 'admin' ? currentAdmin.permissions.view : false;
+  // Sub Admin level-based verification filter block
+  const canViewModule = currentUser.role === 'admin' ? isTabAllowedForAdmin(currentAdmin.id, activeTab) : false;
 
   const renderActiveView = () => {
     // If logged in as student, they get access purely to their own Student Portal View
